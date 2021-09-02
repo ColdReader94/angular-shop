@@ -33,6 +33,11 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./src"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -101,11 +106,28 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./src"
+              ]
+            },
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "angular-shop"
+  "defaultProject": "angular-shop",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
