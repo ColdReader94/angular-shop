@@ -1,0 +1,9 @@
+$base-font-size: 16px;
+
+@function pxToRem($size) {
+    @return ($size / $base-font-size) + rem;
+}
+
+$background-header-secondary-hover: rgb(239, 169, 192);
+$background-header-text-hover: #c22458;
+$header-border-color: gray;

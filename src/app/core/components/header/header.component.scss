@@ -1,0 +1,98 @@
+@import "variables.scss";
+
+:host {    
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: pxToRem(10px) 0;
+}
+
+.header-info {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-bottom: pxToRem(5px);
+    border-bottom: 1px solid $header-border-color;
+}
+
+.location-icon {
+    width: pxToRem(20px);
+    height: pxToRem(20px);
+}
+
+.drop-down-list,
+.contacts-list {
+    display: none;
+
+    li > *{
+        
+        display: flex;
+        align-items: center;
+    }
+    
+    & > li:hover {
+        background: $background-header-secondary-hover;
+        color: $background-header-text-hover;
+    }
+
+    img {
+        margin-right: pxToRem(10px);
+    }
+}
+
+.contacts-list {
+    right: pxToRem(120px);
+}
+
+.location-block,
+.more-contacts-header {
+    display: flex;
+    cursor: pointer;
+}
+
+.cities-list__open,
+.contacts-list__open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-top: pxToRem(15px);
+}
+
+.contacts-list__open {
+    margin-top: pxToRem(30px);
+}
+
+.current-city::after,
+.more-contacts-header::after {
+    content: "▼";
+}
+
+.current-city__open::after,
+.more-contacts-header__open::after {
+    content: "▲";
+}
+
+a {
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+        color: $background-header-text-hover
+    }
+}
+
+.contacts-header {
+    display: flex;
+    column-gap: 10px;
+
+    * {
+        display: flex;
+        align-items: center;        
+        column-gap: 5px;
+    }
+}
+
+.wrapper {
+    justify-content: space-between;
+    width: 100%;
+}

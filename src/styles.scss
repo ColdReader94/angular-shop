@@ -1,0 +1,34 @@
+@import "variables.scss";
+
+* {
+    padding: 0;
+    margin: 0;
+    transition: all 0.5s ease-in-out;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1280px;
+}
+
+.drop-down-list {
+    padding: pxToRem(15px);
+    border-radius: pxToRem(5px);
+    list-style: none;
+    box-shadow: 0 4px 12px 0 rgb(41 44 51 / 12%), 0 2px 2px 0 rgb(41 44 51 / 4%);   
+    padding: 0;    
+    min-width: pxToRem(120px);  
+
+    & > li {       
+        padding: pxToRem(5px);
+    }
+}
+
+.drop-down-list__open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}

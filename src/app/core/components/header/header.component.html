@@ -1,0 +1,57 @@
+<div class="header-info">
+    <div class="wrapper">
+        <div class="location-block">
+            <img class="location-icon" src="assets/images/point.png" alt="" />
+            <div *ngIf="error$" class="error-message">{{ error$ | async }}</div>
+            <div
+                class="current-city"
+                [class.current-city__open]="cityDropDown"
+                (click)="cityDropDown = !cityDropDown"
+            >
+                {{ currentCity$ | async }}            
+            <ul
+                (click)="changeCity($event)"
+                class="drop-down-list cities-list"
+                [class.cities-list__open]="cityDropDown"
+            >
+                <li>Брест</li>
+                <li>Витебск</li>
+                <li>Гомель</li>
+                <li>Гродно</li>
+                <li>Минск</li>
+                <li>Могилев</li>
+            </ul>
+        </div>
+        </div>
+        <div class="contacts-header">
+            <div class="contacts-header-item">
+                <a
+                    href="https://www.viber.com/21vek.by"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="assets/images/viber-icon.png" width="20px" alt="" /> Viber</a>
+            </div>
+            <div class="contacts-header-item">
+                <a href="tel:+375 29 302 00 00">
+                    <img src="assets/images/a1-icon.png" width="20px" alt="" />+375 29 302 00 00</a>
+            </div>
+        </div>
+        <div class="more-contacts-header"
+        [class.more-contacts-header__open]="contactsDropDown"
+        (click)="contactsDropDown = !contactsDropDown">
+            Еще
+        <ul class="drop-down-list contacts-list"
+        [class.contacts-list__open]="contactsDropDown">
+            <li><a href="tel:+375 25 302 00 00"><img src="assets/images/life-icon.png" width="20px" alt="" />+375 25 302 00 00</a></li>
+            <li><a href="tel:+375 17 302 00 00"><img src="assets/images/phone-icon.png" width="20px" alt="" />+375 17 302 00 00</a></li>
+            <li><a href="http://t.me/e21vekbot"
+                target="_blank"
+                rel="noopener noreferrer"><img src="assets/images/telegram-icon.png" width="20px" alt="" />Telegram</a></li>
+            <li><a href="mailto:21@21vek.by"
+                rel="noopener noreferrer"><img src="assets/images/mail-icon.png" width="20px" alt="" />Почта</a></li>
+            <li></li>
+        </ul>
+        
+    </div>
+    </div>
+</div>
