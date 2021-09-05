@@ -1,0 +1,24 @@
+@import "variables.scss";
+
+:host {
+    display: flex;
+    cursor: pointer;
+}
+
+.drop-down-block {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.drop-down-toggler:hover {
+    color: $background-header-text-hover;
+}
+
+.drop-down-toggler::after {
+    content: "▼";
+}
+
+.drop-down-toggler__active::after {
+    content: "▲";
+}

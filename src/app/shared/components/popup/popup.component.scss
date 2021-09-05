@@ -1,0 +1,40 @@
+@import "variables.scss";
+
+:host {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 50vw;
+    transform: translate(50%, 50%);
+    height: 50vh;
+    background: $body-background-color;
+}
+
+.close-icon .line {
+    display: flex;
+    width: pxToRem(20px);
+    height: pxToRem(3px);
+    background: #000000;
+    opacity: 0.7;
+}
+
+.close-icon {
+    position: absolute;
+    margin: pxToRem(10px);
+    align-self: flex-end;
+    cursor: pointer;
+
+    .line:first-child {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    .line:last-child {
+        -webkit-transform: rotate(45deg) translate(pxToRem(-2px), -2px);
+        transform: rotate(45deg) translate(pxToRem(-2px), -2px);
+    }
+}
+
+.close-icon:hover .line {
+    opacity: 1;
+}

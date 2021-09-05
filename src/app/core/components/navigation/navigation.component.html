@@ -1,0 +1,45 @@
+<img src="assets/images/logo.png" class="logo" alt="" />
+<button class="nav-btn catalog-btn">
+    <div class="circle">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+    </div>
+    Каталог товаров
+</button>
+<form class="search-form">
+    <img src="assets/images/search-icon.svg" class="icon" alt="" />
+    <input #searchField type="text" class="search-input" placeholder="Поиск товаров" />
+</form>
+<app-dropdown class="drop-down nav-btn account-btn" [buttonText]="'Аккаунт'">
+    <ul class="drop-down-list">
+        <li><img src="assets/images/avatar.png" alt="" /></li>
+        <li><button (click)="popupShow()" class="login-btn">Войти</button>
+        </li>
+        <li>
+            <a href=""
+                ><img src="assets/images/basket-icon.svg" class="icon" alt="" />Корзина</a
+            >
+        </li>
+        <li>
+            <a href=""
+                ><img
+                    src="assets/images/favourite-icon.svg"
+                    class="icon"
+                    alt=""
+                />Избранное</a
+            >
+        </li>
+        <li>
+            <a href=""
+                ><img src="assets/images/list-icon.png" class="icon" alt="" />Лист
+                ожидания</a
+            >
+        </li>
+    </ul>
+</app-dropdown>
+<button class="nav-btn basket-btn">
+    <img src="assets/images/basket-icon.svg" class="icon" alt="" />Корзина
+</button>
+<app-popup (closePopup)="popupClose()" *ngIf="isPopupShow"></app-popup>

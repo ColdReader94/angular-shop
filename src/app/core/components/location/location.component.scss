@@ -1,0 +1,12 @@
+
+@import "variables.scss";
+
+.location-block {
+    display: flex;
+}
+
+.location-icon {
+    width: pxToRem(20px);
+    height: pxToRem(20px);    
+    margin-right: pxToRem(10px);
+}

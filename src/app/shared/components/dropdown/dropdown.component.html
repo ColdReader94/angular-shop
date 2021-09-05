@@ -1,0 +1,10 @@
+<div class="drop-down-block" [class.dropdown-arrow]="dropDown" 
+(click)="dropDownToggle($event)">
+    <div
+        class="drop-down-toggler"
+        [class.drop-down-toggler__active]="dropDown"
+    >
+        {{ buttonText }}</div
+    >
+        <ng-content *ngIf="dropDown"></ng-content>
+</div>

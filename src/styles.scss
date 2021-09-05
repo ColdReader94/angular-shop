@@ -14,21 +14,61 @@
     max-width: 1280px;
 }
 
-.drop-down-list {
-    padding: pxToRem(15px);
-    border-radius: pxToRem(5px);
-    list-style: none;
-    box-shadow: 0 4px 12px 0 rgb(41 44 51 / 12%), 0 2px 2px 0 rgb(41 44 51 / 4%);   
-    padding: 0;    
-    min-width: pxToRem(120px);  
-
-    & > li {       
-        padding: pxToRem(5px);
-    }
+.icon {
+    width: pxToRem(20px);
 }
 
-.drop-down-list__open {
+.drop-down-list {
     display: flex;
     flex-direction: column;
     position: absolute;
+    min-width: pxToRem(200px);
+    transform: translate(-25%, 20px);
+    z-index: 2;
+    padding: 0;
+    border-radius: pxToRem(5px);
+    box-shadow: 0 4px 12px 0 rgb(41 44 51 / 12%), 0 2px 2px 0 rgb(41 44 51 / 4%);
+    background: $background-light;
+
+    & > li {
+        padding: pxToRem(10px);
+        cursor: pointer;
+        list-style: none;
+        text-align: center;
+    }
+
+    & li > * {
+        display: flex;        
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    & > li:hover {
+        background: $background-header-secondary-hover;
+        color: $background-header-text-hover;
+    }
+
+    img {
+        margin-right: pxToRem(10px);
+    }
+
+    a {
+        text-decoration: none;
+        color: $text-color-primary;
+    }
+}
+
+.login-btn {
+    display: flex;
+    padding: pxToRem(10px) pxToRem(24px);
+    border: 0;
+    border-radius: pxToRem(4px);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: inherit;
+    line-height: inherit;
+    background: $login-button-background;
+    color: $white;
+    cursor: pointer;
 }

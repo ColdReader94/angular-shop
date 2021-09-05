@@ -1,0 +1,14 @@
+<div class="location-block">
+    <img class="location-icon" src="assets/images/point.png" alt="" />
+    <div *ngIf="error$" class="error-message">{{ error$ | async }}</div>
+    <app-dropdown class="drop-down" [buttonText]="currentCity$ | async">
+        <ul class="drop-down-list" (click)="changeCity($event)">
+            <li>Брест</li>
+            <li>Витебск</li>
+            <li>Гомель</li>
+            <li>Гродно</li>
+            <li>Минск</li>
+            <li>Могилев</li>
+        </ul>
+    </app-dropdown>
+</div>
