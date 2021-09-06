@@ -14,8 +14,8 @@
 </form>
 <app-dropdown class="drop-down nav-btn account-btn" [buttonText]="'Аккаунт'">
     <ul class="drop-down-list">
-        <li><img src="assets/images/avatar.png" alt="" /></li>
-        <li><button (click)="popupShow()" class="login-btn">Войти</button>
+        <li class="no-hover"><img class="profile-icon" src="assets/images/profile-default-icon.png" alt="" /></li>
+        <li class="no-hover"><button (click)="popupShow()" class="login-btn">Войти</button>
         </li>
         <li>
             <a href=""
@@ -40,6 +40,7 @@
     </ul>
 </app-dropdown>
 <button class="nav-btn basket-btn">
-    <img src="assets/images/basket-icon.svg" class="icon" alt="" />Корзина
+    Корзина
 </button>
-<app-popup (closePopup)="popupClose()" *ngIf="isPopupShow"></app-popup>
+<app-login-popup (closePopup)="popupClose()" *ngIf="isPopupShow"></app-login-popup>
+

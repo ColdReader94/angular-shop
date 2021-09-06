@@ -6,6 +6,7 @@ import { settingsReducer } from '../redux/reducers/settings.reducer';
 import { LocationComponent } from './components/location/location.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { SharedModule } from '../shared/shared.module';
+import { LoginPopupComponent } from './components/login-popup/login-popup.component';
 
 
 
@@ -14,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
     HeaderComponent,
     LocationComponent,
     NavigationComponent,
+    LoginPopupComponent,
   ],
   imports: [
     CommonModule,

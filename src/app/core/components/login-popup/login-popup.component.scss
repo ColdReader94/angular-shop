@@ -1,0 +1,76 @@
+@import "variables.scss";
+
+.login-popup {
+    width: 25vw;
+    left: 38vw;
+    align-items: center;
+
+    .popup-title {
+        margin-top: pxToRem(40px);
+    }
+}
+
+.login-form,
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    padding: pxToRem(10px);
+    width: 80%;
+    row-gap: pxToRem(10px);
+    border-radius: pxToRem(5px);
+
+    label {
+        font-size: pxToRem(13px);
+        line-height: pxToRem(20px);
+        padding-bottom: pxToRem(4px);
+        color: #b0b3b8;
+        display: flex;
+    }
+
+    .login-input,
+    .password-input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: pxToRem(10px) pxToRem(12px) pxToRem(12px);
+        border: 1px solid rgba(213, 215, 219, 0.6);
+        border-radius: 2px;
+        outline: none;
+        font-size: pxToRem(14px);
+        line-height: pxToRem(20px);
+        color: #1a1a1a;
+        background: transparent;
+    }
+
+    .login-btn {
+        min-height: pxToRem(50px);
+        width: 50%;
+        align-self: center;
+    }
+}
+
+.logout {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.6rem;
+}
+
+.logout-btn {
+    margin-top: pxToRem(150px);
+    height: pxToRem(50px);
+}
+
+a {
+    color: $link-color;
+}
+
+.avatar-label {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.avatar-preview {
+    margin-top: pxToRem(20px);
+    display: flex;
+    width: pxToRem(40px);
+    height: pxToRem(40px);
+}

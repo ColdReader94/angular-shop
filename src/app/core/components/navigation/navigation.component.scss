@@ -10,19 +10,27 @@
 
 .nav-btn {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
     min-width: pxToRem(120px);
     height: pxToRem(42px);
     margin-right: pxToRem(8px);
+    padding-right: pxToRem(18px);
     border: 1px solid $header-border-color;
     border-radius: pxToRem(40px);
     background-color: $background-light;
+    background-repeat: no-repeat;
+    background-position: 5px;
+    background-size: pxToRem(20px);
     cursor: pointer;
 
     &:hover {
         background-color: $white;
     }
+}
+
+.basket-btn {
+    background-image: url("../../../../assets/images/basket-icon.svg");
 }
 
 .catalog-btn {
@@ -31,14 +39,7 @@
 
 .account-btn {
     position: relative;
-
-    .drop-down-block {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-    }
+    background-image: url("../../../../assets/images/cabinet-icon.svg");
 }
 
 .circle {
@@ -47,16 +48,17 @@
     justify-content: center;
     align-items: center;
     column-gap: pxToRem(2px);
+    padding: pxToRem(4px);
     width: pxToRem(24px);
     height: pxToRem(24px);
+    margin-right: pxToRem(10px);
     border-radius: 50%;
-    padding: pxToRem(4px);
     background: $secondary-background;
 
     .square {
         background: $white;
-        width: pxToRem(7px);
-        height: pxToRem(7px);
+        width: pxToRem(6px);
+        height: pxToRem(6px);
     }
 }
 
@@ -83,13 +85,14 @@
     width: calc(100% - 30px);
 }
 
-.account-btn {
-    justify-content: flex-end;
-    padding: 0 10px;
-    background-image: url("../../../../assets/images/cabinet-icon.svg");
-    background-repeat: no-repeat;
-    background-position: 5px;
-    background-size: pxToRem(20px);
+a:hover {
+    color: $background-header-text-hover;
+}
+
+.profile-icon {
+    margin: 0 auto;
+    width: pxToRem(60px);
+    height: auto;
 }
 
 @media (max-width: 640px) {

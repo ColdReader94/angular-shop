@@ -1,0 +1,38 @@
+<app-popup class="login-popup" (closePopup)="closePopup.emit()">
+    <h2 class="popup-title">Вход/Регистрация</h2>
+    <img #avatarPreview class="avatar-preview" src="assets/images/profile-default-icon.png" alt="">
+    <form class="login-form" action="">
+        <label class="login-form-label avatar-label" for="avatar-input">Загрузите аватар (опционально)</label>
+        <input
+        type="file"
+        (change)="base64code($event)"
+        class="avatar-input"
+        id="avatar-input"
+        name="avatar"
+        placeholder="type login here.."
+    />
+        <label class="login-form-label" for="login-input">Логин</label>
+    <input
+        [(ngModel)]="user.login"
+        class="login-input"
+        name="login"
+        id="login-input"
+        type="text"
+        placeholder="type login here.."
+        autocomplete="on"
+        required=""
+    />
+    <label class="login-form-label" for="password-input">Пароль</label>
+    <input
+        [(ngModel)]="user.password"
+        class="password-input"
+        name="password"
+        id="password-input"
+        type="password"
+        placeholder="type password here.."
+        autocomplete="on"
+        required=""
+    />
+        <button class="login-btn" type="submit" (click)="login()">Войти</button>    
+    </form>
+</app-popup>
