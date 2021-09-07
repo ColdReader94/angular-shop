@@ -65,3 +65,9 @@ a {
     font-size: $font-size-header-small;
     opacity: 0.4;
 }
+
+.error-popup {
+    min-height: pxToRem(50px);
+    justify-content: center;
+    color: red;
+}

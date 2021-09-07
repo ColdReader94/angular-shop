@@ -2,10 +2,15 @@ import {
     Component,
     ElementRef,
     EventEmitter,
+    OnInit,
     Output,
     ViewChild,
 } from '@angular/core';
-import { LoginService } from 'src/app/auth/services/login.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { userLogin, userRegister } from 'src/app/redux/actions/user-data.actions';
+import { SettingsSelectors } from 'src/app/redux/selectors/user-data.selectors';
+import { AppState } from 'src/app/redux/state.models';
 import { IUser } from '../../models/user.model';
 
 @Component({
@@ -13,24 +18,48 @@ import { IUser } from '../../models/user.model';
     templateUrl: './login-popup.component.html',
     styleUrls: ['./login-popup.component.scss'],
 })
-export class LoginPopupComponent {
+export class LoginPopupComponent implements OnInit {
     @Output() closePopup = new EventEmitter();
     @ViewChild('avatarPreview', { static: false })
     avatarPreview!: ElementRef<HTMLImageElement>;
-
-    public user: IUser = {
+    public currentUser$!: Observable<IUser>;
+    public loginMode = true;
+    public newUser = {
         login: '',
         password: '',
         avatar: '',
+        firstName: '',
+        lastName: '',
+        token: '',
+        cart: [],
+        favourites: [],
+        orders: [],
     };
 
-    constructor(private loginService: LoginService) {}
+    constructor(private store: Store<AppState>, public selectors: SettingsSelectors) {}
 
-    public login(): void {
-      if (!this.user.avatar) {
-        this.user.avatar = this.avatarPreview.nativeElement.src;
-      }
-        this.loginService.logIn(this.user);
+    ngOnInit(): void {
+        this.currentUser$ = this.store.select(this.selectors.selectCurrentUser);
+    }
+
+    public toRegistration(): void {
+        this.loginMode = false;
+    }
+
+    public logIn(): void {
+        this.store.dispatch(
+            userLogin({ login: this.newUser.login, password: this.newUser.password })
+        );
+        this.closePopup.emit();
+    }
+
+    public registration(): void {
+        if (!this.newUser.avatar) {
+            this.newUser.avatar = this.avatarPreview.nativeElement.src;
+        }
+        this.store.dispatch(userRegister({ user: this.newUser }));
+        this.loginMode = true;
+        this.closePopup.emit();
     }
 
     public base64code(event: Event): void {
@@ -44,7 +73,7 @@ export class LoginPopupComponent {
         if (file?.type.match('image')) {
             reader.readAsDataURL(file);
             reader.onload = () => {
-                this.user.avatar = reader.result as string;
+                this.newUser.avatar = reader.result as string;
             };
         }
     }

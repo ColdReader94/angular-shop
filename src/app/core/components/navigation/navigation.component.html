@@ -14,9 +14,22 @@
 </form>
 <app-dropdown class="drop-down nav-btn account-btn" [buttonText]="'Аккаунт'">
     <ul class="drop-down-list">
-        <li class="no-hover"><img class="profile-icon" src="assets/images/profile-default-icon.png" alt="" /></li>
-        <li class="no-hover"><button (click)="popupShow()" class="login-btn">Войти</button>
+        <li class="no-hover">
+            <img
+                class="profile-icon"
+                [src]="(currentUser$ | async)?.avatar || 'assets/images/profile-default-icon.png'"
+                alt="avatar"
+            />
         </li>
+        <li *ngIf="isLoggedIn$ | async; else loginBtn" class="no-hover">
+            <span class="user-name">{{ (currentUser$ | async)?.firstName }} {{ (currentUser$ | async)?.lastName }}</span>
+            <button (click)="loginService.logOut()" class="login-btn">Выйти</button>
+        </li>
+        <ng-template #loginBtn>
+            <li class="no-hover">
+                <button (click)="popupShow()" class="login-btn">Войти</button>
+            </li>
+        </ng-template>
         <li>
             <a href=""
                 ><img src="assets/images/basket-icon.svg" class="icon" alt="" />Корзина</a
@@ -39,8 +52,5 @@
         </li>
     </ul>
 </app-dropdown>
-<button class="nav-btn basket-btn">
-    Корзина
-</button>
+<button class="nav-btn basket-btn">Корзина</button>
 <app-login-popup (closePopup)="popupClose()" *ngIf="isPopupShow"></app-login-popup>
-

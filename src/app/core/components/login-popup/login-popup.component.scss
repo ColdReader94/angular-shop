@@ -7,6 +7,7 @@
 
     .popup-title {
         margin-top: pxToRem(40px);
+        text-align: center;
     }
 }
 
@@ -21,14 +22,14 @@
 
     label {
         font-size: pxToRem(13px);
-        line-height: pxToRem(20px);
-        padding-bottom: pxToRem(4px);
         color: #b0b3b8;
         display: flex;
     }
 
     .login-input,
-    .password-input {
+    .password-input,
+    .name-input,
+    .surname-input {
         width: 100%;
         box-sizing: border-box;
         padding: pxToRem(10px) pxToRem(12px) pxToRem(12px);
@@ -69,8 +70,21 @@ a {
 }
 
 .avatar-preview {
-    margin-top: pxToRem(20px);
     display: flex;
+    align-self: center;
+    margin-top: pxToRem(20px);
     width: pxToRem(40px);
     height: pxToRem(40px);
+}
+
+.login-btn:disabled {
+    background: #b0b3b8;
+}
+
+.to-registration {
+    display: none;
+}
+
+.show {
+    display: flex;
 }

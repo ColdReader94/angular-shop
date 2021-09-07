@@ -1,15 +1,29 @@
-export interface ISettingsState {
-    currentCity: string,
-    isLoggin: false,
-    settingsError: string,
+import { IUser } from "../core/models/user.model";
+
+export interface IUserDataState {
+    currentCity: string;
+    isLoggin: boolean;
+    settingsError: string;
+    currentUser: IUser;
 }
 
-export const initialSettingsState: ISettingsState = {
-      currentCity: '',
-      isLoggin: false,
-      settingsError: '',
+export const initialUserData: IUserDataState = {
+    currentCity: '',
+    isLoggin: false,
+    settingsError: '',
+    currentUser: {
+        login: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        token: '',
+        cart: [],
+        favourites: [],
+        orders: [],
+        avatar: '',
+    },
 };
 
 export interface AppState {
-    settings: ISettingsState,
+    userData: IUserDataState;
 }

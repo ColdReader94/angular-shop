@@ -14,7 +14,7 @@
     max-width: 1280px;
 }
 
-a {    
+a {
     text-decoration: none;
 }
 
@@ -43,7 +43,6 @@ a {
 
     & li > * {
         display: flex;
-        justify-content: center;
         align-items: center;
         margin: 0 auto;
     }
@@ -64,8 +63,13 @@ a {
     .no-hover:hover {
         background-color: transparent;
     }
-}
 
+    .no-hover:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid black;
+    }
+}
 
 .nav-btn {
     .drop-down {
@@ -98,9 +102,8 @@ a {
     background: $login-button-background;
     color: $white;
     cursor: pointer;
-    
+
     &:hover {
         background: $button-login-hover-background;
     }
-    }
-    
+}

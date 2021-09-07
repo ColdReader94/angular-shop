@@ -6,9 +6,9 @@ describe('LocationComponent', () => {
   let component: LocationComponent;
   let fixture: ComponentFixture<LocationComponent>;
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
-      declarations: [ LocationComponent ]
+      declarations: [ LocationComponent ],
     })
     .compileComponents();
   });

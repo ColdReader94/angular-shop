@@ -8,7 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { cardsEffects } from './redux/effects/settings.effects';
+import { userDataEffects } from './redux/effects/user-data.effects';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { cardsEffects } from './redux/effects/settings.effects';
             },
         }
     ),
-    EffectsModule.forRoot([cardsEffects]),
+    EffectsModule.forRoot([userDataEffects]),
     StoreDevtoolsModule.instrument({
         maxAge: 25,
     }),
