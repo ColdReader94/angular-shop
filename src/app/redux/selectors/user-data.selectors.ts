@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState, IUserDataState } from '../state.models';
+import { IUserDataState } from '../models/user-data-state.model';
+import { AppState } from '../state.models';
 
 @Injectable({
     providedIn: 'root',
 })
-export class SettingsSelectors {
+export class UserDataSelectors {
     public selectUserDataState = createFeatureSelector<AppState, IUserDataState>('userData');
     public selectCurrentCity = createSelector(
         this.selectUserDataState,

@@ -7,6 +7,8 @@ import { LocationComponent } from './components/location/location.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { SharedModule } from '../shared/shared.module';
 import { LoginPopupComponent } from './components/login-popup/login-popup.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { categoriesReducer } from '../redux/reducers/categories.reducer';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { LoginPopupComponent } from './components/login-popup/login-popup.compon
     LocationComponent,
     NavigationComponent,
     LoginPopupComponent,
+    CategoriesComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     StoreModule.forFeature('userData', userDataReducer),
+    StoreModule.forFeature('categories', categoriesReducer),
   ],
   exports: [
     HeaderComponent,

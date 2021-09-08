@@ -1,29 +1,7 @@
-import { IUser } from "../core/models/user.model";
-
-export interface IUserDataState {
-    currentCity: string;
-    isLoggin: boolean;
-    settingsError: string;
-    currentUser: IUser;
-}
-
-export const initialUserData: IUserDataState = {
-    currentCity: '',
-    isLoggin: false,
-    settingsError: '',
-    currentUser: {
-        login: '',
-        password: '',
-        firstName: '',
-        lastName: '',
-        token: '',
-        cart: [],
-        favourites: [],
-        orders: [],
-        avatar: '',
-    },
-};
+import { ICategories } from "./models/categories.model";
+import { IUserDataState } from "./models/user-data-state.model";
 
 export interface AppState {
     userData: IUserDataState;
+    categories: ICategories[];
 }

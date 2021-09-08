@@ -6,6 +6,7 @@ import { IGeolocationInterfaceResponse } from '../models/geolocation-api-respons
 import { map } from 'rxjs/operators';
 import { IUser } from '../models/user.model';
 import { baseUrl, ServerApiRoutes } from 'src/app/shared/serverApiRoutes';
+import { ICategories } from 'src/app/redux/models/categories.model';
 @Injectable({
     providedIn: 'root',
 })
@@ -20,12 +21,12 @@ export class HttpRequestsService {
             .pipe(map((value) => (<IGeolocationInterfaceResponse>value).address.city));
     }
 
-    public findUser(login: string, password: string): Observable<{ token: string }> {
+    public findUser(login: string, password: string): Observable<Pick<IUser, 'token'>> {
         return this.http.post(`${baseUrl}${ServerApiRoutes.userFind}`, {
             login,
             password,
-        }) as Observable<{ token: string }>;
-        
+        }) as Observable<Pick<IUser, 'token'>>;
+
     }
 
     public getUserInfo(token: string): Observable<IUser[]> {
@@ -34,7 +35,11 @@ export class HttpRequestsService {
         ) as Observable<IUser[]>;
     }
 
-    public registerUser(newUser: IUser): Observable<unknown> {
-        return this.http.post(`${baseUrl}${ServerApiRoutes.userRegister}`, newUser);
+    public registerUser(newUser: IUser): Observable<Pick<IUser, 'token'>> {
+        return this.http.post(`${baseUrl}${ServerApiRoutes.userRegister}`, newUser) as Observable<Pick<IUser, 'token'>>;
+    }
+
+    public getCategories(): Observable<ICategories[]> {
+        return this.http.get(`${baseUrl}${ServerApiRoutes.getCategories}`) as Observable<ICategories[]>;
     }
 }

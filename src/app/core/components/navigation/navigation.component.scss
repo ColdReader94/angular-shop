@@ -95,6 +95,10 @@ a:hover {
     height: auto;
 }
 
+.login-popup {
+    position: fixed;
+}
+
 @media (max-width: 640px) {
     * {
         font-size: 0.6rem;

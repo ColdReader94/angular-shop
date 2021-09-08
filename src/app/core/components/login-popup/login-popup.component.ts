@@ -9,7 +9,7 @@ import {
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { userLogin, userRegister } from 'src/app/redux/actions/user-data.actions';
-import { SettingsSelectors } from 'src/app/redux/selectors/user-data.selectors';
+import { UserDataSelectors } from 'src/app/redux/selectors/user-data.selectors';
 import { AppState } from 'src/app/redux/state.models';
 import { IUser } from '../../models/user.model';
 
@@ -36,7 +36,7 @@ export class LoginPopupComponent implements OnInit {
         orders: [],
     };
 
-    constructor(private store: Store<AppState>, public selectors: SettingsSelectors) {}
+    constructor(private store: Store<AppState>, private selectors: UserDataSelectors) {}
 
     ngOnInit(): void {
         this.currentUser$ = this.store.select(this.selectors.selectCurrentUser);

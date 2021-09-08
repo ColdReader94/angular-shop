@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { SettingsSelectors } from 'src/app/redux/selectors/user-data.selectors';
+import { UserDataSelectors } from 'src/app/redux/selectors/user-data.selectors';
 import { AppState } from 'src/app/redux/state.models';
 
 @Component({
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
     public contactsDropDown = false;
     public error$!: Observable<string>;
 
-    constructor(private store: Store<AppState>, private selectors: SettingsSelectors) {}
+    constructor(private store: Store<AppState>, private selectors: UserDataSelectors) {}
 
     ngOnInit(): void {
         this.error$ = this.store.select(this.selectors.selectSettingsError);

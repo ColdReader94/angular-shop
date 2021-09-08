@@ -1,5 +1,5 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { initialUserData, IUserDataState } from '../state.models';
+import { initialUserData, IUserDataState } from '../models/user-data-state.model';
 import * as UserData from '../actions/user-data.actions';
 
 const reducer = createReducer(
@@ -13,7 +13,10 @@ const reducer = createReducer(
     on(UserData.changeCityFailed, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
     }),
-    on(UserData.userRegister, (state, { user }) => {
+    on(UserData.userRegister, (state) => {
+        return { ...state };
+    }),
+    on(UserData.userRegisterSuccessful, (state, { user }) => {
         return { ...state, isLoggin: true, currentUser: user };
     }),
     on(UserData.userLogin, (state) => {
@@ -30,7 +33,7 @@ const reducer = createReducer(
     }),
     on(UserData.userLogout, (state) => {
         return { ...state, currentUser: initialUserData.currentUser, isLoggin: false };
-    }),   
+    }),
     on(UserData.userLoadFailed, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
     })

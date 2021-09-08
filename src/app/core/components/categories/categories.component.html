@@ -1,0 +1,5 @@
+<nav><ul>
+    <li *ngFor="let category of (categories$ | async)">
+        <a href="">{{ category.name }}</a>
+    </li>
+</ul></nav>

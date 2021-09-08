@@ -10,11 +10,11 @@ import { Component, ElementRef, EventEmitter, Output } from '@angular/core';
 })
 export class PopupComponent {
     @Output() closePopup = new EventEmitter();
-    
+
     constructor(private ref: ElementRef) {}
 
     public onClick(event: Event): void {
-      if (!(<Element>this.ref.nativeElement).contains(<Element>event.target) && 
+      if (!(<Element>this.ref.nativeElement).contains(<Element>event.target) &&
       !(<Element>event.target).closest('button')) {
         this.closePopup.emit();
       }
