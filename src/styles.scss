@@ -11,7 +11,8 @@
     display: flex;
     margin: 0 auto;
     width: 100%;
-    max-width: 1280px;
+    max-width: pxToRem(1090px);
+    padding: 0 2.2%;
 }
 
 a {
@@ -20,6 +21,12 @@ a {
 
 .icon {
     width: pxToRem(20px);
+}
+
+
+
+ul {
+    list-style: none;
 }
 
 .drop-down-list {

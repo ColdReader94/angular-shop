@@ -1,12 +1,16 @@
 
 @import "variables.scss";
 
+:host {
+    padding: 0 2.2%;
+}
+
 .location-block {
     display: flex;
 }
 
 .location-icon {
     width: pxToRem(20px);
-    height: pxToRem(20px);    
+    height: pxToRem(20px);
     margin-right: pxToRem(10px);
 }

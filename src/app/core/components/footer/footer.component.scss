@@ -1,0 +1,23 @@
+@import "variables.scss";
+
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: $base-font-family;
+    font-size: $font-size-header-base;
+    background: $header-background-color;
+}
+
+ul a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-contacts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}

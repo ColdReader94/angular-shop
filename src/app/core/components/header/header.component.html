@@ -78,5 +78,5 @@
 <div class="wrapper">
     <app-navigation></app-navigation>
 </div>
-<app-categories></app-categories>
+<app-categories class="categories-navigation"></app-categories>
 <app-popup *ngIf="errorPopup" class="error-popup" (closePopup)="hideErrorPopup()">{{ error$ | async }}</app-popup>

@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginPopupComponent } from './components/login-popup/login-popup.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { categoriesReducer } from '../redux/reducers/categories.reducer';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { categoriesReducer } from '../redux/reducers/categories.reducer';
     NavigationComponent,
     LoginPopupComponent,
     CategoriesComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,7 @@ import { categoriesReducer } from '../redux/reducers/categories.reducer';
   ],
   exports: [
     HeaderComponent,
+    FooterComponent,
   ],
 })
 export class CoreModule { }
