@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: space-between;
     column-gap: pxToRem(10px);
+    -webkit-column-gap: pxToRem(10px);
     padding: pxToRem(16px) 0;
 }
 
@@ -48,6 +49,7 @@
     justify-content: center;
     align-items: center;
     column-gap: pxToRem(2px);
+    -webkit-column-gap: pxToRem(2px);
     padding: pxToRem(4px);
     width: pxToRem(24px);
     height: pxToRem(24px);
@@ -97,6 +99,63 @@ a:hover {
 
 .login-popup {
     position: fixed;
+}
+
+@media (max-width: 960px) {
+    :host {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .nav-btn {
+        min-width: pxToRem(40px);
+        max-width: pxToRem(40px);
+        background-color: transparent;
+        margin-right: 0;
+        padding-right: 0;
+        border: none;
+        border-radius: 0;
+
+        
+
+        &:hover {
+            background-color: transparent;
+            outline: none;
+        }
+
+        .circle {
+            background: transparent;
+        }
+    }
+
+    .account-btn,
+    .basket-btn {
+        order: 3;
+    }
+
+    .basket-btn {
+        filter: invert(100%);
+    }
+
+        .account-btn {
+        background-image: url("../../../../assets/images/cabinet-icon-lite.svg");
+    }
+
+    .logo {
+        order: 2;
+        max-width: pxToRem(30px);
+        margin: 0 auto;
+    }
+
+    .search-form {
+        flex-basis: 80%;
+        margin: 0 auto;
+        order: 4;
+    }
+
+    .account-btn > button span {
+        display: none;
+    }
 }
 
 @media (max-width: 640px) {

@@ -1,0 +1,30 @@
+@import "variables.scss";
+
+:host {
+    display: flex;
+    width: 100%;
+    background: $white;
+    color: black;
+}
+
+li {width: 100%;
+    padding: pxToRem(10px) 0;
+}
+
+.subcategory-list {
+    display: none;
+    flex-wrap: wrap;
+}
+
+.subcategory-list li {
+    display: flex;
+    flex-basis: 50%;
+}
+
+.category-name {
+    display: flex;
+}
+
+.category-name:hover > .subcategory-list {
+    display: flex;
+}

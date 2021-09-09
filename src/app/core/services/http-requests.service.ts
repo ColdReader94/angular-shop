@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { IGeolocationInterfaceResponse } from '../models/geolocation-api-response.model';
 import { map } from 'rxjs/operators';
 import { IUser } from '../models/user.model';
-import { baseUrl, ServerApiRoutes } from 'src/app/shared/serverApiRoutes';
+import { baseUrl, ServerApiRoutes } from 'src/app/shared/server-api-routes';
 import { ICategories } from 'src/app/redux/models/categories.model';
 @Injectable({
     providedIn: 'root',

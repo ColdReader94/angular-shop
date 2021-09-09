@@ -1,12 +1,12 @@
 <img src="assets/images/logo.png" class="logo" alt="" />
-<button class="nav-btn catalog-btn">
+<button class="nav-btn catalog-btn" (click)="catalogOpen.emit()">
     <div class="circle">
         <div class="square"></div>
         <div class="square"></div>
         <div class="square"></div>
         <div class="square"></div>
     </div>
-    Каталог товаров
+    <span class="button-text">Каталог товаров</span>
 </button>
 <form class="search-form">
     <img src="assets/images/search-icon.svg" class="icon" alt="" />
@@ -52,5 +52,5 @@
         </li>
     </ul>
 </app-dropdown>
-<button class="nav-btn basket-btn">Корзина</button>
+<button class="nav-btn basket-btn"><span class="button-text">Корзина</span></button>
 <app-login-popup class="login-popup" (closePopup)="popupClose()" *ngIf="isPopupShow"></app-login-popup>

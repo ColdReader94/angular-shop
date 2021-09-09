@@ -10,6 +10,7 @@ import { LoginPopupComponent } from './components/login-popup/login-popup.compon
 import { CategoriesComponent } from './components/categories/categories.component';
 import { categoriesReducer } from '../redux/reducers/categories.reducer';
 import { FooterComponent } from './components/footer/footer.component';
+import { CatalogComponent } from './components/catalog/catalog.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FooterComponent } from './components/footer/footer.component';
     LoginPopupComponent,
     CategoriesComponent,
     FooterComponent,
+    CatalogComponent,
   ],
   imports: [
     CommonModule,

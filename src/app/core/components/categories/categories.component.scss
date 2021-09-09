@@ -1,5 +1,4 @@
-
-@import 'variables.scss';
+@import "variables.scss";
 
 :host {
     nav {
@@ -24,9 +23,8 @@
     }
 
     li:hover {
-        background: rgba(26,26,26,.2);
+        background: rgba(26, 26, 26, 0.2);
     }
-
 
     a {
         width: 100%;
@@ -41,5 +39,9 @@
         display: flex;
         width: 100%;
         max-width: pxToRem(1090px);
+    }
+
+    @media (max-width: 960px) {
+        display: none;
     }
 }

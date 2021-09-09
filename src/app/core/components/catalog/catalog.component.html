@@ -1,0 +1,16 @@
+<div class="wrapper">
+    <ul class="category-list">
+        <li *ngFor="let category of categories$ | async" class="category-name">
+            {{ category.name }}
+            <ul class="subcategory-list">
+                <h2>{{ category.name }}</h2>
+                <li
+                    *ngFor="let subcategory of category.subCategories"
+                    class="subcategory-name"
+                >
+                    {{ subcategory.name }}
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

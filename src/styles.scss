@@ -114,3 +114,14 @@ ul {
         background: $button-login-hover-background;
     }
 }
+
+@media (max-width: 960px) {
+    .button-text:not(.more-btn) {
+        display: none;
+    }
+
+    .drop-down-toggler::before,
+    .drop-down-toggler::after {
+        color: white;
+    }
+ }

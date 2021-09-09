@@ -15,9 +15,10 @@
 .registration-form {
     display: flex;
     flex-direction: column;
-    padding: pxToRem(10px);
     width: 80%;
+    padding: pxToRem(10px);
     row-gap: pxToRem(10px);
+    -webkit-row-gap: pxToRem(10px);
     border-radius: pxToRem(5px);
 
     label {

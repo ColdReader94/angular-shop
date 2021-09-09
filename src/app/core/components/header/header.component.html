@@ -76,7 +76,8 @@
     </div>
 </div>
 <div class="wrapper">
-    <app-navigation></app-navigation>
+    <app-navigation (catalogOpen)="catalogShowToggle()"></app-navigation>
 </div>
 <app-categories class="categories-navigation"></app-categories>
+<app-catalog *ngIf="catalogIsShowed"></app-catalog>
 <app-popup *ngIf="errorPopup" class="error-popup" (closePopup)="hideErrorPopup()">{{ error$ | async }}</app-popup>

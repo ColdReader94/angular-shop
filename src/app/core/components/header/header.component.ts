@@ -12,6 +12,7 @@ import { AppState } from 'src/app/redux/state.models';
 export class HeaderComponent implements OnInit {
     public errorPopup = false;
     public contactsDropDown = false;
+    public catalogIsShowed = false;
     public error$!: Observable<string>;
 
     constructor(private store: Store<AppState>, private selectors: UserDataSelectors) {}
@@ -35,5 +36,9 @@ export class HeaderComponent implements OnInit {
 
     public hideErrorPopup(): void {
         this.errorPopup = false;
+    }
+
+    public catalogShowToggle(): void {
+        this.catalogIsShowed = !this.catalogIsShowed;
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/auth/services/login.service';
@@ -12,6 +12,7 @@ import { IUser } from '../../models/user.model';
     styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
+    @Output() catalogOpen = new EventEmitter();
     public isPopupShow = false;
     public currentUser$!: Observable<IUser>;
     public isLoggedIn$!: Observable<boolean>;
