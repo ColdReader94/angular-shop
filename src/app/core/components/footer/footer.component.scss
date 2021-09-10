@@ -11,11 +11,13 @@
 }
 
 .footer-contacts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     padding: pxToRem(10px) 0;
     border-top: 1px solid $footer-border-color;
     border-bottom: 1px solid $footer-border-color;
-
-    
 
 a {
     display: flex;
@@ -31,13 +33,6 @@ a {
         margin-right: pxToRem(10px);
     }
 }
-}
-
-.footer-contacts {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
 }
 
 .icons-footer {
@@ -108,7 +103,10 @@ a {
  }
 
 @media (max-width: 640px) {
-    * {
-        font-size: 0.6rem;
-    }
+
+    .footer-contacts a {
+            font-size: 0.6rem !important;
+        }
+
+
 }

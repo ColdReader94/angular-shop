@@ -8,6 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { PagesModule } from './pages/pages.module';
 import { CategoriesEffects } from './redux/effects/categories.effects';
 import { userDataEffects } from './redux/effects/user-data.effects';
 
@@ -18,6 +19,7 @@ import { userDataEffects } from './redux/effects/user-data.effects';
   imports: [
     BrowserModule,
     CoreModule,
+    PagesModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

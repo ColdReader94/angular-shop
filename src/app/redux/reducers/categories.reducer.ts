@@ -1,6 +1,6 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import * as Categories from '../actions/categories.actions';
-import { ICategories, initialCategories } from '../models/categories.model';
+import { ICategories, initialCategories } from '../../core/models/categories.model';
 
 const reducer = createReducer(
     initialCategories as ICategories[],

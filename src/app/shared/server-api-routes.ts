@@ -4,5 +4,6 @@ export enum ServerApiRoutes {
     userFind = 'users/login',
     userGetInfo = 'users/?token=',
     userRegister = 'users/register',
-    getCategories = 'categories'
+    getCategories = 'categories',
+    searchGoods = 'goods/search?text='
 }

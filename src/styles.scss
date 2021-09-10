@@ -21,9 +21,8 @@ a {
 
 .icon {
     width: pxToRem(20px);
+    max-height: pxToRem(20px);
 }
-
-
 
 ul {
     list-style: none;
@@ -124,4 +123,4 @@ ul {
     .drop-down-toggler::after {
         color: white;
     }
- }
+}

@@ -1,7 +1,8 @@
 <div class="wrapper">
     <ul class="category-list">
         <li *ngFor="let category of categories$ | async" class="category-name">
-            {{ category.name }}
+
+            <div class="list-item ">  <img class="icon" src="assets/images/{{category.id}}.png" alt=""> {{ category.name }}</div>
             <ul class="subcategory-list">
                 <h2>{{ category.name }}</h2>
                 <li

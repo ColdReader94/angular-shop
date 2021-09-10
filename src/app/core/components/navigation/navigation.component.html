@@ -1,5 +1,9 @@
 <img src="assets/images/logo.png" class="logo" alt="" />
-<button class="nav-btn catalog-btn" (click)="catalogOpen.emit()">
+<button
+    class="nav-btn catalog-btn"
+    [class.catalog-btn__active]="isCatalogOpen"
+    (click)="catalogToggle()"
+>
     <div class="circle">
         <div class="square"></div>
         <div class="square"></div>
@@ -11,18 +15,36 @@
 <form class="search-form">
     <img src="assets/images/search-icon.svg" class="icon" alt="" />
     <input #searchField type="text" class="search-input" placeholder="Поиск товаров" />
+    <button class="serch-input-clear-btn" (click)="clearSearchInput()"></button>
+    <ul class="search-results" *ngIf="searchResultsItems">
+        <li *ngFor="let category of searchResultsItems.categories">
+            {{ category.name }}
+        </li>
+        <li *ngFor="let subCategory of searchResultsItems.subCategories">
+            {{ subCategory.name }}
+        </li>
+        <li *ngFor="let item of searchResultsItems.goods">
+            <img [src]="item.imageUrls[0]" alt="" />{{ item.name }}
+        </li>
+    </ul>
 </form>
 <app-dropdown class="drop-down nav-btn account-btn" [buttonText]="'Аккаунт'">
     <ul class="drop-down-list">
         <li class="no-hover">
             <img
                 class="profile-icon"
-                [src]="(currentUser$ | async)?.avatar || 'assets/images/profile-default-icon.png'"
+                [src]="
+                    (currentUser$ | async)?.avatar ||
+                    'assets/images/profile-default-icon.png'
+                "
                 alt="avatar"
             />
         </li>
         <li *ngIf="isLoggedIn$ | async; else loginBtn" class="no-hover">
-            <span class="user-name">{{ (currentUser$ | async)?.firstName }} {{ (currentUser$ | async)?.lastName }}</span>
+            <span class="user-name"
+                >{{ (currentUser$ | async)?.firstName }}
+                {{ (currentUser$ | async)?.lastName }}</span
+            >
             <button (click)="loginService.logOut()" class="login-btn">Выйти</button>
         </li>
         <ng-template #loginBtn>
@@ -53,4 +75,8 @@
     </ul>
 </app-dropdown>
 <button class="nav-btn basket-btn"><span class="button-text">Корзина</span></button>
-<app-login-popup class="login-popup" (closePopup)="popupClose()" *ngIf="isPopupShow"></app-login-popup>
+<app-login-popup
+    class="login-popup"
+    (closePopup)="popupClose()"
+    *ngIf="isPopupShow"
+></app-login-popup>

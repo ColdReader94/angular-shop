@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { loadCategories } from 'src/app/redux/actions/categories.actions';
-import { ICategories } from 'src/app/redux/models/categories.model';
+import { ICategories } from 'src/app/core/models/categories.model';
 import { CategoriesSelectors } from 'src/app/redux/selectors/categories.selector';
 import { AppState } from 'src/app/redux/state.models';
 

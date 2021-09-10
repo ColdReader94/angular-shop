@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createFeatureSelector } from '@ngrx/store';
-import { ICategories } from '../models/categories.model';
+import { ICategories } from '../../core/models/categories.model';
 import { AppState } from '../state.models';
 
 @Injectable({

@@ -6,7 +6,8 @@ import { IGeolocationInterfaceResponse } from '../models/geolocation-api-respons
 import { map } from 'rxjs/operators';
 import { IUser } from '../models/user.model';
 import { baseUrl, ServerApiRoutes } from 'src/app/shared/server-api-routes';
-import { ICategories } from 'src/app/redux/models/categories.model';
+import { ICategories } from 'src/app/core/models/categories.model';
+import { IGoodsBaseItem } from '../models/goods.model';
 @Injectable({
     providedIn: 'root',
 })
@@ -41,5 +42,9 @@ export class HttpRequestsService {
 
     public getCategories(): Observable<ICategories[]> {
         return this.http.get(`${baseUrl}${ServerApiRoutes.getCategories}`) as Observable<ICategories[]>;
+    }
+
+    public searchGoods(text: string): Observable<IGoodsBaseItem[]> {
+        return this.http.get(`${baseUrl}${ServerApiRoutes.searchGoods}${text}`) as Observable<IGoodsBaseItem[]>;
     }
 }
