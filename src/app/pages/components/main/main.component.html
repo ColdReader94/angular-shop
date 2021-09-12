@@ -1,3 +1,11 @@
 <div class="wrapper">
-  <app-swiper [slidesData]="[1, 2, 3]" class="swiper-container"></app-swiper>
+    <app-swiper
+        [slidesData]="itemsForSale$ | async"
+        class="swiper-container"
+    ></app-swiper>
+    <h2>Популярные товары:</h2>
+    <app-nested-swiper
+        [slidesData]="itemsPopular$ | async"
+        class="swiper-container"
+    ></app-nested-swiper>
 </div>

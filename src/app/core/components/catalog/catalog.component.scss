@@ -59,6 +59,10 @@ h2 {
     color: $background-header-text-hover;
 }
 
+.subcategory-name:hover {
+    color: $background-header-text-hover;
+}
+
 .category-name:hover .subcategory-list {
     display: flex;
 }

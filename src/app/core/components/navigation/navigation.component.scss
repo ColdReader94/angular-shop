@@ -194,6 +194,11 @@ a:hover {
     transform: rotate(-45deg);
 }
 
+.login-popup,
+.search-results {
+    z-index: 2;
+}
+
 @media (max-width: 960px) {
     :host {
         flex-wrap: wrap;

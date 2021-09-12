@@ -6,18 +6,17 @@ import { userDataReducer } from '../redux/reducers/user-data.reducer';
 import { LocationComponent } from './components/location/location.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { SharedModule } from '../shared/shared.module';
-import { LoginPopupComponent } from './components/login-popup/login-popup.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { categoriesReducer } from '../redux/reducers/categories.reducer';
 import { FooterComponent } from './components/footer/footer.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     LocationComponent,
     NavigationComponent,
-    LoginPopupComponent,
     CategoriesComponent,
     FooterComponent,
     CatalogComponent,
@@ -25,6 +24,7 @@ import { CatalogComponent } from './components/catalog/catalog.component';
   imports: [
     CommonModule,
     SharedModule,
+    AuthModule,
     StoreModule.forFeature('userData', userDataReducer),
     StoreModule.forFeature('categories', categoriesReducer),
   ],

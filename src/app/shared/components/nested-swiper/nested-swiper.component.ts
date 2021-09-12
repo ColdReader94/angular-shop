@@ -1,22 +1,20 @@
 import { Component, Input, ViewEncapsulation } from "@angular/core";
 import { IGoodsBaseItem } from "src/app/core/models/goods.model";
-import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
+import SwiperCore, { Navigation, Pagination } from "swiper";
 
-SwiperCore.use([Navigation, Pagination, Autoplay]);
+SwiperCore.use([Pagination, Navigation]);
 
 @Component({
-  selector: 'app-swiper',
-  templateUrl: './swiper.component.html',
-  styleUrls: ['./swiper.component.scss'],
+  selector: 'app-nested-swiper',
+  templateUrl: './nested-swiper.component.html',
+  styleUrls: ['./nested-swiper.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class SwiperComponent {
-
-
+export class NestedSwiperComponent {
   @Input() slidesData: IGoodsBaseItem[] | null = [];
 
   public pagination = {
     clickable: true,
   };
-
 }
+

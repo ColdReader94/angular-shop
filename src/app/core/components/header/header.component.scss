@@ -81,6 +81,10 @@ a {
     background: $gradient;
 }
 
+.error-popup {
+    z-index: 2;
+}
+
 @media (max-width: 960px) {
     :host {
         background: $gradient;
@@ -91,8 +95,8 @@ a {
         color: $white;
     }
 
-    .work-hours {        
-        opacity: 1;        
+    .work-hours {
+        opacity: 1;
     }
 
     .work-hours-text {
@@ -105,7 +109,7 @@ a {
     }
     }
 
-   
+
 
 @media (max-width: 640px) {
     * {

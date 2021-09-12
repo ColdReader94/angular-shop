@@ -1,0 +1,15 @@
+<swiper
+    [slidesPerView]="6"
+    [grid]="{
+      rows: 3
+    }"
+    [spaceBetween]="30"
+    [navigation]="true"
+    [pagination]="pagination"
+    class="mySwiper"
+  >
+    <ng-template swiperSlide *ngFor="let slide of slidesData" class="slide">
+        <img [src]='slide.imageUrls[0]' class="popular-item-img">
+        <div class="popular-item-name">{{ slide.name }}</div>
+    </ng-template>
+  </swiper>

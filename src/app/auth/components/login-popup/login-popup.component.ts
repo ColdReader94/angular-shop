@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 import { userLogin, userRegister } from 'src/app/redux/actions/user-data.actions';
 import { UserDataSelectors } from 'src/app/redux/selectors/user-data.selectors';
 import { AppState } from 'src/app/redux/state.models';
-import { IUser } from '../../models/user.model';
+import { IUser } from '../../../core/models/user.model';
 
 @Component({
     selector: 'app-login-popup',
