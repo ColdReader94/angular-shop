@@ -24,8 +24,7 @@
             {{ subCategory.name }}
         </li>
         <li *ngFor="let item of searchResultsItems.goods">
-            <img [src]="item.imageUrls[0]" alt="" />{{ item.name }}
-        </li>
+            <img [src]="item.imageUrls[0]" alt="" />{{ item.name }} {{ item.price | currency:'BYN':'symbol':'.2-2' }}
     </ul>
 </form>
 <app-dropdown class="drop-down nav-btn account-btn" [buttonText]="'Аккаунт'">

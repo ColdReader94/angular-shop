@@ -11,6 +11,7 @@ import { categoriesReducer } from '../redux/reducers/categories.reducer';
 import { FooterComponent } from './components/footer/footer.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { AuthModule } from '../auth/auth.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AuthModule } from '../auth/auth.module';
     CommonModule,
     SharedModule,
     AuthModule,
+    RouterModule,
     StoreModule.forFeature('userData', userDataReducer),
     StoreModule.forFeature('categories', categoriesReducer),
   ],

@@ -1,6 +1,8 @@
 
+@import "variables.scss";
 @import "~swiper/css";
 @import "~swiper/css/pagination";
+
 .swiper {
   width: 100%;
   height: 100%;
@@ -12,9 +14,6 @@
   text-align: center;
   font-size: 18px;
   background: #fff;
-//   height: calc((100% - 30px) / 2);
-
-  /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -27,4 +26,30 @@
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
+}
+
+.swiper-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.popular-item-img {
+  height: pxToRem(100px);
+}
+
+.popular-item-price {
+  margin-top: pxToRem(10px);
+  font-family: $base-font-family;
+}
+
+.popular-item-name {
+  color: $button-login-hover-background;
+  font-family: $base-font-family;
+}
+
+@media (max-width: 640px) {
+  * {
+      font-size: 0.6rem;
+  }
 }

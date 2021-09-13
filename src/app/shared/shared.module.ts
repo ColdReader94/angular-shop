@@ -5,6 +5,7 @@ import { PopupComponent } from './components/popup/popup.component';
 import { FormsModule } from '@angular/forms';
 import { SwiperModule } from "swiper/angular";
 import { NestedSwiperComponent } from './components/nested-swiper/nested-swiper.component';
+import { FeedBackStarsDirective } from './directives/feedbacks-view.directive';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { NestedSwiperComponent } from './components/nested-swiper/nested-swiper.
     DropdownComponent,
     PopupComponent,
     NestedSwiperComponent,
+    FeedBackStarsDirective,
   ],
   imports: [
     SwiperModule,

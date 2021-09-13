@@ -5,7 +5,11 @@ import { Observable } from 'rxjs';
 import { IGeolocationInterfaceResponse } from '../models/geolocation-api-response.model';
 import { map } from 'rxjs/operators';
 import { IUser } from '../models/user.model';
-import { baseUrl, ServerApiRoutes, getCategoryGoods } from 'src/app/shared/server-api-routes';
+import {
+    baseUrl,
+    ServerApiRoutes,
+    getCategoryGoods,
+} from 'src/app/shared/server-api-routes';
 import { ICategories } from 'src/app/core/models/categories.model';
 import { IGoodsBaseItem } from '../models/goods.model';
 @Injectable({
@@ -60,22 +64,28 @@ export class HttpRequestsService {
 
     public getCategoryGoods(
         categoryId: string,
-        start: number,
-        itemsPerPage: number
+        start: number | string = 'start',
+        itemsPerPage: number | string = 'itemsPerPage'
     ): Observable<IGoodsBaseItem[]> {
         return this.http.get(
-            `${baseUrl}${getCategoryGoods}${categoryId}?start=${start}&count=${itemsPerPage}`.replace(/\u200B/g, '')
+            `${baseUrl}${getCategoryGoods}${categoryId}?start=${start}&count=${
+                itemsPerPage || 'itemsPerPage'
+            }`.replace(/\u200B/g, '')
         ) as Observable<IGoodsBaseItem[]>;
     }
 
     public getSubCategoryGoods(
         categoryId: string,
         subCategoryId: string,
-        start: number,
-        itemsPerPage: number
+        start: number | string = 'start',
+        itemsPerPage: number | string = 'itemsPerPage'
     ): Observable<IGoodsBaseItem[]> {
         return this.http.get(
-            `${baseUrl}${getCategoryGoods}${categoryId}/${subCategoryId}?start=${start}&count=${itemsPerPage}`.replace(/\u200B/g, '')
+            `${baseUrl}${getCategoryGoods}${categoryId}/${subCategoryId}?start=${start}&count=${
+                itemsPerPage}`.replace(
+                /\u200B/g,
+                ''
+            )
         ) as Observable<IGoodsBaseItem[]>;
     }
 }

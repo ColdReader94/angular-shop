@@ -121,6 +121,16 @@ ul {
     }
 }
 
+.rating-stars {
+    margin: pxToRem(10px) auto;
+    height: pxToRem(15px);
+    background-image: url('assets/images/star-icon.png');
+    background-repeat: repeat-x;
+    background-size: pxToRem(15px);
+}
+
+
+
 @media (max-width: 960px) {
     .button-text:not(.more-btn) {
         display: none;

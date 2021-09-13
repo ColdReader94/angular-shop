@@ -27,7 +27,7 @@
   align-items: center;
 }
 
-.swiper-slide img {
+.swiper-slide .sale-item-img {
   display: block;
   width: 65%;
   max-width: pxToRem(600px);
@@ -45,4 +45,10 @@
 .sale-item-name {
   font-family: $base-font-family;
   color: $button-login-hover-background;
+}
+
+@media (max-width: 640px) {
+  * {
+      font-size: 0.6rem;
+  }
 }

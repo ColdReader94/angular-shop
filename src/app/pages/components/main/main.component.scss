@@ -1,17 +1,36 @@
 @import "variables.scss";
 
 :host {
- height: 100%;
+    height: 100%;
 }
 
 .wrapper {
-  flex-direction: column;
-  height: 100%;
+    flex-direction: column;
+    height: 100%;
 }
 
 .swiper-container {
-  z-index: 1;
-  width: 100%;
-  height: pxToRem(450px);
-  margin-top: pxToRem(50px);
+    z-index: 1;
+    width: 100%;
+    height: pxToRem(450px);
+    margin-top: pxToRem(50px);
+}
+
+h2 {
+  margin-top: pxToRem(60px);
+  color: $secondary-background;
+  font-family: $base-font-family;
+}
+
+@media (max-width: 960px) {
+}
+
+@media (max-width: 640px) {
+    * {
+        font-size: 0.6rem;
+    }
+
+    h2 {
+        font-size: 0.8rem;
+    }
 }

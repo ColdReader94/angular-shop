@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { loadItemsForSale } from 'src/app/redux/actions/items-for-sale.actions';
+import { loadPopularItems } from 'src/app/redux/actions/popular-items.actions';
 import { UserDataSelectors } from 'src/app/redux/selectors/user-data.selectors';
 import { AppState } from 'src/app/redux/state.models';
 
@@ -24,6 +26,8 @@ export class HeaderComponent implements OnInit {
                 this.showErrorPoppup();
             }
         });
+        this.store.dispatch(loadItemsForSale());
+        this.store.dispatch(loadPopularItems());
     }
 
     public contactsDropDownToggle(): void {
