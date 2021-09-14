@@ -1,4 +1,10 @@
-<p>category-page works!</p>
-<button class="previous-items-load" (click)="loadPrevious()"></button>
-<button class="next-items-load" (click)="loadMoreItems()"></button>
-{{ items }}
+<div class="wrapper">
+<div class="breadcrumbs">
+    <a [routerLink]="" routerLinkActive="active">{{ categoryName }}</a>
+</div>
+<h2 class="category-title">{{ categoryName }}</h2>
+<div class="items-container" >
+    <app-item *ngFor="let item of items" [value]="item"></app-item>
+</div>
+<button class="next-items-load" (click)="loadMoreItems()">Показать больше</button>
+</div>

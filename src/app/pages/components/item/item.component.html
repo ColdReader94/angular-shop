@@ -1,0 +1,10 @@
+<div class="img-container" appOnSaleOrPopular [item]="value" >
+    <img class="item-img" [src]="value.imageUrls[0] || 'assets/images/default-img.jpg'" alt="" />
+
+</div>
+<div class="item-name">{{ value.name }}</div>
+<div class="rating-stars" appFeedBackStars [rating]="value.rating"></div>
+<div class="amount" appAmount [amount]="value.availableAmount"></div>
+<div class="price">{{ value.price | currency: "BYN":"symbol":".2-2" }}</div>
+<button class="add-to-basket-btn">В корзину</button>
+<button class="add-to-favourite-btn"></button>

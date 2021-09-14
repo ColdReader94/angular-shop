@@ -8,12 +8,22 @@ import { itemsForSaleReducer } from '../redux/reducers/items-for-sale.reducer';
 import { popularItemsReducer } from '../redux/reducers/popular-items.reducer';
 import { CategoryPageComponent } from './components/category-page/category-page.component';
 import { RouterModule } from '@angular/router';
+import { ItemComponent } from './components/item/item.component';
+import { AmountDirective } from './directives/amount.directive';
+import { SaleOrPopularDirective } from './directives/sale-or-popular.directive';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SubcategoryComponent } from './components/subcategory/subcategory.component';
 
 @NgModule({
   declarations: [
     MainComponent,
     SwiperComponent,
     CategoryPageComponent,
+    ItemComponent,
+    AmountDirective,
+    SaleOrPopularDirective,
+    NotFoundComponent,
+    SubcategoryComponent,
   ],
   imports: [
     CommonModule,

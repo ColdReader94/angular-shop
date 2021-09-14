@@ -1,0 +1,27 @@
+@import "variables.scss";
+
+.wrapper {
+    justify-content: center;
+}
+
+:host {
+    display: flex;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    display: flex;
+    font-family: $base-font-family;
+    color: $secondary-background;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+@media (max-width: 640px) {
+    p {
+        font-size: 1rem;
+    }
+  }

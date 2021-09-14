@@ -26,6 +26,7 @@ import { FeedBackStarsDirective } from './directives/feedbacks-view.directive';
     NestedSwiperComponent,
     DropdownComponent,
     PopupComponent,
+    FeedBackStarsDirective,
   ],
 })
 export class SharedModule { }

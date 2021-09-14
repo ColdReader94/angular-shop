@@ -6,6 +6,7 @@
   width: 100%;
   height: 100%;
   z-index: 1;
+  cursor: pointer;
 }
 
 .swiper-slide {
@@ -45,6 +46,11 @@
 .sale-item-name {
   font-family: $base-font-family;
   color: $button-login-hover-background;
+}
+
+.on-sale {
+  top: 25%;
+  right: 25%;
 }
 
 @media (max-width: 640px) {

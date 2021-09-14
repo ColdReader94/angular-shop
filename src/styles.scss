@@ -129,7 +129,26 @@ ul {
     background-size: pxToRem(15px);
 }
 
+.on-sale,
+.popular {
+    display: flex;
+    position: absolute;
+    right: pxToRem(6px);
+    top: pxToRem(6px);
+    width: pxToRem(40px);
+    height: pxToRem(40px);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat
+}
 
+.on-sale {
+    background-image: url('assets/images/discount.png');
+}
+
+.popular {
+    background-image: url('assets/images/popular.png');
+}
 
 @media (max-width: 960px) {
     .button-text:not(.more-btn) {

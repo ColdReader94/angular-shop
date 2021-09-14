@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { mergeMap, switchMap } from 'rxjs/operators';
 import { IGoodsBaseItem } from 'src/app/core/models/goods.model';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
+import { Paths } from 'src/app/shared/paths';
 
 @Component({
     selector: 'app-category-page',
@@ -12,10 +13,10 @@ import { HttpRequestsService } from 'src/app/core/services/http-requests.service
 export class CategoryPageComponent implements OnInit {
     public id = '';
     public items: IGoodsBaseItem[] = [];
-  private itemsLength = 0;
-  private pageCounter = 0;
-  private itemsPerPage = 10;
-  private pages = this.itemsLength / this.itemsPerPage;
+    public categoryName = '';
+    private pageCounter = 0;
+    private itemsPerPage = 10;
+    private pages = 0;
 
     constructor(
         private route: ActivatedRoute,
@@ -25,49 +26,47 @@ export class CategoryPageComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.paramMap
-            .pipe(switchMap((params) => params.getAll('id')))
+            .pipe(
+                switchMap((params) => params.getAll('id')),
+                mergeMap((id) => {
+                    this.id = id;
+                    return this.httpService.getCategories();
+                }),
+                mergeMap((category) => {
+                    const foundCategory = category.find((item) => (item.id === this.id));
+                    this.categoryName = foundCategory
+                        ? foundCategory.name
+                        : this.categoryName;
+                    return this.httpService.getCategoryGoods(this.id);
+                })
+            )
             .subscribe((data) => {
-              this.id = data;
-              this.pageCounter = 0;
-              this.httpService.getCategoryGoods(this.id).subscribe((value) => {
-                this.itemsLength = value.length;
-                console.log(this.pageCounter, this.itemsLength)
-            });
-            this.loadItems();
-            this.pageCounter += this.itemsPerPage;
+                this.items = [];
+                this.pages = Math.ceil(data.length / this.itemsPerPage);
+                this.loadItems();
             });
     }
 
     public loadItems(): void {
         this.httpService
-            .getCategoryGoods(this.id, this.pageCounter, this.itemsPerPage)
+            .getCategoryGoods(
+                this.id,
+                this.pageCounter * this.itemsPerPage,
+                this.itemsPerPage
+            )
             .subscribe((value) => {
                 if (value.length) {
-                    this.items = value;
+                    this.items = this.items.concat(value);
                 } else {
-                    // this.router.navigate([Paths.NotFound]);
+                    this.router.navigate([Paths.NotFound]);
                 }
             });
     }
 
     public loadMoreItems(): void {
-        if (this.pageCounter < this.itemsLength) {
-          console.log(this.pageCounter, this.itemsLength)
-          this.loadItems();
-          this.pageCounter += this.itemsPerPage;
-          if (this.pageCounter > this.itemsLength) {
-this.pageCounter = Math.round(this.itemsLength);
-          }
-        }
-    }
-
-    public loadPrevious(): void {
-        if (this.pageCounter > this.itemsPerPage) {
-          this.pageCounter -= this.itemsPerPage;
-          this.pageCounter = this.pageCounter < 0 ? 0 : this.pageCounter;
-          console.log(this.pageCounter, this.itemsLength)
+        if (this.pageCounter < this.pages - 1) {
+            this.pageCounter++;
             this.loadItems();
-            
         }
     }
 }

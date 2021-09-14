@@ -162,8 +162,8 @@ a:hover {
 
 .serch-input-clear-btn {
     position: relative;
-    width: 5%;
-    height: 60%;
+    width: pxToRem(20px);
+    height: pxToRem(20px);
     margin-right: pxToRem(10px);
     border-radius: 50%;
     border: 0;

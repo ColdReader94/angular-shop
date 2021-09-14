@@ -8,12 +8,14 @@
   height: 100%;
   margin-left: auto;
   margin-right: auto;
+  cursor: pointer;
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
+
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;

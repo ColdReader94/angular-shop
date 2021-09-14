@@ -27,7 +27,7 @@ h2 {
     position: absolute;
     top: pxToRem(30px);
     left: 28%;
-    max-height: 80%;
+    height: 100%;
 }
 
 .subcategory-list li {
@@ -44,8 +44,8 @@ h2 {
     align-items: center;
     column-gap: pxToRem(5px);
     width: 25%;
-    height: 100%;
-    padding: pxToRem(10px);
+    height: pxToRem(58px);
+    padding: pxToRem(8px);
     border-right: 1px solid $header-border-color;
 }
 

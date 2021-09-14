@@ -1,4 +1,52 @@
-button {
-    width: 50px;
-    height: 50px;
+@import "variables.scss";
+
+.wrapper {
+    flex-direction: column;
+}
+
+.items-container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: pxToRem(40px);
+    -webkit-row-gap: pxToRem(40px);
+    column-gap: pxToRem(40px);
+    -webkit-column-gap: pxToRem(40px);
+}
+
+.breadcrumbs {
+    margin-top: pxToRem(5px);
+}
+
+a {
+
+    color: $link-color;
+}
+
+h2 {
+    margin: pxToRem(40px) auto;
+    color: $secondary-background;
+    font-family: $base-font-family;
+}
+
+.next-items-load {
+    display: flex;
+    width: 50%;
+    height: pxToRem(50px);
+    margin: pxToRem(20px) auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: pxToRem(5px);
+    background: $body-background-color;
+    box-shadow: 0 4px 12px 0 rgb(41 44 51 / 12%), 0 2px 2px 0 rgb(41 44 51 / 4%);
+    color: $secondary-background;
+    font-family: $base-font-family;
+    cursor: pointer;
+    border: none;
+    outline: none;
+
+
+}
+
+.next-items-load:hover {
+    box-shadow: 10px 12px 54px rgb(23 35 38 / 25%);
 }
