@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { params, geolocationApiUrl } from 'src/app/shared/constants';
 import { Observable } from 'rxjs';
-import { IGeolocationInterfaceResponse } from '../models/geolocation-api-response.model';
+import { IGeolocationInterfaceResponse, IIpLocationInterfaceResponse } from '../models/geolocation-api-response.model';
 import { map } from 'rxjs/operators';
 import { IUser } from '../models/user.model';
 import {
@@ -12,16 +11,27 @@ import {
 } from 'src/app/shared/server-api-routes';
 import { ICategories } from 'src/app/core/models/categories.model';
 import { IGoodsBaseItem } from '../models/goods.model';
+import { geolocationApiUrl, locationByIp, params } from 'src/app/shared/constants';
 @Injectable({
     providedIn: 'root',
 })
 export class HttpRequestsService {
     constructor(private http: HttpClient) {}
 
-    public getGeolocation(position: GeolocationPosition): Observable<string> {
+    public getLocationByIp(): Observable<IIpLocationInterfaceResponse> {
         return this.http
             .get(
-                `${geolocationApiUrl}lat=${position.coords.latitude}&lon=${position.coords.longitude}${params}`
+                locationByIp
+            )
+            .pipe(map(value =>
+               value as IIpLocationInterfaceResponse
+            ));
+    }
+
+    public getGeolocation(lat: string, long: string): Observable<string> {
+        return this.http
+            .get(
+                `${geolocationApiUrl}lat=${lat}&lon=${long}${params}`
             )
             .pipe(map((value) => (<IGeolocationInterfaceResponse>value).address.city));
     }

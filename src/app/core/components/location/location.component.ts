@@ -4,7 +4,6 @@ import { of } from 'rxjs';
 import {
     changeCitySuccessful,
     changeCity,
-    changeCityFailed,
 } from 'src/app/redux/actions/user-data.actions';
 import { UserDataSelectors } from 'src/app/redux/selectors/user-data.selectors';
 import { AppState } from 'src/app/redux/state.models';
@@ -21,7 +20,7 @@ export class LocationComponent implements OnInit {
 
     ngOnInit(): void {
         this.currentCity$ = this.store.select(this.selectors.selectCurrentCity);
-        this.getGeolocation();
+        this.store.dispatch(changeCity());
     }
 
     public changeCity(event: Event): void {
@@ -31,15 +30,4 @@ export class LocationComponent implements OnInit {
             })
         );
     }
-
-    private getGeolocation(): void {
-        if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) =>
-            this.store.dispatch(changeCity({ coords: position })),
-            (error) => {
-                this.store.dispatch(changeCityFailed({ errorMessage: `${error.message} Для улучшения обслуживания включите геолокацию` }));
-            }
-        );
-    }
-}
 }

@@ -1,13 +1,13 @@
 <div class="wrapper">
     <ul class="category-list">
-        <li (click)="navigate($event, category.id)" *ngFor="let category of categories$ | async" class="category-name">
+        <li *ngFor="let category of categories$ | async" class="category-name">
 
-            <div class="list-item ">  <img class="icon" src="assets/images/{{category.id}}.png" alt=""> {{ category.name }}</div>
+            <div class="list-item" (click)="navigate(category.id)">  <img class="icon" src="assets/images/{{category.id}}.png" alt=""> {{ category.name }}</div>
             <ul class="subcategory-list">
                 <h2>{{ category.name }}</h2>
                 <li
                 *ngFor="let subcategory of category.subCategories"
-                (click)="navigate($event, category.id, subcategory.id)"
+                (click)="navigate(category.id, subcategory.id)"
                     class="subcategory-name"
                 >
                     {{ subcategory.name }}

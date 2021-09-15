@@ -6,3 +6,9 @@ export interface IGeolocationInterfaceResponse {
         contry_code: string,
     }
 }
+
+export interface IIpLocationInterfaceResponse {
+    city: string;
+    latitude: string;
+    longitude: string;
+}

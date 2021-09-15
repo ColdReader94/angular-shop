@@ -1,3 +1,5 @@
+export const locationByIp = `http://ipwhois.app/json/?lang=ru`;
+
 export const geolocationApiUrl =
     'https://nominatim.openstreetmap.org/reverse?';
 

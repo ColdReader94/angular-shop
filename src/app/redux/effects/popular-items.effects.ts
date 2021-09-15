@@ -8,9 +8,9 @@ import { HttpRequestsService } from 'src/app/core/services/http-requests.service
 import * as PopularItems from '../actions/popular-items.actions';
 
 
-const POPULAR_CATEGORY = 'electronics';
+const POPULAR_CATEGORY = 'appliances';
 const START_FROM = 0;
-const MAX_ITEMS = 18;
+const MAX_ITEMS = 100;
 
 @Injectable({
     providedIn: 'root',
@@ -21,7 +21,7 @@ export class PopularItemsEffects {
             ofType(PopularItems.loadPopularItems),
             switchMap(() =>
                 this.httpRequest.getCategoryGoods(POPULAR_CATEGORY, START_FROM, MAX_ITEMS).pipe(
-                    map((value) => PopularItems.loadPopularItemsSuccessful({ loadedItems: value })),
+                    map(value => PopularItems.loadPopularItemsSuccessful({ loadedItems: value.filter(item => item.rating === 5 ) })),
                     catchError((error: HttpErrorResponse) =>
                         of(
                             PopularItems.loadPopularItemsFailed({

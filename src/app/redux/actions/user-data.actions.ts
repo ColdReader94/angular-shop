@@ -2,8 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { IUser } from 'src/app/core/models/user.model';
 
 export const changeCity = createAction(
-    '[HEADER] CITY CHANGE',
-    props<{ coords: GeolocationPosition }>()
+    '[HEADER] CITY CHANGE'
 );
 
 export const changeCitySuccessful = createAction(

@@ -27,7 +27,7 @@ export class SubcategoryComponent implements OnInit {
   ngOnInit(): void {
       this.route.paramMap
           .pipe(
-              switchMap((params) => params.getAll('id')),
+              switchMap((params) => params.getAll('id1')),
               mergeMap((id) => {
                   this.id = id;
                   return this.httpService.getCategories();

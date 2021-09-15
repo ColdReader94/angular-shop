@@ -21,12 +21,9 @@ export class CatalogComponent implements OnInit {
        this.categories$ = this.store.select(this.selectors.selectCategories);
     }
 
-    public navigate(event: Event, categoryId: string, subcategoryId?: string): void {
-      if ((<HTMLElement>event.target).closest('.subcategory-name') && subcategoryId) {
-        console.log(categoryId);
-        this.router.navigate([`${Paths.Category}`, categoryId, subcategoryId]);
-      } else {
-        this.router.navigateByUrl(`${Paths.Category}${categoryId}`);
-      }
+    public navigate(categoryId: string, subcategoryId?: string): void {
+        subcategoryId ?
+        this.router.navigate([`${Paths.Category}${categoryId}`, subcategoryId]) :
+        this.router.navigate([`${Paths.Category}${categoryId}`]);
     }
 }

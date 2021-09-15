@@ -15,9 +15,13 @@ export class userDataEffects {
     public getCurrentCity: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
             ofType(UserActions.changeCity),
-            switchMap((data) =>
-                this.httpRequest.getGeolocation(data.coords).pipe(
-                    map((value) => UserActions.changeCitySuccessful({ city: value })),
+            switchMap(() =>
+                this.httpRequest.getLocationByIp().pipe(
+                    switchMap(value => {
+                       return this.httpRequest.getGeolocation(value.latitude, value.longitude).pipe(
+                            map((value) => UserActions.changeCitySuccessful({ city: value }))
+                        );
+                    }),
                     catchError((error: HttpErrorResponse) =>
                         of(
                             UserActions.changeCityFailed({

@@ -8,8 +8,8 @@ import { Paths } from './shared/paths';
 
 const routes: Routes = [
   { path: Paths.Root, pathMatch: 'full', component: MainComponent },
-  { path: `${Paths.Category}:id/:id`, component: SubcategoryComponent },
-  { path: `${Paths.Category}:id`, component: CategoryPageComponent },
+  { path: `${Paths.Category}:id1`, component: CategoryPageComponent },
+  { path: `${Paths.Category}:id1/:id2`, component: SubcategoryComponent },
   { path: Paths.AnyOtherPage, component: NotFoundComponent },
 ];
 
