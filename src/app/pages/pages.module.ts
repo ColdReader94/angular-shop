@@ -13,6 +13,7 @@ import { AmountDirective } from './directives/amount.directive';
 import { SaleOrPopularDirective } from './directives/sale-or-popular.directive';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SubcategoryComponent } from './components/subcategory/subcategory.component';
+import { GoodsComponent } from './components/goods/goods.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SubcategoryComponent } from './components/subcategory/subcategory.compo
     SaleOrPopularDirective,
     NotFoundComponent,
     SubcategoryComponent,
+    GoodsComponent,
   ],
   imports: [
     CommonModule,

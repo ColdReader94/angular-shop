@@ -1,10 +1,22 @@
 <div class="wrapper">
     <div class="breadcrumbs">
-        <a [routerLink]="" routerLinkActive="active">{{ categoryName }}</a>
+        <a [routerLink]="['..']" routerLinkActive="active">{{ categoryName }}</a> 〉 <a [routerLink]="" routerLinkActive="active">{{ subCategoryName }}</a>
     </div>
-    <h2 class="category-title">{{ categoryName }}</h2>
-    <div class="items-container" >
+    <h2 class="category-title">{{ subCategoryName }}</h2>
+    <div class="sort">
+        Сортировать по:
+        <div (click)="sortChange('price')" class="sort-type">цене</div>
+        <div (click)="sortChange('rating')" class="sort-type" id="rating">
+            популярности
+        </div>
+    </div>
+    <div class="items-container">
         <app-item *ngFor="let item of items" [value]="item"></app-item>
     </div>
-    <button class="next-items-load" (click)="loadMoreItems()">Показать больше</button>
-    </div>
+    <button
+        [class.unactive-btn]="isActiveBtn()"
+        class="next-items-load"
+        (click)="loadMoreItems()"
+        >Показать больше</button
+    >
+</div>

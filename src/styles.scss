@@ -150,7 +150,15 @@ ul {
     background-image: url('assets/images/popular.png');
 }
 
+.active-category {
+    box-shadow: 0 4px 12px 0 rgb(41 44 51 / 25%), 0 2px 2px 0 rgb(41 44 51 / 12%);
+}
+
 @media (max-width: 960px) {
+    main {
+        min-height: 60vh;
+    }
+
     .button-text:not(.more-btn) {
         display: none;
     }

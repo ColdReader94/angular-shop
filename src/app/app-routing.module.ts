@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryPageComponent } from './pages/components/category-page/category-page.component';
+import { GoodsComponent } from './pages/components/goods/goods.component';
 import { MainComponent } from './pages/components/main/main.component';
 import { NotFoundComponent } from './pages/components/not-found/not-found.component';
 import { SubcategoryComponent } from './pages/components/subcategory/subcategory.component';
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: Paths.Root, pathMatch: 'full', component: MainComponent },
   { path: `${Paths.Category}:id1`, component: CategoryPageComponent },
   { path: `${Paths.Category}:id1/:id2`, component: SubcategoryComponent },
+  { path: `${Paths.Goods}:id`, component: GoodsComponent },
   { path: Paths.AnyOtherPage, component: NotFoundComponent },
 ];
 

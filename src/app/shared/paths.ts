@@ -1,7 +1,8 @@
 export enum Paths {
     Root = '',
     Category = 'goods/category/',
-    SubCategory = 'goods/category/:id/:id',
+    Goods = 'goods/item/',
     NotFound = 'notfound',
-    AnyOtherPage = '**'
+    AnyOtherPage = '**',
+    getCategoryGoods = "getCategoryGoods"
 }

@@ -1,0 +1,26 @@
+<div class="wrapper">
+    <div class="breadcrumbs">
+        <a [routerLink]="['/goods/category', item.category]" routerLinkActive="active">{{
+            categoryName
+        }}</a
+        > 〉 <a [routerLink]="['/goods/category', item.category, item.subCategory]" routerLinkActive="active">{{
+            subCategoryName
+        }}</a
+        > 〉 <a [routerLink]="" routerLinkActive="active">{{ item.name }}</a>
+    </div>
+    <h2 class="category-title">{{ item.name }}</h2>
+    <div class="item-info" appOnSaleOrPopular [item]="item">
+
+    <app-gallery-swiper [images]="item.imageUrls" class="gallery-swiper-container"></app-gallery-swiper>
+        <div class="rating-stars" appFeedBackStars [rating]="item.rating"></div>
+<div class="amount" appAmount [amount]="item.availableAmount"></div>
+<div class="price">{{ item.price | currency: "BYN":"symbol":".2-2" }}</div>
+<button class="add-to-basket-btn">В корзину</button>
+<button class="add-to-favourite-btn"></button>
+
+<h3 class="description-title">О товаре:</h3>
+<div class="description">
+    {{ item.description }}
+</div>
+    </div>
+</div>

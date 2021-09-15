@@ -17,23 +17,21 @@ export class userDataEffects {
             ofType(UserActions.changeCity),
             switchMap(() =>
                 this.httpRequest.getLocationByIp().pipe(
-                    switchMap(value => {
-                       return this.httpRequest.getGeolocation(value.latitude, value.longitude).pipe(
-                            map((value) => UserActions.changeCitySuccessful({ city: value }))
-                        );
-                    }),
+                    map(value =>
+                        UserActions.changeCitySuccessful({ city: value.city }
+                    ),
                     catchError((error: HttpErrorResponse) =>
                         of(
                             UserActions.changeCityFailed({
                                 errorMessage: `${error.status} ${error.statusText}
-                        : City is not detected, please allow browser to detect your location`,
+                        : City is not detected`,
                             })
                         )
                     )
                 )
             )
         )
-    );
+    ));
 
     public getCurrentUser: Observable<Action> = createEffect(() =>
         this.actions$.pipe(

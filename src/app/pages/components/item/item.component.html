@@ -1,8 +1,18 @@
-<div class="img-container" appOnSaleOrPopular [item]="value" >
-    <img class="item-img" [src]="value.imageUrls[0] || 'assets/images/default-img.jpg'" alt="" />
-
+<div
+    [routerLink]="['', 'goods', 'item', value.id]"
+    class="img-container"
+    appOnSaleOrPopular
+    [item]="value"
+>
+    <img
+        class="item-img"
+        [src]="value.imageUrls[0] || 'assets/images/default-img.jpg'"
+        alt=""
+    />
 </div>
-<div class="item-name">{{ value.name }}</div>
+<div class="item-name" [routerLink]="['', 'goods', 'item', value.id]">
+    {{ value.name }}
+</div>
 <div class="rating-stars" appFeedBackStars [rating]="value.rating"></div>
 <div class="amount" appAmount [amount]="value.availableAmount"></div>
 <div class="price">{{ value.price | currency: "BYN":"symbol":".2-2" }}</div>

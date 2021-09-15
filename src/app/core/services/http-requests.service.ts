@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IGeolocationInterfaceResponse, IIpLocationInterfaceResponse } from '../models/geolocation-api-response.model';
+import { IIpLocationInterfaceResponse } from '../models/geolocation-api-response.model';
 import { map } from 'rxjs/operators';
 import { IUser } from '../models/user.model';
 import {
@@ -11,7 +11,7 @@ import {
 } from 'src/app/shared/server-api-routes';
 import { ICategories } from 'src/app/core/models/categories.model';
 import { IGoodsBaseItem } from '../models/goods.model';
-import { geolocationApiUrl, locationByIp, params } from 'src/app/shared/constants';
+import { locationByIp } from 'src/app/shared/constants';
 @Injectable({
     providedIn: 'root',
 })
@@ -26,14 +26,6 @@ export class HttpRequestsService {
             .pipe(map(value =>
                value as IIpLocationInterfaceResponse
             ));
-    }
-
-    public getGeolocation(lat: string, long: string): Observable<string> {
-        return this.http
-            .get(
-                `${geolocationApiUrl}lat=${lat}&lon=${long}${params}`
-            )
-            .pipe(map((value) => (<IGeolocationInterfaceResponse>value).address.city));
     }
 
     public findUser(login: string, password: string): Observable<Pick<IUser, 'token'>> {
@@ -70,6 +62,12 @@ export class HttpRequestsService {
         return this.http.get(
             `${baseUrl}${ServerApiRoutes.searchGoods}${text}`
         ) as Observable<IGoodsBaseItem[]>;
+    }
+
+    public getGoods(text: string): Observable<IGoodsBaseItem> {
+        return this.http.get(
+            `${baseUrl}${ServerApiRoutes.getGoods}${text}`
+        ) as Observable<IGoodsBaseItem>;
     }
 
     public getCategoryGoods(

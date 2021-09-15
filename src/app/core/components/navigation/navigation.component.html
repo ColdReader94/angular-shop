@@ -1,4 +1,4 @@
-<img src="assets/images/logo.png" class="logo" alt="" />
+<img [routerLink]="['']" src="assets/images/logo.png" class="logo" alt="" />
 <button
     class="nav-btn catalog-btn"
     [class.catalog-btn__active]="isCatalogOpen"
@@ -17,14 +17,16 @@
     <input #searchField type="text" class="search-input" placeholder="Поиск товаров" />
     <button class="serch-input-clear-btn" (click)="clearSearchInput()"></button>
     <ul class="search-results" *ngIf="searchResultsItems">
-        <li *ngFor="let category of searchResultsItems.categories">
+        <li *ngFor="let item of searchResultsItems.goods" [routerLink]="['goods', 'item', item.id]">
+            <img [src]="item.imageUrls[0]" alt="" />{{ item.name }} {{ item.price | currency:'BYN':'symbol':'.2-2' }}
+        </li>
+        <li *ngFor="let category of searchResultsItems.categories" [routerLink]="['goods', 'category', category.id]">
             {{ category.name }}
         </li>
-        <li *ngFor="let subCategory of searchResultsItems.subCategories">
+        <li *ngFor="let subCategory of searchResultsItems.subCategories; let i = index" [routerLink]="['goods', 'category',  searchResultsItems.categories[i].id,  subCategory.id]">
             {{ subCategory.name }}
         </li>
-        <li *ngFor="let item of searchResultsItems.goods">
-            <img [src]="item.imageUrls[0]" alt="" />{{ item.name }} {{ item.price | currency:'BYN':'symbol':'.2-2' }}
+
     </ul>
 </form>
 <app-dropdown class="drop-down nav-btn account-btn" [buttonText]="'Аккаунт'">

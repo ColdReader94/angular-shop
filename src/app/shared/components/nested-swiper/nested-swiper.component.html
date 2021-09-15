@@ -7,12 +7,11 @@
     [autoHeight]="true"
     [spaceBetween]="30"
     [navigation]="true"
-    [pagination]="pagination"
     class="mySwiper"
   >
     <ng-template swiperSlide *ngFor="let slide of slidesData" class="slide">
         <div class="popular"></div>
-        <img [src]='slide.imageUrls[0]' class="popular-item-img">
+        <img [src]='slide.imageUrls[0]' class="popular-item-img" (click)="navigate(slide.id)">
         <div class="rating-stars" appFeedBackStars
         [rating]="slide.rating"></div>
         <div class="popular-item-name">{{ slide.name }}</div>

@@ -9,6 +9,10 @@
     padding: pxToRem(16px) 0;
 }
 
+.logo {
+    cursor: pointer;
+}
+
 .nav-btn {
     display: flex;
     justify-content: flex-end;

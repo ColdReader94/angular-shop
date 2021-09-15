@@ -49,8 +49,7 @@ export class NavigationComponent implements OnInit {
         public userSelectors: UserDataSelectors,
         public loginService: LoginService,
         private categoriesSelectors: CategoriesSelectors,
-        private httpService: HttpRequestsService,
-        private ref: ElementRef
+        private httpService: HttpRequestsService
     ) {}
 
     ngOnInit(): void {
@@ -118,8 +117,7 @@ export class NavigationComponent implements OnInit {
         this.searchField.nativeElement.value = '';
     }
 
-    public onClick(event: Event): void {
-        if (!(<Element>event.target).closest('.search-results'))
+    public onClick(): void {
             this.searchResultsItems = null;
     }
 }

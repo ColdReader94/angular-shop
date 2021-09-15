@@ -1,7 +1,7 @@
 
 @import "variables.scss";
 @import "~swiper/css";
-@import "~swiper/css/pagination";
+@import "~swiper/css/navigation";
 
 .swiper {
   width: 100%;
@@ -50,7 +50,7 @@
   font-family: $base-font-family;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 840px) {
   * {
       font-size: 0.6rem;
   }

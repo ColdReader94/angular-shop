@@ -6,8 +6,10 @@ export interface IGoodsBaseItem {
     price: number;
     rating: number;
     description: number;
-    isInCart?: boolean;
-    isFavorite?: boolean;
+    isInCart: boolean;
+    isFavorite: boolean;
+    category: string;
+    subCategory: string;
 }
 
 export interface IGoodsResponse {

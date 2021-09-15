@@ -5,7 +5,8 @@ export enum ServerApiRoutes {
     userGetInfo = 'users',
     userRegister = 'users/register',
     getCategories = 'categories',
-    searchGoods = 'goods/search?text='
+    searchGoods = 'goods/search?text=',
+    getGoods = 'goods/item/'
 }
 
 export const getCategoryGoods = '​goods​/category​/';

@@ -11,8 +11,6 @@ SwiperCore.use([Navigation, Pagination, Autoplay]);
   encapsulation: ViewEncapsulation.None,
 })
 export class SwiperComponent {
-
-
   @Input() slidesData: IGoodsBaseItem[] | null = [];
 
   public pagination = {

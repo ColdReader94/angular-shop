@@ -1,0 +1,26 @@
+<div class="gallery">
+<swiper
+      [spaceBetween]="10"
+      [navigation]="true"
+      [thumbs]="{ swiper: thumbsSwiper }"
+      class="mySwiper2"
+    >
+      <ng-template *ngFor="let image of images" swiperSlide
+        ><img class="image"
+          [src]="image" alt="" /></ng-template
+      >
+    </swiper>
+    <swiper
+      (swiper)="thumbsSwiper = $event"
+      [spaceBetween]="10"
+      [slidesPerView]="4"
+      [freeMode]="true"
+      [watchSlidesProgress]="true"
+      class="gallery mySwiper"
+    >
+      <ng-template *ngFor="let image of images" swiperSlide
+        ><img  class="thumb"
+        [src]="image" alt="" /></ng-template
+      >
+    </swiper>
+  </div>
