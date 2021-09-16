@@ -54,12 +54,12 @@
             </li>
         </ng-template>
         <li>
-            <a href=""
+            <a [routerLink]="['/orders', 'cart']"
                 ><img src="assets/images/basket-icon.svg" class="icon" alt="" />Корзина</a
             >
         </li>
         <li>
-            <a href=""
+            <a [routerLink]="['/orders', 'favourite']"
                 ><img
                     src="assets/images/favourite-icon.svg"
                     class="icon"
@@ -68,14 +68,14 @@
             >
         </li>
         <li>
-            <a href=""
+            <a [routerLink]="['/orders', 'waitlist']"
                 ><img src="assets/images/list-icon.png" class="icon" alt="" />Лист
                 ожидания</a
             >
         </li>
     </ul>
 </app-dropdown>
-<button class="nav-btn basket-btn"><span class="button-text">Корзина</span></button>
+<button [routerLink]="['/orders', 'cart']" class="nav-btn basket-btn"><span class="button-text">Корзина</span></button>
 <app-login-popup
     class="login-popup"
     (closePopup)="popupClose()"

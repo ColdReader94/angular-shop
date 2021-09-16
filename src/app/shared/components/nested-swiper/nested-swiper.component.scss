@@ -11,11 +11,16 @@
   cursor: pointer;
 }
 
+.popular-item-img {
+  max-width: 8rem;
+  max-height: 5rem;
+}
+
 .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
-
+  font-size: 0.8rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -50,8 +55,19 @@
   font-family: $base-font-family;
 }
 
-@media (max-width: 840px) {
+
+@media (max-width: 960px) {
   * {
       font-size: 0.6rem;
   }
+
+  .popular-item-img {
+    max-height: 3rem;
+}
+
+.popular,
+.on-sale {
+  width: 1.5rem;
+  height: 1.5rem;
+}
 }
