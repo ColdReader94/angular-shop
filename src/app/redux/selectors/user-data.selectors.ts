@@ -24,4 +24,16 @@ export class UserDataSelectors {
         this.selectUserDataState,
         (userDataState) => userDataState.isLoggin
     );
+    public selectItemsInCart = createSelector(
+        this.selectUserDataState,
+        (userDataState) => userDataState.currentUser.cart
+    );
+    public selectItemsInFavourites = createSelector(
+        this.selectUserDataState,
+        (userDataState) => userDataState.currentUser.favorites
+    );
+    public selectToken= createSelector(
+        this.selectUserDataState,
+        (userDataState) => userDataState.currentUser.token
+    );
 }

@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { loadItemsForSale } from 'src/app/redux/actions/items-for-sale.actions';
 import { loadPopularItems } from 'src/app/redux/actions/popular-items.actions';
+import { clearErrorMessage } from 'src/app/redux/actions/user-data.actions';
 import { UserDataSelectors } from 'src/app/redux/selectors/user-data.selectors';
 import { AppState } from 'src/app/redux/state.models';
 
@@ -40,6 +41,7 @@ export class HeaderComponent implements OnInit {
 
     public hideErrorPopup(): void {
         this.errorPopup = false;
+        this.store.dispatch(clearErrorMessage());
     }
 
     public catalogShowToggle(): void {

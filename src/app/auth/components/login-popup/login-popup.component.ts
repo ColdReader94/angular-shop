@@ -32,7 +32,7 @@ export class LoginPopupComponent implements OnInit {
         lastName: '',
         token: '',
         cart: [],
-        favourites: [],
+        favorites: [],
         orders: [],
     };
 

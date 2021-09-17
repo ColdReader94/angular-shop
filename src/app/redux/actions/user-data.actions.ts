@@ -1,9 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { IUser } from 'src/app/core/models/user.model';
 
-export const changeCity = createAction(
-    '[HEADER] CITY CHANGE'
-);
+export const changeCity = createAction('[HEADER] CITY CHANGE');
 
 export const changeCitySuccessful = createAction(
     '[HEADER] CITY WAS SUCCESSFULY CHANGED',
@@ -12,7 +10,7 @@ export const changeCitySuccessful = createAction(
 
 export const changeCityFailed = createAction(
     '[HEADER] CITY CHANGE FAILED',
-    props<{errorMessage: string}>()
+    props<{ errorMessage: string }>()
 );
 
 export const userRegister = createAction(
@@ -27,27 +25,27 @@ export const userRegisterSuccessful = createAction(
 
 export const userRegisterFailed = createAction(
     '[LOGIN POPUP] NEW USER REGISTER FAILED',
-     props<{errorMessage: string}>()
+    props<{ errorMessage: string }>()
 );
 
 export const userLogin = createAction(
     '[LOGIN POPUP] USER IS TRY TO LOGIN',
-    props<{ login: string, password: string }>()
+    props<{ login: string; password: string }>()
 );
 
 export const userFoundSuccessful = createAction(
     '[LOGIN POPUP] USER IS EXISTS',
-    props<{ token: string }>()
+    props<{ tokenValue: string }>()
 );
 
 export const userNotFound = createAction(
     '[LOGIN POPUP] USER NOT FOUND',
-     props<{errorMessage: string}>()
+    props<{ errorMessage: string }>()
 );
 
 export const userLoadFailed = createAction(
     '[LOGIN POPUP] LOAD USER DATA FROM SERVER HAS FAILED',
-     props<{errorMessage: string}>()
+    props<{ errorMessage: string }>()
 );
 
 export const userLoadSuccessful = createAction(
@@ -55,6 +53,41 @@ export const userLoadSuccessful = createAction(
     props<{ user: IUser }>()
 );
 
-export const userLogout = createAction(
-    '[LOGIN DROP DOWN LIST] USER HAS LOGGED OUT'
+export const userLogout = createAction('[LOGIN DROP DOWN LIST] USER HAS LOGGED OUT');
+
+export const clearErrorMessage = createAction('[HEADER] ERROR MESSAGE WAS CLEARED');
+
+export const tryToAddToFavourite = createAction(
+    '[ITEM] ITEM TRY TO BEEN ADDED TO FAVOURITE',
+    props<{ itemId: string }>()
+);
+
+export const tryToAddToCart = createAction(
+    '[ITEM] ITEM TRY TO BEEN ADDED TO CART',
+    props<{ itemId: string }>()
+);
+
+export const addedToCart = createAction(
+    '[ITEM] ITEM HAVE BEEN ADDED TO CART',
+    props<{ itemId: string }>()
+);
+
+export const addedToFavourite = createAction(
+    '[ITEM] ITEM HAVE BEEN ADDED TO FAVOURITE',
+    props<{ itemId: string }>()
+);
+
+export const removedFromFavourite = createAction(
+    '[ITEM] ITEM HAVE BEEN REMOVED FROM FAVOURITE',
+    props<{ itemId: string }>()
+);
+
+export const addToCartFailed = createAction(
+    '[ITEM] ITEM HAVE NOT BEEN ADDED TO CART',
+    props<{ errorMessage: string }>()
+);
+
+export const addToFavouriteFailed = createAction(
+    '[ITEM] ITEM HAVE NOT BEEN ADDED TO FAVOURITE',
+    props<{ errorMessage: string }>()
 );

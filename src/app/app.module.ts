@@ -8,6 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { INTERCEPTOR_PROVIDERS } from './orders/interceptors/providers';
 import { PagesModule } from './pages/pages.module';
 import { CategoriesEffects } from './redux/effects/categories.effects';
 import { ItemsForSaleEffects } from './redux/effects/items-for-sale.effects';
@@ -42,7 +43,7 @@ import { userDataEffects } from './redux/effects/user-data.effects';
         maxAge: 25,
     }),
   ],
-  providers: [],
+  providers: [INTERCEPTOR_PROVIDERS],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

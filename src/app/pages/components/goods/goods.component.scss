@@ -98,6 +98,10 @@ h2 {
     width: 50%;
 }
 
+.add-to-favourite-btn__active {
+    background-image: url('/assets/images/fav-active.png')
+}
+
 @media (max-width: 640px) {
     * {
         font-size: 0.6rem;

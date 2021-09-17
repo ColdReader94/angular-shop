@@ -17,4 +17,4 @@
 <div class="amount" appAmount [amount]="value.availableAmount"></div>
 <div class="price">{{ value.price | currency: "BYN":"symbol":".2-2" }}</div>
 <button class="add-to-basket-btn">В корзину</button>
-<button class="add-to-favourite-btn"></button>
+<button class="add-to-favourite-btn" appIsfavourite [item]="value" (click)="workWithFavourite(value.id)"></button>

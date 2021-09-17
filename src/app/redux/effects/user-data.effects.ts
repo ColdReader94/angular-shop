@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { LoginService } from 'src/app/auth/services/login.service';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
+import { FavouriteTogglerService } from 'src/app/shared/services/favourite-toggler.service';
 import * as UserActions from '../actions/user-data.actions';
 
 @Injectable({
@@ -17,28 +18,28 @@ export class userDataEffects {
             ofType(UserActions.changeCity),
             switchMap(() =>
                 this.httpRequest.getLocationByIp().pipe(
-                    map(value =>
-                        UserActions.changeCitySuccessful({ city: value.city }
-                    ),
-                    catchError((error: HttpErrorResponse) =>
-                        of(
-                            UserActions.changeCityFailed({
-                                errorMessage: `${error.status} ${error.statusText}
+                    map(
+                        (value) => UserActions.changeCitySuccessful({ city: value.city }),
+                        catchError((error: HttpErrorResponse) =>
+                            of(
+                                UserActions.changeCityFailed({
+                                    errorMessage: `${error.status} ${error.statusText}
                         : City is not detected`,
-                            })
+                                })
+                            )
                         )
                     )
                 )
             )
         )
-    ));
+    );
 
     public getCurrentUser: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
             ofType(UserActions.userLogin),
             switchMap((data) =>
                 this.httpRequest.findUser(data.login, data.password).pipe(
-                    map((value) => UserActions.userFoundSuccessful(value)),
+                    map((value) => UserActions.userFoundSuccessful({ tokenValue: value.token })),
                     catchError((error: HttpErrorResponse) =>
                         of(
                             UserActions.userNotFound({
@@ -55,9 +56,11 @@ export class userDataEffects {
         this.actions$.pipe(
             ofType(UserActions.userFoundSuccessful),
             switchMap((data) =>
-                this.httpRequest.getUserInfo(data.token).pipe(
-                    tap((value) => this.loginService.setToLocalStorage(value[0])),
-                    map((value) => UserActions.userLoadSuccessful({ user: value[0] })),
+                this.httpRequest.getUserInfo(data.tokenValue).pipe(
+                    tap((value) => {
+                        this.loginService.setToLocalStorage({ ...value, token: data.tokenValue });
+                    }),
+                    map((value) => UserActions.userLoadSuccessful({ user: value })),
                     catchError((error: HttpErrorResponse) =>
                         of(
                             UserActions.userLoadFailed({
@@ -76,8 +79,13 @@ export class userDataEffects {
             switchMap((data) =>
                 this.httpRequest.registerUser(data.user).pipe(
                     map((value) => {
-                        this.loginService.setToLocalStorage({ ...data.user, token: value.token });
-                        return  UserActions.userRegisterSuccessful({ user: { ...data.user, token: value.token } });
+                        this.loginService.setToLocalStorage({
+                            ...data.user,
+                            token: value.token,
+                        });
+                        return UserActions.userRegisterSuccessful({
+                            user: { ...data.user, token: value.token },
+                        });
                     }),
                     catchError((error: HttpErrorResponse) =>
                         of(
@@ -91,9 +99,31 @@ export class userDataEffects {
         )
     );
 
+    public workWithFavourites: Observable<Action> = createEffect(() =>
+        this.actions$.pipe(
+            ofType(UserActions.tryToAddToFavourite),
+            switchMap((data) =>
+                this.favouriteService.addToFavourite(data.itemId).pipe(
+                    map(() => {
+                        return UserActions.addedToFavourite({ itemId: data.itemId });
+                    }),
+                    catchError((error: HttpErrorResponse) =>
+                        of(
+                            UserActions.addToFavouriteFailed({
+                                errorMessage: `${error.status} ${error.statusText}: Item was not added to favourite.
+                            Maybe you is not logged in`,
+                            })
+                        )
+                    )
+                )
+            )
+        )
+    );
+
     constructor(
         private actions$: Actions,
         private httpRequest: HttpRequestsService,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private favouriteService: FavouriteTogglerService
     ) {}
 }

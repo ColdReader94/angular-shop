@@ -35,14 +35,14 @@ export class HttpRequestsService {
         }) as Observable<Pick<IUser, 'token'>>;
     }
 
-    public getUserInfo(token: string): Observable<IUser[]> {
+    public getUserInfo(token: string): Observable<IUser> {
         const headersCreate = {
             'Content-Type': 'application/json',
-            Authorization: `Bearer${token}`,
+            Authorization: `Bearer ${token}`,
         };
         return this.http.get(`${baseUrl}${ServerApiRoutes.userGetInfo}`, {
             headers: headersCreate,
-        }) as Observable<IUser[]>;
+        }) as Observable<IUser>;
     }
 
     public registerUser(newUser: IUser): Observable<Pick<IUser, 'token'>> {

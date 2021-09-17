@@ -80,6 +80,10 @@
     }
 }
 
+.add-to-favourite-btn__active {
+    background-image: url('/assets/images/fav-active.png')
+}
+
 .amount {
     display: flex;
     justify-content: center;

@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { switchMap, mergeMap } from 'rxjs/operators';
 import { IGoodsBaseItem } from 'src/app/core/models/goods.model';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
+import { tryToAddToFavourite } from 'src/app/redux/actions/user-data.actions';
 import { CategoriesSelectors } from 'src/app/redux/selectors/categories.selector';
 import { AppState } from 'src/app/redux/state.models';
 
@@ -14,7 +15,7 @@ import { AppState } from 'src/app/redux/state.models';
     styleUrls: ['./goods.component.scss'],
 })
 export class GoodsComponent implements OnInit, OnDestroy {
-    public item: IGoodsBaseItem = {} as IGoodsBaseItem;
+    public good: IGoodsBaseItem = {} as IGoodsBaseItem;
     public categoryName = '';
     public subCategoryName = '';
     private routeSubsriptions!: Subscription;
@@ -35,7 +36,7 @@ export class GoodsComponent implements OnInit, OnDestroy {
                     this.id = id;
                     return this.httpService.getGoods(this.id).pipe(
                         switchMap((value) => {
-                            this.item = value;
+                            this.good = value;
                             return this.store.select(
                                 this.categoriesSelectors.selectCategories
                             );
@@ -44,9 +45,9 @@ export class GoodsComponent implements OnInit, OnDestroy {
                 })
             )
             .subscribe((data) => {
-                const category = data.find((item) => item.id === this.item.category);
+                const category = data.find((item) => item.id === this.good.category);
                 const subCategory = category?.subCategories.find(
-                    (item) => item.id === this.item.subCategory
+                    (item) => item.id === this.good.subCategory
                 );
                 if (category && subCategory) {
                     this.categoryName = category.name;
@@ -58,4 +59,8 @@ export class GoodsComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.routeSubsriptions.unsubscribe();
     }
+
+    public workWithFavourite(id: string): void {
+        this.store.dispatch(tryToAddToFavourite({ itemId: id }));
+      }
 }

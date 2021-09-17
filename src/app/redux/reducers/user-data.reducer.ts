@@ -22,20 +22,32 @@ const reducer = createReducer(
     on(UserData.userLogin, (state) => {
         return { ...state };
     }),
-    on(UserData.userFoundSuccessful, (state) => {
-        return { ...state };
+    on(UserData.userFoundSuccessful, (state, { tokenValue }) => {
+        return { ...state, currentUser: { ...state.currentUser, token: tokenValue } };
     }),
     on(UserData.userNotFound, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
     }),
     on(UserData.userLoadSuccessful, (state, { user }) => {
-        return { ...state, isLoggin: true, currentUser: user };
+        return { ...state, isLoggin: true, currentUser: { ...user, token: state.currentUser.token } };
     }),
-    on(UserData.userLogout, (state) => {
-        return { ...state, currentUser: initialUserData.currentUser, isLoggin: false };
+    on(UserData.userLogout, () => {
+        return { ...initialUserData, isLoggin: false };
     }),
     on(UserData.userLoadFailed, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
+    }),
+    on(UserData.tryToAddToFavourite, (state) => {
+        return { ...state };
+    }),
+    on(UserData.addedToFavourite, (state, { itemId: id }) => {
+        return { ...state, currentUser: { ...state.currentUser, favourites: [...state.currentUser.favorites, id] } };
+    }),
+    on(UserData.addToFavouriteFailed,  (state, { errorMessage }) => {
+        return { ...state, settingsError: errorMessage };
+    }),
+    on(UserData.clearErrorMessage, (state) => {
+        return { ...state, settingsError: '' };
     })
 );
 

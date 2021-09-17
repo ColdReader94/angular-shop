@@ -39,8 +39,8 @@ export class LoginService {
 
     public userExistsCheck(currentUser: IUser): void {
         this.httpService.getUserInfo(currentUser.token).subscribe((value) => {
-            if (value[0]) {
-                this.store.dispatch(userFoundSuccessful({ token: value[0].token }));
+            if (value) {
+                this.store.dispatch(userFoundSuccessful({ tokenValue: currentUser.token }));
             } else {
                 localStorage.clear();
             }

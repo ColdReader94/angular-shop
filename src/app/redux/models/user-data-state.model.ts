@@ -18,7 +18,7 @@ export const initialUserData: IUserDataState = {
         lastName: '',
         token: '',
         cart: [],
-        favourites: [],
+        favorites: [],
         orders: [],
         avatar: '',
     },

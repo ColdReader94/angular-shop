@@ -5,7 +5,7 @@ export interface IUser {
     firstName: string;
     lastName: string;
     token: string;
-    cart: any[];
-    favourites: any[];
+    cart: string[];
+    favorites: string[];
     orders: any[];
 }

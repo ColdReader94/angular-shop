@@ -24,10 +24,10 @@ export class LoadOrdersModuleGuard implements CanLoad {
           this.router.navigateByUrl('');
           this.store.dispatch(userLoadFailed({ errorMessage: "Пожалуйста авторизуйтесь чтобы управлять заказами и избранным" }));
           return false;
-      } 
+      }
         return this.store.select(this.userDataSelector.selectLoggedState).pipe(
           filter(value => value),
           take(1)
-          ); 
+          );
   }
 }

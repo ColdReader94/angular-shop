@@ -7,6 +7,7 @@ import { SwiperModule } from "swiper/angular";
 import { NestedSwiperComponent } from './components/nested-swiper/nested-swiper.component';
 import { FeedBackStarsDirective } from './directives/feedbacks-view.directive';
 import { GallerySwiperComponent } from './components/gallery-swiper/gallery-swiper.component';
+import { IsfavouriteDirective } from './directives/isfavourite.directive';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { GallerySwiperComponent } from './components/gallery-swiper/gallery-swip
     NestedSwiperComponent,
     FeedBackStarsDirective,
     GallerySwiperComponent,
+    IsfavouriteDirective,
   ],
   imports: [
     SwiperModule,
@@ -30,6 +32,7 @@ import { GallerySwiperComponent } from './components/gallery-swiper/gallery-swip
     PopupComponent,
     FeedBackStarsDirective,
     GallerySwiperComponent,
+    IsfavouriteDirective,
   ],
 })
 export class SharedModule { }
