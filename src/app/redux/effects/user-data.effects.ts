@@ -7,6 +7,7 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { LoginService } from 'src/app/auth/services/login.service';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import { FavouriteTogglerService } from 'src/app/shared/services/favourite-toggler.service';
+import { workWithCartService } from 'src/app/shared/services/work-with-cart.service';
 import * as UserActions from '../actions/user-data.actions';
 
 @Injectable({
@@ -102,10 +103,25 @@ export class userDataEffects {
     public workWithFavourites: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
             ofType(UserActions.tryToAddToFavourite),
-            switchMap((data) =>
-                this.favouriteService.addToFavourite(data.itemId).pipe(
+            switchMap((data) => {
+                if (data.isFavorite) {
+                    return this.favouriteService.addToFavourite(data.itemStatusChange).pipe(
+                        map(() => {
+                            return UserActions.addedToFavourite({ itemStatusChange: data.itemStatusChange  });
+                        }),
+                        catchError((error: HttpErrorResponse) =>
+                            of(
+                                UserActions.addToFavouriteFailed({
+                                    errorMessage: `${error.status} ${error.statusText}: Item was not added to favourite.
+                                Maybe you is not logged in`,
+                                })
+                            )
+                        )
+                    );
+                }
+                return this.favouriteService.deleteFavourite(data.itemStatusChange).pipe(
                     map(() => {
-                        return UserActions.addedToFavourite({ itemId: data.itemId });
+                        return UserActions.removedFromFavourite({ itemStatusChange: data.itemStatusChange  });
                     }),
                     catchError((error: HttpErrorResponse) =>
                         of(
@@ -115,7 +131,48 @@ export class userDataEffects {
                             })
                         )
                     )
-                )
+                );
+            }
+
+            )
+        )
+    );
+
+
+    public workWithCart: Observable<Action> = createEffect(() =>
+        this.actions$.pipe(
+            ofType(UserActions.tryToAddToCart),
+            switchMap((data) => {
+                if (data.isInCart) {
+                    return this.cartService.addToCart(data.itemStatusChange).pipe(
+                        map(() => {
+                            return UserActions.addedToCart({ itemStatusChange: data.itemStatusChange  });
+                        }),
+                        catchError((error: HttpErrorResponse) =>
+                            of(
+                                UserActions.addToCartFailed({
+                                    errorMessage: `${error.status} ${error.statusText}: Item was not added to favourite.
+                                Maybe you is not logged in`,
+                                })
+                            )
+                        )
+                    );
+                }
+                return this.cartService.deleteFromCart(data.itemStatusChange).pipe(
+                    map(() => {
+                        return UserActions.removedFromCart({ itemStatusChange: data.itemStatusChange  });
+                    }),
+                    catchError((error: HttpErrorResponse) =>
+                        of(
+                            UserActions.addToCartFailed({
+                                errorMessage: `${error.status} ${error.statusText}: Item was not added to favourite.
+                            Maybe you is not logged in`,
+                            })
+                        )
+                    )
+                );
+            }
+
             )
         )
     );
@@ -124,6 +181,7 @@ export class userDataEffects {
         private actions$: Actions,
         private httpRequest: HttpRequestsService,
         private loginService: LoginService,
-        private favouriteService: FavouriteTogglerService
+        private favouriteService: FavouriteTogglerService,
+        private cartService: workWithCartService
     ) {}
 }

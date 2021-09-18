@@ -34,5 +34,8 @@ import { GoodsComponent } from './components/goods/goods.component';
     StoreModule.forFeature('itemsForSale', itemsForSaleReducer),
     StoreModule.forFeature('popularItems', popularItemsReducer),
   ],
+  exports: [
+    ItemComponent,
+  ],
 })
 export class PagesModule { }

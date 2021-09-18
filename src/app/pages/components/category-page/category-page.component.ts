@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
-import { mergeMap, switchMap } from 'rxjs/operators';
+import { of, Subscription } from 'rxjs';
+import { catchError, mergeMap, switchMap } from 'rxjs/operators';
 import { IBaseCategory } from 'src/app/core/models/categories.model';
 import { IGoodsBaseItem } from 'src/app/core/models/goods.model';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
+import { loadCategoriesFailed } from 'src/app/redux/actions/categories.actions';
 import { CategoriesSelectors } from 'src/app/redux/selectors/categories.selector';
 import { AppState } from 'src/app/redux/state.models';
 import { Paths } from 'src/app/shared/paths';
@@ -55,11 +56,14 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
                         ? foundCategory.name
                         : this.categoryName;
                         return this.httpService.getCategoryGoods(this.id);
+                }),
+                catchError(() => {
+                   return of(this.store.dispatch(loadCategoriesFailed({ errorMessage: 'Не удалось загрузить товары' })));
                 })
             )
             .subscribe((data) => {
                 this.items = [];
-                this.pages = Math.ceil(data.length / this.itemsPerPage);
+                this.pages = Math.ceil((data as IGoodsBaseItem[]).length / this.itemsPerPage);
                 this.loadItems();
             });
     }

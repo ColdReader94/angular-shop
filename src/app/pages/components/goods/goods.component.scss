@@ -29,7 +29,7 @@ h2 {
     font-family: $base-font-family;
 }
 
-.add-to-basket-btn,
+.add-to-cart-btn,
 .add-to-favourite-btn {
     display: flex;
     margin: pxToRem(4px) auto;
@@ -38,7 +38,7 @@ h2 {
     cursor: pointer;
 }
 
-.add-to-basket-btn {
+.add-to-cart-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,10 +50,8 @@ h2 {
     color: $white;
 }
 
-
-
-.add-to-basket-btn:hover {
-    background: $secondary-background-darker;
+.add-to-cart-btn:hover {
+    opacity: 0.9;
 }
 
 .add-to-favourite-btn {
@@ -100,6 +98,10 @@ h2 {
 
 .add-to-favourite-btn__active {
     background-image: url('/assets/images/fav-active.png')
+}
+
+.add-to-cart-btn__active {
+    background: $secondary-background-darker;
 }
 
 @media (max-width: 640px) {

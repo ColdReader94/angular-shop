@@ -1,1 +1,32 @@
-<p>cart works!</p>
+<div class="wrapper">
+    <h2 class="category-title">Корзина</h2>
+    <div class="items-container">
+        <app-item class="cart-item" *ngFor="let item of (favoritesItems$ | async)" [value]="item">
+           <button class="remove-btn" (click)="removeFromCart(item.id, $event)">Удалить из корзины</button>
+           <form class="cart-item-form" action="">
+        <label class="cart-item-form-label" for="item-count-input">Укажите кол-во:</label>
+        <input
+            #itemCountField="ngModel"
+            [(ngModel)]="cart.count"
+            class="item-count-input"
+            name="itemCountField"
+            id="item-count-input"
+            type="number"
+            [min]="item.availableAmount ? 1 : 0"
+            [value]="cart.count"
+            [max]="item.availableAmount"
+        /> шт.
+        <p>Цена: {{ item.price * itemCountField.value | currency:'BYN':'symbol':'.2-2' }}</p>
+        <!-- <label class="cart-item-form-label" for="date-input">Выберите дату доставки:</label>
+        <input
+            #date="ngModel"
+            [(ngModel)]="cart.date"
+            class="date-input"
+            name="date"
+            id="date-input"
+            type="date"
+        /> -->
+    </form>
+        </app-item>
+    </div>
+</div>

@@ -1,7 +1,6 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { initialUserData, IUserDataState } from '../models/user-data-state.model';
 import * as UserData from '../actions/user-data.actions';
-
 const reducer = createReducer(
     initialUserData,
     on(UserData.changeCity, (state) => {
@@ -17,7 +16,7 @@ const reducer = createReducer(
         return { ...state };
     }),
     on(UserData.userRegisterSuccessful, (state, { user }) => {
-        return { ...state, isLoggin: true, currentUser: user };
+        return { ...state, isLoggin: true, currentUser: { ...user, token: state.currentUser.token } };
     }),
     on(UserData.userLogin, (state) => {
         return { ...state };
@@ -31,8 +30,8 @@ const reducer = createReducer(
     on(UserData.userLoadSuccessful, (state, { user }) => {
         return { ...state, isLoggin: true, currentUser: { ...user, token: state.currentUser.token } };
     }),
-    on(UserData.userLogout, () => {
-        return { ...initialUserData, isLoggin: false };
+    on(UserData.userLogout, (state) => {
+        return { ...state, isLoggin: false };
     }),
     on(UserData.userLoadFailed, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
@@ -40,10 +39,19 @@ const reducer = createReducer(
     on(UserData.tryToAddToFavourite, (state) => {
         return { ...state };
     }),
-    on(UserData.addedToFavourite, (state, { itemId: id }) => {
-        return { ...state, currentUser: { ...state.currentUser, favourites: [...state.currentUser.favorites, id] } };
+    on(UserData.addedToFavourite, (state, { itemStatusChange: item }) => {
+        return { ...state, currentUser: { ...state.currentUser, favourites: [...state.currentUser.favorites, item] } };
     }),
     on(UserData.addToFavouriteFailed,  (state, { errorMessage }) => {
+        return { ...state, settingsError: errorMessage };
+    }),
+    on(UserData.tryToAddToCart, (state) => {
+        return { ...state };
+    }),
+    on(UserData.addedToCart, (state, { itemStatusChange: item }) => {
+        return { ...state, currentUser: { ...state.currentUser, cart: [...state.currentUser.cart, item] } };
+    }),
+    on(UserData.addToCartFailed,  (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
     }),
     on(UserData.clearErrorMessage, (state) => {

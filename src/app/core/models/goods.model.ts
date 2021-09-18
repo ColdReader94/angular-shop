@@ -1,4 +1,5 @@
 export interface IGoodsBaseItem {
+    count: number;
     id: string;
     name: string;
     imageUrls: string[];

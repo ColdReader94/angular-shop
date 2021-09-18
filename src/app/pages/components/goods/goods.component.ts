@@ -5,8 +5,13 @@ import { Subscription } from 'rxjs';
 import { switchMap, mergeMap } from 'rxjs/operators';
 import { IGoodsBaseItem } from 'src/app/core/models/goods.model';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
-import { tryToAddToFavourite } from 'src/app/redux/actions/user-data.actions';
+import {
+    addToFavouriteFailed,
+    tryToAddToCart,
+    tryToAddToFavourite,
+} from 'src/app/redux/actions/user-data.actions';
 import { CategoriesSelectors } from 'src/app/redux/selectors/categories.selector';
+import { UserDataSelectors } from 'src/app/redux/selectors/user-data.selectors';
 import { AppState } from 'src/app/redux/state.models';
 
 @Component({
@@ -15,20 +20,30 @@ import { AppState } from 'src/app/redux/state.models';
     styleUrls: ['./goods.component.scss'],
 })
 export class GoodsComponent implements OnInit, OnDestroy {
+    public isFavorite = false;
+    public isInCart = false;
     public good: IGoodsBaseItem = {} as IGoodsBaseItem;
     public categoryName = '';
     public subCategoryName = '';
     private routeSubsriptions!: Subscription;
     private id = '';
+    private isLoggedSubscription!: Subscription;
+    private isLogged!: boolean;
 
     constructor(
         private httpService: HttpRequestsService,
         private route: ActivatedRoute,
         private store: Store<AppState>,
-        private categoriesSelectors: CategoriesSelectors
+        private categoriesSelectors: CategoriesSelectors,
+        private isloggedSelector: UserDataSelectors
     ) {}
 
     ngOnInit(): void {
+        this.isLoggedSubscription = this.store
+            .select(this.isloggedSelector.selectLoggedState)
+            .subscribe((value) => {
+                this.isLogged = value;
+            });
         this.routeSubsriptions = this.route.paramMap
             .pipe(
                 switchMap((params) => params.getAll('id')),
@@ -58,9 +73,42 @@ export class GoodsComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.routeSubsriptions.unsubscribe();
+        this.isLoggedSubscription.unsubscribe();
     }
 
-    public workWithFavourite(id: string): void {
-        this.store.dispatch(tryToAddToFavourite({ itemId: id }));
-      }
+    public workWithFavourite(): void {
+        if (this.isLogged) {
+            this.isFavorite = !this.isFavorite;
+            this.store.dispatch(
+                tryToAddToFavourite({
+                    itemStatusChange: this.good.id,
+                    isFavorite: this.isFavorite,
+                })
+            );
+        } else {
+            this.store.dispatch(
+                addToFavouriteFailed({
+                    errorMessage: 'Пожалуйста, авторизуйтесь для работы с избранным',
+                })
+            );
+        }
+    }
+
+    public workWithCart(): void {
+        if (this.isLogged) {
+            this.isInCart = !this.isInCart;
+            this.store.dispatch(
+                tryToAddToCart({
+                    itemStatusChange: this.good.id,
+                    isInCart: this.isInCart,
+                })
+            );
+        } else {
+            this.store.dispatch(
+                addToFavouriteFailed({
+                    errorMessage: 'Пожалуйста, авторизуйтесь для работы с корзиной',
+                })
+            );
+        }
+    }
 }

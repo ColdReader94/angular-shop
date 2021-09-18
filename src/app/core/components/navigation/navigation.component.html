@@ -14,7 +14,7 @@
 </button>
 <form class="search-form">
     <img src="assets/images/search-icon.svg" class="icon" alt="" />
-    <input #searchField type="text" class="search-input" placeholder="Поиск товаров" />
+    <input #searchField type="search" class="search-input" placeholder="Поиск товаров" />
     <button class="serch-input-clear-btn" (click)="clearSearchInput()"></button>
     <ul class="search-results" *ngIf="searchResultsItems">
         <li *ngFor="let item of searchResultsItems.goods" [routerLink]="['goods', 'item', item.id]">

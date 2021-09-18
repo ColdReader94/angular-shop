@@ -4,6 +4,8 @@ import { OrdersRoutingModule } from './ordrers-routing.module';
 import { CartComponent } from './components/cart/cart.component';
 import { FavouriteComponent } from './components/favourite/favourite.component';
 import { WaitlistComponent } from './components/waitlist/waitlist.component';
+import { PagesModule } from '../pages/pages.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -16,6 +18,8 @@ import { WaitlistComponent } from './components/waitlist/waitlist.component';
   imports: [
     CommonModule,
     OrdersRoutingModule,
+    PagesModule,
+    SharedModule,
   ],
 })
 export class OrdersModule {}

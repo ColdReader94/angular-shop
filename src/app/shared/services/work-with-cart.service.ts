@@ -6,20 +6,20 @@ import { baseUrl, ServerApiRoutes } from '../server-api-routes';
 @Injectable({
   providedIn: 'root',
 })
-export class FavouriteTogglerService {
+export class workWithCartService {
 
   constructor(private http: HttpClient) {}
 
-  public addToFavourite(text: string): Observable<unknown> {
+  public addToCart(text: string): Observable<unknown> {
     return this.http.post(
-        `${baseUrl}${ServerApiRoutes.favourite}`,
+        `${baseUrl}${ServerApiRoutes.cart}`,
         { id: text }
     ) as Observable<unknown>;
 }
 
-public deleteFavourite(id: string): Observable<unknown> {
+public deleteFromCart(id: string): Observable<unknown> {
   return this.http.delete(
-      `${baseUrl}${ServerApiRoutes.favourite}?id=${id}`
+      `${baseUrl}${ServerApiRoutes.cart}?id=${id}`
   ) as Observable<unknown>;
 }
 }

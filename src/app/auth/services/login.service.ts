@@ -50,6 +50,7 @@ export class LoginService {
     public logOut(): void {
         localStorage.removeItem(CURRENT_USER);
         this.store.dispatch(userLogout());
-        this.router.navigateByUrl(Paths.Root);
+        window.location.reload();
+        this.router.navigate([Paths.Root]);
     }
 }

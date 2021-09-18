@@ -59,27 +59,32 @@ export const clearErrorMessage = createAction('[HEADER] ERROR MESSAGE WAS CLEARE
 
 export const tryToAddToFavourite = createAction(
     '[ITEM] ITEM TRY TO BEEN ADDED TO FAVOURITE',
-    props<{ itemId: string }>()
+    props<{ itemStatusChange: string, isFavorite: boolean}>()
 );
 
 export const tryToAddToCart = createAction(
     '[ITEM] ITEM TRY TO BEEN ADDED TO CART',
-    props<{ itemId: string }>()
+    props<{ itemStatusChange: string, isInCart: boolean}>()
 );
 
 export const addedToCart = createAction(
     '[ITEM] ITEM HAVE BEEN ADDED TO CART',
-    props<{ itemId: string }>()
+    props<{ itemStatusChange: string}>()
+);
+
+export const removedFromCart = createAction(
+    '[ITEM] ITEM HAVE BEEN REMOVED FROM CART',
+    props<{ itemStatusChange: string}>()
 );
 
 export const addedToFavourite = createAction(
     '[ITEM] ITEM HAVE BEEN ADDED TO FAVOURITE',
-    props<{ itemId: string }>()
+    props<{ itemStatusChange: string}>()
 );
 
 export const removedFromFavourite = createAction(
     '[ITEM] ITEM HAVE BEEN REMOVED FROM FAVOURITE',
-    props<{ itemId: string }>()
+    props<{ itemStatusChange: string}>()
 );
 
 export const addToCartFailed = createAction(

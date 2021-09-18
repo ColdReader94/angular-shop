@@ -1,0 +1,52 @@
+@import "variables.scss";
+
+.wrapper {
+    flex-direction: column;
+}
+
+.items-container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: pxToRem(40px);
+    -webkit-row-gap: pxToRem(40px);
+    column-gap: pxToRem(40px);
+    -webkit-column-gap: pxToRem(40px);
+}
+
+a {
+
+    color: $link-color;
+}
+
+h2 {
+    margin: pxToRem(20px) auto;
+    color: $secondary-background;
+    font-family: $base-font-family;
+}
+
+.remove-btn {
+    margin: pxToRem(6px) auto;
+    padding: pxToRem(4px);
+    font-family: $base-font-family;
+   border: 1px solid $secondary-background-darker;
+   background: transparent;
+   color: $link-color;
+   outline: none;
+   border-radius: pxToRem(5px);
+   cursor: pointer;
+
+   &:hover {
+       background: $secondary-background-darker;
+       color: $white;
+   }
+}
+
+   @media (max-width: 640px) {
+       * {
+           font-size: 0.6rem;
+       }
+
+       .sort {
+           font-size: 0.5rem;
+       }
+     }

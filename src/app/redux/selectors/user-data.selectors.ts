@@ -32,7 +32,7 @@ export class UserDataSelectors {
         this.selectUserDataState,
         (userDataState) => userDataState.currentUser.favorites
     );
-    public selectToken= createSelector(
+    public selectToken = createSelector(
         this.selectUserDataState,
         (userDataState) => userDataState.currentUser.token
     );

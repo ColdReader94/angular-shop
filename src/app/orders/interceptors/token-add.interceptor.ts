@@ -14,8 +14,6 @@ import { mergeMap } from 'rxjs/operators';
 
 @Injectable()
 export class TokenAddInterceptor implements HttpInterceptor {
-    private token = '';
-
     constructor(private store: Store<AppState>, private userSelector: UserDataSelectors) {}
 
     intercept(
