@@ -120,7 +120,7 @@ h3 {
     width: 50%;
 }
 
-.order-confirm-btn[disabled]{
+.order-confirm-btn[disabled] {
     opacity: 0.2;
 }
 
@@ -132,14 +132,15 @@ h3 {
     font-family: $base-font-family;
 
     h2 {
-        color: $secondary-background
+        color: $secondary-background;
+        word-break: break-word;
     }
 
     p {
         margin-top: pxToRem(4px);
         margin-bottom: pxToRem(4px);
+        word-break: break-word;
     }
-
 }
 
 @media (max-width: 860px) {

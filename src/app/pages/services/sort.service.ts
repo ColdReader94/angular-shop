@@ -9,7 +9,11 @@ export class SortService {
     public sortDirection = false;
     public filterType = '';
 
-    public sort(value: IGoodsBaseItem[], type: sortTypes, direction: boolean): IGoodsBaseItem[] {
+    public sort(
+        value: IGoodsBaseItem[],
+        type: sortTypes,
+        direction: boolean
+    ): IGoodsBaseItem[] {
         this.sortDirection = direction;
         if (!value) {
             return [];
@@ -24,14 +28,12 @@ export class SortService {
                 return 0;
             }
             if (this.sortDirection) {
-                return a[this.filterType as sortTypes] >
-                    b[this.filterType as sortTypes]
+                return a[this.filterType as sortTypes] > b[this.filterType as sortTypes]
                     ? 1
                     : -1;
             }
             if (!this.sortDirection) {
-                return a[this.filterType as sortTypes] <
-                    b[this.filterType as sortTypes]
+                return a[this.filterType as sortTypes] < b[this.filterType as sortTypes]
                     ? 1
                     : -1;
             }

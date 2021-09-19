@@ -15,5 +15,5 @@ export interface IOrder {
         dateToDeliver: string;
         comment: string;
     };
-    id?: string
+    id?: string;
 }

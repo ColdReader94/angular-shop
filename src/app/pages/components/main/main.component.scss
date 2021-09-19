@@ -17,11 +17,10 @@
 }
 
 h2 {
-  margin-top: pxToRem(60px);
-  color: $secondary-background;
-  font-family: $base-font-family;
+    margin-top: pxToRem(60px);
+    color: $secondary-background;
+    font-family: $base-font-family;
 }
-
 
 @media (max-width: 640px) {
     * {

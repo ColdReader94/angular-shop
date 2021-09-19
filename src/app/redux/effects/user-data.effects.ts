@@ -40,7 +40,9 @@ export class userDataEffects {
             ofType(UserActions.userLogin),
             switchMap((data) =>
                 this.httpRequest.findUser(data.login, data.password).pipe(
-                    map((value) => UserActions.userFoundSuccessful({ tokenValue: value.token })),
+                    map((value) =>
+                        UserActions.userFoundSuccessful({ tokenValue: value.token })
+                    ),
                     catchError((error: HttpErrorResponse) =>
                         of(
                             UserActions.userNotFound({
@@ -59,7 +61,10 @@ export class userDataEffects {
             switchMap((data) =>
                 this.httpRequest.getUserInfo(data.tokenValue).pipe(
                     tap((value) => {
-                        this.loginService.setToLocalStorage({ ...value, token: data.tokenValue });
+                        this.loginService.setToLocalStorage({
+                            ...value,
+                            token: data.tokenValue,
+                        });
                     }),
                     map((value) => UserActions.userLoadSuccessful({ user: value })),
                     catchError((error: HttpErrorResponse) =>
@@ -105,39 +110,42 @@ export class userDataEffects {
             ofType(UserActions.tryToAddToFavourite),
             switchMap((data) => {
                 if (data.isFavorite) {
-                    return this.favouriteService.addToFavourite(data.itemStatusChange).pipe(
-                        map(() => {
-                            return UserActions.addedToFavourite({ itemStatusChange: data.itemStatusChange  });
-                        }),
-                        catchError((error: HttpErrorResponse) =>
-                            of(
-                                UserActions.addToFavouriteFailed({
-                                    errorMessage: `${error.status} ${error.statusText}: Item was not added to favourite.
+                    return this.favouriteService
+                        .addToFavourite(data.itemStatusChange)
+                        .pipe(
+                            map(() => {
+                                return UserActions.addedToFavourite({
+                                    itemStatusChange: data.itemStatusChange,
+                                });
+                            }),
+                            catchError((error: HttpErrorResponse) =>
+                                of(
+                                    UserActions.addToFavouriteFailed({
+                                        errorMessage: `${error.status} ${error.statusText}: Item was not added to favourite.
                                 Maybe you is not logged in`,
-                                })
+                                    })
+                                )
                             )
-                        )
-                    );
+                        );
                 }
                 return this.favouriteService.deleteFavourite(data.itemStatusChange).pipe(
                     map(() => {
-                        return UserActions.removedFromFavourite({ itemStatusChange: data.itemStatusChange  });
+                        return UserActions.removedFromFavourite({
+                            itemStatusChange: data.itemStatusChange,
+                        });
                     }),
                     catchError((error: HttpErrorResponse) =>
                         of(
                             UserActions.addToFavouriteFailed({
-                                errorMessage: `${error.status} ${error.statusText}: Item was not added to favourite.
+                                errorMessage: `${error.status} ${error.statusText}: Item was not removed to favourite.
                             Maybe you is not logged in`,
                             })
                         )
                     )
                 );
-            }
-
-            )
+            })
         )
     );
-
 
     public workWithCart: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
@@ -146,12 +154,14 @@ export class userDataEffects {
                 if (data.isInCart) {
                     return this.cartService.addToCart(data.itemStatusChange).pipe(
                         map(() => {
-                            return UserActions.addedToCart({ itemStatusChange: data.itemStatusChange  });
+                            return UserActions.addedToCart({
+                                itemStatusChange: data.itemStatusChange,
+                            });
                         }),
                         catchError((error: HttpErrorResponse) =>
                             of(
                                 UserActions.addToCartFailed({
-                                    errorMessage: `${error.status} ${error.statusText}: Item was not added to favourite.
+                                    errorMessage: `${error.status} ${error.statusText}: Item was not added to cart.
                                 Maybe you is not logged in`,
                                 })
                             )
@@ -160,20 +170,19 @@ export class userDataEffects {
                 }
                 return this.cartService.deleteFromCart(data.itemStatusChange).pipe(
                     map(() => {
-                        return UserActions.removedFromCart({ itemStatusChange: data.itemStatusChange  });
+                        return UserActions.removedFromCart({
+                            itemStatusChange: data.itemStatusChange,
+                        });
                     }),
                     catchError((error: HttpErrorResponse) =>
                         of(
                             UserActions.addToCartFailed({
-                                errorMessage: `${error.status} ${error.statusText}: Item was not added to favourite.
-                            Maybe you is not logged in`,
+                                errorMessage: `${error.status} ${error.statusText}: Item was not deleted from cart.`,
                             })
                         )
                     )
                 );
-            }
-
-            )
+            })
         )
     );
 

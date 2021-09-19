@@ -7,7 +7,9 @@ import { AppState } from '../state.models';
     providedIn: 'root',
 })
 export class UserDataSelectors {
-    public selectUserDataState = createFeatureSelector<AppState, IUserDataState>('userData');
+    public selectUserDataState = createFeatureSelector<AppState, IUserDataState>(
+        'userData'
+    );
     public selectCurrentCity = createSelector(
         this.selectUserDataState,
         (userDataState) => userDataState.currentCity

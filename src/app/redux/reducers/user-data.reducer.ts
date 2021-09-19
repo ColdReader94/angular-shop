@@ -16,7 +16,11 @@ const reducer = createReducer(
         return { ...state };
     }),
     on(UserData.userRegisterSuccessful, (state, { user }) => {
-        return { ...state, isLoggin: true, currentUser: { ...user, token: state.currentUser.token } };
+        return {
+            ...state,
+            isLoggin: true,
+            currentUser: { ...user, token: state.currentUser.token },
+        };
     }),
     on(UserData.userLogin, (state) => {
         return { ...state };
@@ -28,10 +32,15 @@ const reducer = createReducer(
         return { ...state, settingsError: errorMessage };
     }),
     on(UserData.userLoadSuccessful, (state, { user }) => {
-        return { ...state, isLoggin: true, currentUser: { ...user, token: state.currentUser.token } };
+        return {
+            ...state,
+            isLoggin: true,
+            currentUser: { ...user, token: state.currentUser.token },
+        };
     }),
     on(UserData.userLogout, (state) => {
-        return { ...state, isLoggin: false };
+        return { ...state, currentUser: { ...state.currentUser,
+             token: '', favorites: [], cart: []  }, isLoggin: false };
     }),
     on(UserData.userLoadFailed, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
@@ -40,24 +49,57 @@ const reducer = createReducer(
         return { ...state };
     }),
     on(UserData.addedToFavourite, (state, { itemStatusChange: item }) => {
-        return { ...state, currentUser: { ...state.currentUser, favourites: [...state.currentUser.favorites, item] } };
+        return {
+            ...state,
+            currentUser: {
+                ...state.currentUser,
+                favourites: [...state.currentUser.favorites, item],
+            },
+        };
     }),
-    on(UserData.addToFavouriteFailed,  (state, { errorMessage }) => {
+    on(UserData.addToFavouriteFailed, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
     }),
     on(UserData.tryToAddToCart, (state) => {
         return { ...state };
     }),
     on(UserData.addedToCart, (state, { itemStatusChange: item }) => {
-        return { ...state, currentUser: { ...state.currentUser, cart: [...state.currentUser.cart, item] } };
+        return {
+            ...state,
+            currentUser: {
+                ...state.currentUser,
+                cart: [...state.currentUser.cart, item],
+            },
+        };
     }),
-    on(UserData.addToCartFailed,  (state, { errorMessage }) => {
+    on(UserData.removedFromCart, (state, { itemStatusChange: item }) => {
+        return {
+            ...state,
+            currentUser: {
+                ...state.currentUser,
+                cart: state.currentUser.cart.filter(itemInCart => itemInCart !== item),
+            },
+        };
+    }),
+    on(UserData.removedFromFavourite, (state, { itemStatusChange: item }) => {
+        return {
+            ...state,
+            currentUser: {
+                ...state.currentUser,
+                cart: state.currentUser.favorites.filter(itemInFavorites => itemInFavorites !== item),
+            },
+        };
+    }),
+    on(UserData.addToCartFailed, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
     }),
-    on(UserData.oderHasBeenMade,  (state) => {
-        return { ...state, currentUser: { ...state.currentUser, ...state.currentUser.cart = [] } };
+    on(UserData.oderHasBeenMade, (state) => {
+        return {
+            ...state,
+            currentUser: { ...state.currentUser, cart: [] },
+        };
     }),
-    on(UserData.orderMakeFailed,  (state, { errorMessage }) => {
+    on(UserData.orderMakeFailed, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
     }),
     on(UserData.clearErrorMessage, (state) => {

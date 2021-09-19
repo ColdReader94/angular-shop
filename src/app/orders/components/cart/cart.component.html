@@ -6,7 +6,7 @@
             *ngFor="let item of favoritesItems$ | async; let i = index"
             [value]="item"
         >
-            <button class="remove-btn" (click)="removeFromCart(item.id, $event, i)">
+            <button class="remove-btn" (click)="removeFromCart(item.id)">
                 Удалить из корзины
             </button>
             <form class="cart-item-form" action="">
@@ -14,7 +14,10 @@
                     >Укажите кол-во:</label
                 >
                 <input
-                    (input)="checkAmount(cart.items[i].amount, item.availableAmount, i); totalPriceCount()"
+                    (input)="
+                        checkAmount(cart.items[i].amount, item.availableAmount, i);
+                        totalPriceCount()
+                    "
                     #itemCountField="ngModel"
                     [(ngModel)]="cart.items[i].amount"
                     class="item-count-input"
@@ -35,9 +38,13 @@
             </form>
         </app-item>
 
-        <h3>Итого: {{ totalPriceCount() | currency: "BYN":"symbol":".2-2"}}</h3>
-        <form action="" (ngSubmit)="confirmOrder()" [formGroup]="orderForm" class="cart-order-form">
-
+        <h3>Итого: {{ totalPriceCount() | currency: "BYN":"symbol":".2-2" }}</h3>
+        <form
+            action=""
+            (ngSubmit)="confirmOrder()"
+            [formGroup]="orderForm"
+            class="cart-order-form"
+        >
             <label class="cart-item-form-label" for="name-input">Введите ФИО:</label>
             <input
                 formControlName="name"
@@ -48,7 +55,12 @@
                 minlength="3"
                 maxlength="50"
             />
-            <div class="error-message" *ngIf="formHasErrors && orderForm.controls.name.errors">Обязательное поле (от 3 до 50 символов)</div>
+            <div
+                class="error-message"
+                *ngIf="formHasErrors && orderForm.controls.name.errors"
+            >
+                Обязательное поле (от 3 до 50 символов)
+            </div>
             <label class="cart-item-form-label" for="address-input">Введите адрес:</label>
             <input
                 formControlName="address"
@@ -59,50 +71,92 @@
                 minlength="3"
                 maxlength="250"
             />
-            <div class="error-message" *ngIf="formHasErrors && orderForm.controls.address.errors">Обязательное поле (от 3 до 250 символов)</div>
-            <label class="cart-item-form-label" for="phone-input">Введите номер телефона:</label>
+            <div
+                class="error-message"
+                *ngIf="formHasErrors && orderForm.controls.address.errors"
+            >
+                Обязательное поле (от 3 до 250 символов)
+            </div>
+            <label class="cart-item-form-label" for="phone-input"
+                >Введите номер телефона:</label
+            >
             <input
-            formControlName="phone"
+                formControlName="phone"
                 class="phone-input"
                 name="phone"
                 id="phone-input"
                 type="tel"
             />
-            <div class="error-message" *ngIf="formHasErrors && orderForm.controls.phone.errors">Введите номер телефона в формате (+999999)</div>
-         <label class="cart-item-form-label" for="date-input">Выберите время доставки:</label>
-        <input
-        formControlName="dateToDeliver"
-            class="date-input"
-            name="date"
-            id="date-input"
-            type="date"
-        />
-        <div class="error-message" *ngIf="formHasErrors && orderForm.controls.dateToDeliver.errors">Обязательное поле</div>
-        <input
-        formControlName="timeToDeliver"
-        class="time-input"
-        name="time"
-        id="time-input"
-        type="time"
-    />
-    <div class="error-message" *ngIf="formHasErrors && orderForm.controls.timeToDeliver.errors">Обязательное поле</div>
-    <label class="cart-item-form-label" for="comment-input">Комментарий (опционально):</label>
-    <input
-    formControlName="comment"
-        class="comment-input"
-        name="comment"
-        id="comment-input"
-        type="text"
-        maxlength="250"
-    />
-    <button type="submit" class="order-confirm-btn" [disabled]="!cart.items.length">Оформить заказ</button>
+            <div
+                class="error-message"
+                *ngIf="formHasErrors && orderForm.controls.phone.errors"
+            >
+                Введите номер телефона в формате (+999999)
+            </div>
+            <label class="cart-item-form-label" for="date-input"
+                >Выберите время доставки:</label
+            >
+            <input
+                formControlName="dateToDeliver"
+                class="date-input"
+                name="date"
+                id="date-input"
+                type="date"
+            />
+            <div
+                class="error-message"
+                *ngIf="formHasErrors && orderForm.controls.dateToDeliver.errors"
+            >
+                Обязательное поле
+            </div>
+            <input
+                formControlName="timeToDeliver"
+                class="time-input"
+                name="time"
+                id="time-input"
+                type="time"
+            />
+            <div
+                class="error-message"
+                *ngIf="formHasErrors && orderForm.controls.timeToDeliver.errors"
+            >
+                Обязательное поле
+            </div>
+            <label class="cart-item-form-label" for="comment-input"
+                >Комментарий (опционально):</label
+            >
+            <input
+                formControlName="comment"
+                class="comment-input"
+                name="comment"
+                id="comment-input"
+                type="text"
+                maxlength="250"
+            />
+            <button
+                type="submit"
+                class="order-confirm-btn"
+                [disabled]="!cart.items.length"
+            >
+                Оформить заказ
+            </button>
         </form>
     </div>
-    <app-popup *ngIf="showPopup" (closePopup)="orderComplete()">
+    <app-popup
+        *ngIf="showPopup"
+        (closePopup)="orderComplete()"
+        class="order-complete-popup"
+    >
+        <h2>Заказ успешно оформлен. Ожидайте доставки в указанное время.</h2>
         <p>ФИО: {{ cart.details.name }}</p>
         <p>Адрес доставки: {{ cart.details.address }}</p>
-        <p>Сумма заказа: {{ cart.details.totalPrice }}</p>
-        <p>Дата и время доставки: {{ cart.details.dateToDeliver }} {{ cart.details.timeToDeliver }}</p>
+        <p>
+            Сумма заказа: {{ cart.details.totalPrice | currency: "BYN":"symbol":".2-2" }}
+        </p>
+        <p>
+            Дата и время доставки: {{ cart.details.dateToDeliver }}
+            {{ cart.details.timeToDeliver }}
+        </p>
         <p>Телефон: {{ cart.details.phone }}</p>
         <p>Комментарий: {{ cart.details.comment }}</p>
     </app-popup>

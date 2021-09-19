@@ -16,7 +16,11 @@ export class CategoriesEffects {
             ofType(CategoriesActions.loadCategories),
             switchMap(() =>
                 this.httpRequest.getCategories().pipe(
-                    map((value) => CategoriesActions.loadCategoriesSuccessful({ loadedCategories: value })),
+                    map((value) =>
+                        CategoriesActions.loadCategoriesSuccessful({
+                            loadedCategories: value,
+                        })
+                    ),
                     catchError((error: HttpErrorResponse) =>
                         of(
                             CategoriesActions.loadCategoriesFailed({
@@ -29,8 +33,5 @@ export class CategoriesEffects {
         )
     );
 
-    constructor(
-        private actions$: Actions,
-        private httpRequest: HttpRequestsService
-    ) {}
+    constructor(private actions$: Actions, private httpRequest: HttpRequestsService) {}
 }

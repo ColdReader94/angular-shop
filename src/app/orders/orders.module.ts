@@ -7,19 +7,8 @@ import { WaitlistComponent } from './components/waitlist/waitlist.component';
 import { PagesModule } from '../pages/pages.module';
 import { SharedModule } from '../shared/shared.module';
 
-
-
 @NgModule({
-  declarations: [
-    CartComponent,
-    FavouriteComponent,
-    WaitlistComponent,
-  ],
-  imports: [
-    CommonModule,
-    OrdersRoutingModule,
-    PagesModule,
-    SharedModule,
-  ],
+    declarations: [CartComponent, FavouriteComponent, WaitlistComponent],
+    imports: [CommonModule, OrdersRoutingModule, PagesModule, SharedModule],
 })
 export class OrdersModule {}

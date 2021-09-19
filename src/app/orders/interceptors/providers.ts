@@ -1,6 +1,6 @@
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { Provider } from "@angular/core";
-import { TokenAddInterceptor } from "./token-add.interceptor";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Provider } from '@angular/core';
+import { TokenAddInterceptor } from './token-add.interceptor';
 
 export const INTERCEPTOR_PROVIDERS: Provider[] = [
     {

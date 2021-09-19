@@ -12,16 +12,16 @@ import { Paths } from './shared/paths';
 const routes: Routes = [
     { path: Paths.Root, pathMatch: 'full', component: MainComponent },
     {
-      path: Paths.Orders,
-      loadChildren: async() =>
-          import('./orders/orders.module').then((module) => module.OrdersModule),
-      canLoad: [LoadOrdersModuleGuard],
-      canActivate: [ActivateOrdersModuleGuard],
-  },
+        path: Paths.Orders,
+        loadChildren: async() =>
+            import('./orders/orders.module').then((module) => module.OrdersModule),
+        canLoad: [LoadOrdersModuleGuard],
+        canActivate: [ActivateOrdersModuleGuard],
+    },
     { path: `${Paths.Category}:id1`, component: CategoryPageComponent },
     { path: `${Paths.Category}:id1/:id2`, component: SubcategoryComponent },
     { path: `${Paths.Goods}:id`, component: GoodsComponent },
-  
+
     { path: Paths.AnyOtherPage, component: NotFoundComponent },
 ];
 

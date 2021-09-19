@@ -1,6 +1,7 @@
 <div class="wrapper">
     <div class="breadcrumbs">
-        <a [routerLink]="['..']" routerLinkActive="active">{{ categoryName }}</a> 〉 <a [routerLink]="" routerLinkActive="active">{{ subCategoryName }}</a>
+        <a [routerLink]="['..']" routerLinkActive="active">{{ categoryName }}</a> 〉
+        <a [routerLink]="" routerLinkActive="active">{{ subCategoryName }}</a>
     </div>
     <h2 class="category-title">{{ subCategoryName }}</h2>
     <div class="sort">
@@ -17,6 +18,7 @@
         [class.unactive-btn]="isActiveBtn()"
         class="next-items-load"
         (click)="loadMoreItems()"
-        >Показать больше</button
     >
+        Показать больше
+    </button>
 </div>

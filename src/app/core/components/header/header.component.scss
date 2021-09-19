@@ -91,7 +91,7 @@ a {
         color: $white;
     }
 
-    .contacts-header a{
+    .contacts-header a {
         color: $white;
     }
 
@@ -107,9 +107,7 @@ a {
         filter: invert(100%);
         border-left: 1px solid black;
     }
-    }
-
-
+}
 
 @media (max-width: 640px) {
     * {

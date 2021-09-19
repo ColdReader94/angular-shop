@@ -13,7 +13,6 @@ const CURRENT_USER = 'currentUser';
     providedIn: 'root',
 })
 export class LoginService {
-
     constructor(
         private store: Store<AppState>,
         private httpService: HttpRequestsService,
@@ -22,7 +21,11 @@ export class LoginService {
     ) {}
 
     public setToLocalStorage(user: IUser): void {
-        const userRegistrationInfo = { firstName: user.firstName, lastName: user.lastName, token: user.token };
+        const userRegistrationInfo = {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            token: user.token,
+        };
         localStorage.setItem(CURRENT_USER, JSON.stringify(userRegistrationInfo));
     }
 
@@ -35,13 +38,15 @@ export class LoginService {
             }
             return true;
         }
-            return false;
+        return false;
     }
 
     public userExistsCheck(currentUser: IUser): void {
         this.httpService.getUserInfo(currentUser.token).subscribe((value) => {
             if (value) {
-                this.store.dispatch(userFoundSuccessful({ tokenValue: currentUser.token }));
+                this.store.dispatch(
+                    userFoundSuccessful({ tokenValue: currentUser.token })
+                );
             } else {
                 localStorage.clear();
             }
@@ -51,7 +56,7 @@ export class LoginService {
     public logOut(): void {
         localStorage.removeItem(CURRENT_USER);
         this.store.dispatch(userLogout());
-        if (this.route.toString().includes('users')) {
+        if (this.route.toString().includes(Paths.Users)) {
             this.router.navigate([Paths.Root]);
         }
         window.location.reload();

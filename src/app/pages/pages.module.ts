@@ -13,20 +13,20 @@ import { SubcategoryComponent } from './components/subcategory/subcategory.compo
 import { GoodsComponent } from './components/goods/goods.component';
 
 @NgModule({
-  declarations: [
-    MainComponent,
-    SwiperComponent,
-    CategoryPageComponent,
-    NotFoundComponent,
-    SubcategoryComponent,
-    GoodsComponent,
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterModule,
-    StoreModule.forFeature('itemsForSale', itemsForSaleReducer),
-    StoreModule.forFeature('popularItems', popularItemsReducer),
-  ],
+    declarations: [
+        MainComponent,
+        SwiperComponent,
+        CategoryPageComponent,
+        NotFoundComponent,
+        SubcategoryComponent,
+        GoodsComponent,
+    ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        RouterModule,
+        StoreModule.forFeature('itemsForSale', itemsForSaleReducer),
+        StoreModule.forFeature('popularItems', popularItemsReducer),
+    ],
 })
-export class PagesModule { }
+export class PagesModule {}

@@ -17,16 +17,30 @@
     <input #searchField type="search" class="search-input" placeholder="Поиск товаров" />
     <button class="serch-input-clear-btn" (click)="clearSearchInput()"></button>
     <ul class="search-results" *ngIf="searchResultsItems">
-        <li *ngFor="let item of searchResultsItems.goods" [routerLink]="['goods', 'item', item.id]">
-            <img [src]="item.imageUrls[0]" alt="" />{{ item.name }} {{ item.price | currency:'BYN':'symbol':'.2-2' }}
+        <li
+            *ngFor="let item of searchResultsItems.goods"
+            [routerLink]="['goods', 'item', item.id]"
+        >
+            <img [src]="item.imageUrls[0]" alt="" />{{ item.name }}
+            {{ item.price | currency: "BYN":"symbol":".2-2" }}
         </li>
-        <li *ngFor="let category of searchResultsItems.categories" [routerLink]="['goods', 'category', category.id]">
+        <li
+            *ngFor="let category of searchResultsItems.categories"
+            [routerLink]="['goods', 'category', category.id]"
+        >
             {{ category.name }}
         </li>
-        <li *ngFor="let subCategory of searchResultsItems.subCategories; let i = index" [routerLink]="['goods', 'category',  searchResultsItems.categories[i].id,  subCategory.id]">
+        <li
+            *ngFor="let subCategory of searchResultsItems.subCategories; let i = index"
+            [routerLink]="[
+                'goods',
+                'category',
+                searchResultsItems.categories[i].id,
+                subCategory.id
+            ]"
+        >
             {{ subCategory.name }}
         </li>
-
     </ul>
 </form>
 <app-dropdown class="drop-down nav-btn account-btn" [buttonText]="'Аккаунт'">
@@ -75,7 +89,9 @@
         </li>
     </ul>
 </app-dropdown>
-<button [routerLink]="['/orders', 'cart']" class="nav-btn basket-btn"><span class="button-text">Корзина</span></button>
+<button [routerLink]="['/orders', 'cart']" class="nav-btn basket-btn">
+    <span class="button-text">Корзина</span>
+</button>
 <app-login-popup
     class="login-popup"
     (closePopup)="popupClose()"

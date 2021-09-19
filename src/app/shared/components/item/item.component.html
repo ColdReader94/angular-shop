@@ -16,7 +16,12 @@
 <div class="rating-stars" appFeedBackStars [rating]="value.rating"></div>
 <div class="amount" appAmount [amount]="value.availableAmount"></div>
 <div class="price">{{ value.price | currency: "BYN":"symbol":".2-2" }}</div>
-<button class="add-to-cart-btn" *ngIf="value.availableAmount" [class.add-to-cart-btn__active]="isInCart" (click)="workWithCart()">
+<button
+    class="add-to-cart-btn"
+    *ngIf="value.availableAmount"
+    [class.add-to-cart-btn__active]="isInCart"
+    (click)="workWithCart()"
+>
     В корзину
 </button>
 <button

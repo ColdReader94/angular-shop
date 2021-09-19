@@ -3,7 +3,7 @@
 * {
     padding: 0;
     margin: 0;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     transition: font-size none;
     transition: color none;
     box-sizing: border-box;
@@ -127,7 +127,7 @@ ul {
 .rating-stars {
     margin: pxToRem(10px) auto;
     height: pxToRem(15px);
-    background-image: url('assets/images/star-icon.png');
+    background-image: url("assets/images/star-icon.png");
     background-repeat: repeat-x;
     background-size: pxToRem(15px);
 }
@@ -142,15 +142,15 @@ ul {
     height: pxToRem(40px);
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 .on-sale {
-    background-image: url('assets/images/discount.png');
+    background-image: url("assets/images/discount.png");
 }
 
 .popular {
-    background-image: url('assets/images/popular.png');
+    background-image: url("assets/images/popular.png");
 }
 
 .active-category {
@@ -177,7 +177,7 @@ ul {
     img {
         max-height: 100% !important;
         height: auto !important;
-        width: auto  !important;
+        width: auto !important;
     }
 }
 

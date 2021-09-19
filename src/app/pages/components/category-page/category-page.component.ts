@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { of, Subscription } from 'rxjs';
-import { catchError, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 import { IBaseCategory } from 'src/app/core/models/categories.model';
 import { IGoodsBaseItem } from 'src/app/core/models/goods.model';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
@@ -43,27 +43,33 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
         this.routeSubsriptions = this.route.paramMap
             .pipe(
                 switchMap((params) => params.getAll('id1')),
-                mergeMap((id) => {
+                switchMap((id) => {
                     this.id = id;
-                    return this.store.select(
-                        this.categoriesSelectors.selectCategories
-                    );
+                    return this.store.select(this.categoriesSelectors.selectCategories);
                 }),
-                mergeMap((category) => {
-                    const foundCategory = category.find((item) => (item.id === this.id));
+                switchMap((category) => {
+                    const foundCategory = category.find((item) => item.id === this.id);
                     this.subCategories = foundCategory?.subCategories || [];
                     this.categoryName = foundCategory
                         ? foundCategory.name
                         : this.categoryName;
-                        return this.httpService.getCategoryGoods(this.id);
+                    return this.httpService.getCategoryGoods(this.id);
                 }),
                 catchError(() => {
-                   return of(this.store.dispatch(loadCategoriesFailed({ errorMessage: 'Не удалось загрузить товары' })));
+                    return of(
+                        this.store.dispatch(
+                            loadCategoriesFailed({
+                                errorMessage: 'Не удалось загрузить товары',
+                            })
+                        )
+                    );
                 })
             )
             .subscribe((data) => {
                 this.items = [];
-                this.pages = Math.ceil((data as IGoodsBaseItem[]).length / this.itemsPerPage);
+                this.pages = Math.ceil(
+                    (data as IGoodsBaseItem[]).length / this.itemsPerPage
+                );
                 this.loadItems();
             });
     }
@@ -71,7 +77,6 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.routeSubsriptions.unsubscribe();
     }
-
 
     public loadItems(): void {
         this.httpService
@@ -82,7 +87,11 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
             )
             .subscribe((value) => {
                 if (value.length) {
-                    this.items = this.sorting.sort(this.items.concat(value), this.sortType as sortTypes, this.sortDirection);
+                    this.items = this.sorting.sort(
+                        this.items.concat(value),
+                        this.sortType as sortTypes,
+                        this.sortDirection
+                    );
                 } else {
                     this.router.navigate([Paths.NotFound]);
                 }
@@ -101,8 +110,8 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     }
 
     public sortChange(type: sortTypes): void {
-       this.sortType = type;
-       this.sortDirection = !this.sortDirection;
-       this.items = this.sorting.sort(this.items, type, this.sortDirection);
+        this.sortType = type;
+        this.sortDirection = !this.sortDirection;
+        this.items = this.sorting.sort(this.items, type, this.sortDirection);
     }
 }

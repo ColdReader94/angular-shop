@@ -20,12 +20,8 @@ export class HttpRequestsService {
 
     public getLocationByIp(): Observable<IIpLocationInterfaceResponse> {
         return this.http
-            .get(
-                locationByIp
-            )
-            .pipe(map(value =>
-               value as IIpLocationInterfaceResponse
-            ));
+            .get(locationByIp)
+            .pipe(map((value) => value as IIpLocationInterfaceResponse));
     }
 
     public findUser(login: string, password: string): Observable<Pick<IUser, 'token'>> {
@@ -89,8 +85,7 @@ export class HttpRequestsService {
         itemsPerPage: number | string = 'itemsPerPage'
     ): Observable<IGoodsBaseItem[]> {
         return this.http.get(
-            `${baseUrl}${getCategoryGoods}${categoryId}/${subCategoryId}?start=${start}&count=${
-                itemsPerPage}`.replace(
+            `${baseUrl}${getCategoryGoods}${categoryId}/${subCategoryId}?start=${start}&count=${itemsPerPage}`.replace(
                 /\u200B/g,
                 ''
             )

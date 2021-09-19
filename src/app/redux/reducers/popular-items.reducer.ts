@@ -5,13 +5,16 @@ import { IGoodsBaseItem } from 'src/app/core/models/goods.model';
 const reducer = createReducer(
     [] as IGoodsBaseItem[],
     on(PopularItems.loadPopularItems, (state) => {
-        return [ ...state ];
+        return [...state];
     }),
     on(PopularItems.loadPopularItemsSuccessful, (_state, { loadedItems }) => {
-        return [ ...loadedItems];
+        return [...loadedItems];
     })
 );
 
-export function popularItemsReducer(state: IGoodsBaseItem[], action: Action): IGoodsBaseItem[] {
+export function popularItemsReducer(
+    state: IGoodsBaseItem[],
+    action: Action
+): IGoodsBaseItem[] {
     return reducer(state, action);
 }

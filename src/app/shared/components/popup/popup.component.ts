@@ -14,10 +14,11 @@ export class PopupComponent {
     constructor(private ref: ElementRef) {}
 
     public onClick(event: Event): void {
-      if (!(<Element>this.ref.nativeElement).contains(<Element>event.target) &&
-      !(<Element>event.target).closest('button')) {
-        this.closePopup.emit();
-      }
-  }
-
+        if (
+            !(<Element>this.ref.nativeElement).contains(<Element>event.target) &&
+            !(<Element>event.target).closest('button')
+        ) {
+            this.closePopup.emit();
+        }
+    }
 }

@@ -1,4 +1,4 @@
-import { IUser } from "../../core/models/user.model";
+import { IUser } from '../../core/models/user.model';
 
 export interface IUserDataState {
     currentCity: string;

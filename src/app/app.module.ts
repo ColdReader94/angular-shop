@@ -16,34 +16,37 @@ import { PopularItemsEffects } from './redux/effects/popular-items.effects';
 import { userDataEffects } from './redux/effects/user-data.effects';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    CoreModule,
-    PagesModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    StoreModule.forRoot(
-        {},
-        {
-            runtimeChecks: {
-                strictStateImmutability: true,
-                strictActionImmutability: true,
-                strictStateSerializability: true,
-                strictActionWithinNgZone: true,
-                strictActionTypeUniqueness: true,
-            },
-        }
-    ),
-    EffectsModule.forRoot([userDataEffects, CategoriesEffects, ItemsForSaleEffects, PopularItemsEffects]),
-    StoreDevtoolsModule.instrument({
-        maxAge: 25,
-    }),
-  ],
-  providers: [INTERCEPTOR_PROVIDERS],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        CoreModule,
+        PagesModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        StoreModule.forRoot(
+            {},
+            {
+                runtimeChecks: {
+                    strictStateImmutability: true,
+                    strictActionImmutability: true,
+                    strictStateSerializability: true,
+                    strictActionWithinNgZone: true,
+                    strictActionTypeUniqueness: true,
+                },
+            }
+        ),
+        EffectsModule.forRoot([
+            userDataEffects,
+            CategoriesEffects,
+            ItemsForSaleEffects,
+            PopularItemsEffects,
+        ]),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25,
+        }),
+    ],
+    providers: [INTERCEPTOR_PROVIDERS],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

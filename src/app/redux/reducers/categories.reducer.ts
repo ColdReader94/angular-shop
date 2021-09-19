@@ -5,10 +5,10 @@ import { ICategories, initialCategories } from '../../core/models/categories.mod
 const reducer = createReducer(
     initialCategories as ICategories[],
     on(Categories.loadCategories, (state) => {
-        return [ ...state ];
+        return [...state];
     }),
     on(Categories.loadCategoriesSuccessful, (_state, { loadedCategories }) => {
-        return [ ...loadedCategories ];
+        return [...loadedCategories];
     })
 );
 

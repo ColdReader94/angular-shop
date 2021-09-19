@@ -19,20 +19,20 @@
     border-top: 1px solid $footer-border-color;
     border-bottom: 1px solid $footer-border-color;
 
-a {
-    display: flex;
-    align-items: center;
-    color: $text-color-primary;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    font-weight: 400;
-    font-size: pxToRem(14px);
-    line-height: pxToRem(24px);
+    a {
+        display: flex;
+        align-items: center;
+        color: $text-color-primary;
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        font-weight: 400;
+        font-size: pxToRem(14px);
+        line-height: pxToRem(24px);
 
-    img  {
-        margin-right: pxToRem(10px);
+        img {
+            margin-right: pxToRem(10px);
+        }
     }
-}
 }
 
 .icons-footer {
@@ -56,7 +56,7 @@ a {
 }
 
 .vk-icon {
-    background-image: url('../../../../assets/images/vk-icon.svg');
+    background-image: url("../../../../assets/images/vk-icon.svg");
 
     &:hover {
         background-color: #1976d2;
@@ -64,7 +64,7 @@ a {
 }
 
 .facebook-icon {
-    background-image: url('../../../../assets/images/facebook-icon.svg');
+    background-image: url("../../../../assets/images/facebook-icon.svg");
 
     &:hover {
         background-color: #3f51b5;
@@ -72,7 +72,7 @@ a {
 }
 
 .youtube-icon {
-    background-image: url('../../../../assets/images/youtube-icon.svg');
+    background-image: url("../../../../assets/images/youtube-icon.svg");
 
     &:hover {
         background-color: #ff3d00;
@@ -80,7 +80,7 @@ a {
 }
 
 .instagram-icon {
-    background-image: url('../../../../assets/images/instagram-icon.svg');
+    background-image: url("../../../../assets/images/instagram-icon.svg");
 
     &:hover {
         background-color: #c02290;
@@ -88,25 +88,21 @@ a {
 }
 
 .odnoklassniki-icon {
-    background-image: url('../../../../assets/images/odnoklassniki-icon.svg');
+    background-image: url("../../../../assets/images/odnoklassniki-icon.svg");
 
     &:hover {
         background-color: #ff9800;
     }
 }
 
-
 @media (max-width: 960px) {
     .footer-contacts {
         flex-direction: column;
     }
- }
+}
 
 @media (max-width: 640px) {
-
     .footer-contacts a {
-            font-size: 0.6rem !important;
-        }
-
-
+        font-size: 0.6rem !important;
+    }
 }

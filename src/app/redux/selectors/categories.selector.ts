@@ -7,5 +7,7 @@ import { AppState } from '../state.models';
     providedIn: 'root',
 })
 export class CategoriesSelectors {
-    public selectCategories = createFeatureSelector<AppState, ICategories[]>('categories');
+    public selectCategories = createFeatureSelector<AppState, ICategories[]>(
+        'categories'
+    );
 }

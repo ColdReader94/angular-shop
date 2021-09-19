@@ -2,7 +2,11 @@
     <nav>
         <ul>
             <li *ngFor="let category of categories$ | async">
-                <a [routerLink]="['goods', 'category', category.id]" routerLinkActive="active-category">{{ category.name }}</a>
+                <a
+                    [routerLink]="['goods', 'category', category.id]"
+                    routerLinkActive="active-category"
+                    >{{ category.name }}</a
+                >
             </li>
         </ul>
     </nav>

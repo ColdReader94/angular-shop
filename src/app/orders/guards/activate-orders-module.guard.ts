@@ -15,7 +15,8 @@ export class ActivateOrdersModuleGuard implements CanActivate {
     constructor(
         private store: Store<AppState>,
         private userDataSelector: UserDataSelectors,
-        private router: Router, private loginService: LoginService
+        private router: Router,
+        private loginService: LoginService
     ) {}
 
     canActivate():
@@ -23,14 +24,19 @@ export class ActivateOrdersModuleGuard implements CanActivate {
         | Promise<boolean | UrlTree>
         | boolean
         | UrlTree {
-          if (!this.loginService.loginCheck()) {
+        if (!this.loginService.loginCheck()) {
             this.router.navigateByUrl('');
-            this.store.dispatch(userLoadFailed({ errorMessage: "Пожалуйста авторизуйтесь чтобы управлять заказами и избранным" }));
+            this.store.dispatch(
+                userLoadFailed({
+                    errorMessage:
+                        'Пожалуйста авторизуйтесь чтобы управлять заказами и избранным',
+                })
+            );
             return false;
-        } 
-          return this.store.select(this.userDataSelector.selectLoggedState).pipe(
-            filter(value => value),
+        }
+        return this.store.select(this.userDataSelector.selectLoggedState).pipe(
+            filter((value) => value),
             take(1)
-            ); 
+        );
     }
 }

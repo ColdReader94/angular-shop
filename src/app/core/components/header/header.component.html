@@ -80,4 +80,6 @@
 </div>
 <app-categories class="categories-navigation"></app-categories>
 <app-catalog *ngIf="catalogIsShowed"></app-catalog>
-<app-popup *ngIf="errorPopup" class="error-popup" (click)="hideErrorPopup()">{{ error$ | async }}</app-popup>
+<app-popup *ngIf="errorPopup" class="error-popup" (click)="hideErrorPopup()">{{
+    error$ | async
+}}</app-popup>

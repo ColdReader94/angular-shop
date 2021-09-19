@@ -2,25 +2,41 @@
     <div class="breadcrumbs">
         <a [routerLink]="['/goods/category', good.category]" routerLinkActive="active">{{
             categoryName
-        }}</a
-        > 〉 <a [routerLink]="['/goods/category', good.category, good.subCategory]" routerLinkActive="active">{{
-            subCategoryName
-        }}</a
-        > 〉 <a [routerLink]="" routerLinkActive="active">{{ good.name }}</a>
+        }}</a>
+        〉
+        <a
+            [routerLink]="['/goods/category', good.category, good.subCategory]"
+            routerLinkActive="active"
+            >{{ subCategoryName }}</a
+        >
+        〉 <a [routerLink]="" routerLinkActive="active">{{ good.name }}</a>
     </div>
     <h2 class="category-title">{{ good.name }}</h2>
     <div class="item-info" appOnSaleOrPopular [item]="good">
-
-    <app-gallery-swiper [images]="good.imageUrls" class="gallery-swiper-container"></app-gallery-swiper>
+        <app-gallery-swiper
+            [images]="good.imageUrls"
+            class="gallery-swiper-container"
+        ></app-gallery-swiper>
         <div class="rating-stars" appFeedBackStars [rating]="good.rating"></div>
-<div class="amount" appAmount [amount]="good.availableAmount"></div>
-<div class="price">{{ good.price | currency: "BYN":"symbol":".2-2" }}</div>
-<button class="add-to-cart-btn" *ngIf="good.availableAmount" [class.add-to-cart-btn__active]="isInCart" (click)="workWithCart()">В корзину</button>
-<button class="add-to-favourite-btn" [class.add-to-favourite-btn__active]="isFavorite" (click)="workWithFavourite()"></button>
+        <div class="amount" appAmount [amount]="good.availableAmount"></div>
+        <div class="price">{{ good.price | currency: "BYN":"symbol":".2-2" }}</div>
+        <button
+            class="add-to-cart-btn"
+            *ngIf="good.availableAmount"
+            [class.add-to-cart-btn__active]="isInCart"
+            (click)="workWithCart()"
+        >
+            В корзину
+        </button>
+        <button
+            class="add-to-favourite-btn"
+            [class.add-to-favourite-btn__active]="isFavorite"
+            (click)="workWithFavourite()"
+        ></button>
 
-<h3 class="description-title">О товаре:</h3>
-<div class="description">
-    {{ good.description }}
-</div>
+        <h3 class="description-title">О товаре:</h3>
+        <div class="description">
+            {{ good.description }}
+        </div>
     </div>
 </div>

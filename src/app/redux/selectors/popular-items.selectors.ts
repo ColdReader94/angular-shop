@@ -7,5 +7,7 @@ import { AppState } from '../state.models';
     providedIn: 'root',
 })
 export class PopularItemsSelectors {
-    public selectPopularItems = createFeatureSelector<AppState, IGoodsBaseItem[]>('popularItems');
+    public selectPopularItems = createFeatureSelector<AppState, IGoodsBaseItem[]>(
+        'popularItems'
+    );
 }

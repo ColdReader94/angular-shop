@@ -19,7 +19,6 @@
 }
 
 a {
-
     color: $link-color;
 }
 
@@ -44,8 +43,6 @@ h2 {
     cursor: pointer;
     border: none;
     outline: none;
-
-
 }
 
 .next-items-load:hover {
@@ -63,45 +60,44 @@ h2 {
     }
 }
 
-
 .sort {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     margin: pxToRem(20px) auto;
     font-size: 0.8rem;
-   }
+}
 
-   .sort-type {
-       display: flex;
-       border-radius: pxToRem(5px);
-       background: $body-background-color;
-       margin-right: pxToRem(10px);
+.sort-type {
+    display: flex;
+    border-radius: pxToRem(5px);
+    background: $body-background-color;
+    margin-right: pxToRem(10px);
 
     padding: pxToRem(4px);
-       color: $link-color;
-       cursor: pointer;
-   }
+    color: $link-color;
+    cursor: pointer;
+}
 
-   .sort-type::before,
-   .sort-type::after {
-       display: flex;
-       align-self: center;
-       content: "";
-       width:  pxToRem(4px);
-       height: pxToRem(4px);
-       margin: 0 pxToRem(4px);
-       border-radius: pxToRem(4px);
-       opacity: 0.2;
-       background: black;
-   }
+.sort-type::before,
+.sort-type::after {
+    display: flex;
+    align-self: center;
+    content: "";
+    width: pxToRem(4px);
+    height: pxToRem(4px);
+    margin: 0 pxToRem(4px);
+    border-radius: pxToRem(4px);
+    opacity: 0.2;
+    background: black;
+}
 
-   @media (max-width: 640px) {
-       * {
-           font-size: 0.6rem;
-       }
+@media (max-width: 640px) {
+    * {
+        font-size: 0.6rem;
+    }
 
-       .sort {
-           font-size: 0.5rem;
-       }
-     }
+    .sort {
+        font-size: 0.5rem;
+    }
+}

@@ -7,7 +7,6 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import * as ItemsForSale from '../actions/items-for-sale.actions';
 
-
 const CATEGORY_FOR_SALE = 'телевизор';
 
 @Injectable({
@@ -18,8 +17,10 @@ export class ItemsForSaleEffects {
         this.actions$.pipe(
             ofType(ItemsForSale.loadItemsForSale),
             switchMap(() =>
-                this.httpRequest.searchGoods(CATEGORY_FOR_SALE ).pipe(
-                    map((value) => ItemsForSale.loadItemsForSaleSuccessful({ loadedItems: value })),
+                this.httpRequest.searchGoods(CATEGORY_FOR_SALE).pipe(
+                    map((value) =>
+                        ItemsForSale.loadItemsForSaleSuccessful({ loadedItems: value })
+                    ),
                     catchError((error: HttpErrorResponse) =>
                         of(
                             ItemsForSale.loadItemsForSaleFailed({
@@ -32,8 +33,5 @@ export class ItemsForSaleEffects {
         )
     );
 
-    constructor(
-        private actions$: Actions,
-        private httpRequest: HttpRequestsService
-    ) {}
+    constructor(private actions$: Actions, private httpRequest: HttpRequestsService) {}
 }

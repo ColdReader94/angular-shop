@@ -7,5 +7,7 @@ import { AppState } from '../state.models';
     providedIn: 'root',
 })
 export class ItemsForSaleSelectors {
-    public selectItemsForSale = createFeatureSelector<AppState, IGoodsBaseItem[]>('itemsForSale');
+    public selectItemsForSale = createFeatureSelector<AppState, IGoodsBaseItem[]>(
+        'itemsForSale'
+    );
 }

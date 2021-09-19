@@ -14,7 +14,6 @@
 }
 
 a {
-
     color: $link-color;
 }
 
@@ -28,25 +27,25 @@ h2 {
     margin: pxToRem(6px) auto;
     padding: pxToRem(4px);
     font-family: $base-font-family;
-   border: 1px solid $secondary-background-darker;
-   background: transparent;
-   color: $link-color;
-   outline: none;
-   border-radius: pxToRem(5px);
-   cursor: pointer;
+    border: 1px solid $secondary-background-darker;
+    background: transparent;
+    color: $link-color;
+    outline: none;
+    border-radius: pxToRem(5px);
+    cursor: pointer;
 
-   &:hover {
-       background: $secondary-background-darker;
-       color: $white;
-   }
+    &:hover {
+        background: $secondary-background-darker;
+        color: $white;
+    }
 }
 
-   @media (max-width: 640px) {
-       * {
-           font-size: 0.6rem;
-       }
+@media (max-width: 640px) {
+    * {
+        font-size: 0.6rem;
+    }
 
-       .sort {
-           font-size: 0.5rem;
-       }
-     }
+    .sort {
+        font-size: 0.5rem;
+    }
+}

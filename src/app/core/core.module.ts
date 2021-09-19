@@ -14,25 +14,22 @@ import { AuthModule } from '../auth/auth.module';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    LocationComponent,
-    NavigationComponent,
-    CategoriesComponent,
-    FooterComponent,
-    CatalogComponent,
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    AuthModule,
-    RouterModule,
-    StoreModule.forFeature('userData', userDataReducer),
-    StoreModule.forFeature('categories', categoriesReducer),
-  ],
-  exports: [
-    HeaderComponent,
-    FooterComponent,
-  ],
+    declarations: [
+        HeaderComponent,
+        LocationComponent,
+        NavigationComponent,
+        CategoriesComponent,
+        FooterComponent,
+        CatalogComponent,
+    ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        AuthModule,
+        RouterModule,
+        StoreModule.forFeature('userData', userDataReducer),
+        StoreModule.forFeature('categories', categoriesReducer),
+    ],
+    exports: [HeaderComponent, FooterComponent],
 })
-export class CoreModule { }
+export class CoreModule {}

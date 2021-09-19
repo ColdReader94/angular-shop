@@ -5,7 +5,11 @@
     <h2 class="category-title">{{ categoryName }}</h2>
     <aside class="aside-bar">
         <div class="links-container">
-            <a *ngFor="let subCategory of subCategories" [routerLink]="[subCategory.id]">{{ subCategory.name }}</a>
+            <a
+                *ngFor="let subCategory of subCategories"
+                [routerLink]="[subCategory.id]"
+                >{{ subCategory.name }}</a
+            >
         </div>
     </aside>
     <div class="sort">

@@ -8,22 +8,26 @@ import { AppState } from 'src/app/redux/state.models';
 import { Paths } from 'src/app/shared/paths';
 
 @Component({
-  selector: 'app-catalog',
-  templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.scss'],
+    selector: 'app-catalog',
+    templateUrl: './catalog.component.html',
+    styleUrls: ['./catalog.component.scss'],
 })
 export class CatalogComponent implements OnInit {
-  public categories$!: Observable<ICategories[]>;
+    public categories$!: Observable<ICategories[]>;
 
-  constructor(private store: Store<AppState>, public selectors: CategoriesSelectors, private router: Router) {}
+    constructor(
+        private store: Store<AppState>,
+        public selectors: CategoriesSelectors,
+        private router: Router
+    ) {}
 
     ngOnInit(): void {
-       this.categories$ = this.store.select(this.selectors.selectCategories);
+        this.categories$ = this.store.select(this.selectors.selectCategories);
     }
 
     public navigate(categoryId: string, subcategoryId?: string): void {
-        subcategoryId ?
-        this.router.navigate([`${Paths.Category}${categoryId}`, subcategoryId]) :
-        this.router.navigate([`${Paths.Category}${categoryId}`]);
+        subcategoryId
+            ? this.router.navigate([`${Paths.Category}${categoryId}`, subcategoryId])
+            : this.router.navigate([`${Paths.Category}${categoryId}`]);
     }
 }

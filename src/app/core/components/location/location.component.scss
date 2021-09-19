@@ -1,4 +1,3 @@
-
 @import "variables.scss";
 
 .location-block {
@@ -11,14 +10,11 @@
     margin-right: pxToRem(10px);
 }
 
-
 @media (max-width: 960px) {
-   .location-icon {
-       filter: invert(100%);
-   }
+    .location-icon {
+        filter: invert(100%);
     }
-
-   
+}
 
 @media (max-width: 640px) {
     * {
