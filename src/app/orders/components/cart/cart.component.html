@@ -1,32 +1,109 @@
 <div class="wrapper">
     <h2 class="category-title">Корзина</h2>
     <div class="items-container">
-        <app-item class="cart-item" *ngFor="let item of (favoritesItems$ | async)" [value]="item">
-           <button class="remove-btn" (click)="removeFromCart(item.id, $event)">Удалить из корзины</button>
-           <form class="cart-item-form" action="">
-        <label class="cart-item-form-label" for="item-count-input">Укажите кол-во:</label>
+        <app-item
+            class="cart-item"
+            *ngFor="let item of favoritesItems$ | async; let i = index"
+            [value]="item"
+        >
+            <button class="remove-btn" (click)="removeFromCart(item.id, $event, i)">
+                Удалить из корзины
+            </button>
+            <form class="cart-item-form" action="">
+                <label class="cart-item-form-label" for="item-count-input"
+                    >Укажите кол-во:</label
+                >
+                <input
+                    (input)="checkAmount(cart.items[i].amount, item.availableAmount, i); totalPriceCount()"
+                    #itemCountField="ngModel"
+                    [(ngModel)]="cart.items[i].amount"
+                    class="item-count-input"
+                    name="itemCountField"
+                    id="item-count-input"
+                    type="number"
+                    [min]="item.availableAmount ? 1 : 0"
+                    [value]="cart.items[i].amount"
+                    [max]="item.availableAmount"
+                />
+                <p class="price">
+                    Цена:
+                    {{
+                        cart.items[i].price * itemCountField.value
+                            | currency: "BYN":"symbol":".2-2"
+                    }}
+                </p>
+            </form>
+        </app-item>
+
+        <h3>Итого: {{ totalPriceCount() | currency: "BYN":"symbol":".2-2"}}</h3>
+        <form action="" (ngSubmit)="confirmOrder()" [formGroup]="orderForm" class="cart-order-form">
+
+            <label class="cart-item-form-label" for="name-input">Введите ФИО:</label>
+            <input
+                formControlName="name"
+                class="name-input"
+                name="name"
+                id="name-input"
+                type="text"
+                minlength="3"
+                maxlength="50"
+            />
+            <div class="error-message" *ngIf="formHasErrors && orderForm.controls.name.errors">Обязательное поле (от 3 до 50 символов)</div>
+            <label class="cart-item-form-label" for="address-input">Введите адрес:</label>
+            <input
+                formControlName="address"
+                class="address-input"
+                name="address"
+                id="address-input"
+                type="text"
+                minlength="3"
+                maxlength="250"
+            />
+            <div class="error-message" *ngIf="formHasErrors && orderForm.controls.address.errors">Обязательное поле (от 3 до 250 символов)</div>
+            <label class="cart-item-form-label" for="phone-input">Введите номер телефона:</label>
+            <input
+            formControlName="phone"
+                class="phone-input"
+                name="phone"
+                id="phone-input"
+                type="tel"
+            />
+            <div class="error-message" *ngIf="formHasErrors && orderForm.controls.phone.errors">Введите номер телефона в формате (+999999)</div>
+         <label class="cart-item-form-label" for="date-input">Выберите время доставки:</label>
         <input
-            #itemCountField="ngModel"
-            [(ngModel)]="cart.count"
-            class="item-count-input"
-            name="itemCountField"
-            id="item-count-input"
-            type="number"
-            [min]="item.availableAmount ? 1 : 0"
-            [value]="cart.count"
-            [max]="item.availableAmount"
-        /> шт.
-        <p>Цена: {{ item.price * itemCountField.value | currency:'BYN':'symbol':'.2-2' }}</p>
-        <!-- <label class="cart-item-form-label" for="date-input">Выберите дату доставки:</label>
-        <input
-            #date="ngModel"
-            [(ngModel)]="cart.date"
+        formControlName="dateToDeliver"
             class="date-input"
             name="date"
             id="date-input"
             type="date"
-        /> -->
-    </form>
-        </app-item>
+        />
+        <div class="error-message" *ngIf="formHasErrors && orderForm.controls.dateToDeliver.errors">Обязательное поле</div>
+        <input
+        formControlName="timeToDeliver"
+        class="time-input"
+        name="time"
+        id="time-input"
+        type="time"
+    />
+    <div class="error-message" *ngIf="formHasErrors && orderForm.controls.timeToDeliver.errors">Обязательное поле</div>
+    <label class="cart-item-form-label" for="comment-input">Комментарий (опционально):</label>
+    <input
+    formControlName="comment"
+        class="comment-input"
+        name="comment"
+        id="comment-input"
+        type="text"
+        maxlength="250"
+    />
+    <button type="submit" class="order-confirm-btn" [disabled]="!cart.items.length">Оформить заказ</button>
+        </form>
     </div>
+    <app-popup *ngIf="showPopup" (closePopup)="orderComplete()">
+        <p>ФИО: {{ cart.details.name }}</p>
+        <p>Адрес доставки: {{ cart.details.address }}</p>
+        <p>Сумма заказа: {{ cart.details.totalPrice }}</p>
+        <p>Дата и время доставки: {{ cart.details.dateToDeliver }} {{ cart.details.timeToDeliver }}</p>
+        <p>Телефон: {{ cart.details.phone }}</p>
+        <p>Комментарий: {{ cart.details.comment }}</p>
+    </app-popup>
 </div>

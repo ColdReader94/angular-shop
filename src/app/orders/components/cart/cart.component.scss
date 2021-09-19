@@ -2,6 +2,7 @@
 
 .wrapper {
     flex-direction: column;
+    font-family: $base-font-family;
 }
 
 .items-container {
@@ -16,43 +17,48 @@
 
 .cart-item {
     display: flex;
+    flex-direction: row;
     width: 100%;
 }
 
 a {
-
     color: $link-color;
 }
 
-h2 {
+h2,
+h3 {
     margin: pxToRem(20px) auto;
     color: $secondary-background;
     font-family: $base-font-family;
+}
+
+h3 {
+    margin-left: 0;
 }
 
 .remove-btn {
     margin: pxToRem(6px) auto;
     padding: pxToRem(4px);
     font-family: $base-font-family;
-   border: 1px solid $secondary-background-darker;
-   background: transparent;
-   color: $link-color;
-   outline: none;
-   border-radius: pxToRem(5px);
-   cursor: pointer;
+    border: 1px solid $secondary-background-darker;
+    background: transparent;
+    color: $link-color;
+    outline: none;
+    border-radius: pxToRem(5px);
+    cursor: pointer;
 
-   &:hover {
-       background: $secondary-background-darker;
-       color: $white;
-   }
+    &:hover {
+        background: $secondary-background-darker;
+        color: $white;
+    }
 }
 
 .cart-item-form {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     margin: pxToRem(6px) auto;
-    width: 30%;
 
     input {
         outline: none;
@@ -64,12 +70,98 @@ h2 {
     }
 }
 
-   @media (max-width: 640px) {
-       * {
-           font-size: 0.6rem;
-       }
+.price {
+    margin-top: pxToRem(8px);
+    font-weight: 600;
+}
 
-       .sort {
-           font-size: 0.5rem;
-       }
-     }
+.cart-order-form {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 80%;
+    padding: pxToRem(10px);
+    row-gap: pxToRem(10px);
+    -webkit-row-gap: pxToRem(10px);
+    border-radius: pxToRem(5px);
+
+    label {
+        font-size: pxToRem(13px);
+        color: #b0b3b8;
+        display: flex;
+    }
+
+    input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: pxToRem(10px) pxToRem(12px) pxToRem(12px);
+        border: 1px solid rgba(213, 215, 219, 0.6);
+        border-radius: 2px;
+        outline: none;
+        font-size: pxToRem(14px);
+        line-height: pxToRem(20px);
+        color: #1a1a1a;
+        background: transparent;
+    }
+
+    .phone-input,
+    .date-input,
+    .time-input {
+        width: 25%;
+    }
+
+    .comment-input {
+        height: pxToRem(200px);
+    }
+}
+
+.order-confirm-btn {
+    align-self: center;
+    width: 50%;
+}
+
+.order-confirm-btn[disabled]{
+    opacity: 0.2;
+}
+
+.error-message {
+    color: red;
+}
+
+.order-complete-popup {
+    font-family: $base-font-family;
+
+    h2 {
+        color: $secondary-background
+    }
+
+    p {
+        margin-top: pxToRem(4px);
+        margin-bottom: pxToRem(4px);
+    }
+
+}
+
+@media (max-width: 860px) {
+    .cart-item {
+        flex-direction: column;
+    }
+
+    * {
+        font-size: 0.8rem;
+    }
+
+    .sort {
+        font-size: 0.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    * {
+        font-size: 0.6rem;
+    }
+
+    .sort {
+        font-size: 0.5rem;
+    }
+}

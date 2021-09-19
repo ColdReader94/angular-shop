@@ -2,12 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { PopupComponent } from './components/popup/popup.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SwiperModule } from "swiper/angular";
 import { NestedSwiperComponent } from './components/nested-swiper/nested-swiper.component';
 import { FeedBackStarsDirective } from './directives/feedbacks-view.directive';
 import { GallerySwiperComponent } from './components/gallery-swiper/gallery-swiper.component';
-import { IsfavouriteDirective } from './directives/isfavourite.directive';
+import { ItemComponent } from './components/item/item.component';
+import { AmountDirective } from './directives/amount.directive';
+import { RouterModule } from '@angular/router';
+import { SaleOrPopularDirective } from '../pages/directives/sale-or-popular.directive';
 
 
 @NgModule({
@@ -17,12 +20,16 @@ import { IsfavouriteDirective } from './directives/isfavourite.directive';
     NestedSwiperComponent,
     FeedBackStarsDirective,
     GallerySwiperComponent,
-    IsfavouriteDirective,
+    ItemComponent,
+    AmountDirective,
+    SaleOrPopularDirective,
   ],
   imports: [
     SwiperModule,
     CommonModule,
     FormsModule,
+    RouterModule,
+    ReactiveFormsModule,
   ],
   exports: [
     FormsModule,
@@ -32,7 +39,10 @@ import { IsfavouriteDirective } from './directives/isfavourite.directive';
     PopupComponent,
     FeedBackStarsDirective,
     GallerySwiperComponent,
-    IsfavouriteDirective,
+    ItemComponent,
+    AmountDirective,
+    SaleOrPopularDirective,
+    ReactiveFormsModule,
   ],
 })
 export class SharedModule { }

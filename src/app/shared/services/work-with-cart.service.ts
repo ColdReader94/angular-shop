@@ -10,16 +10,16 @@ export class workWithCartService {
 
   constructor(private http: HttpClient) {}
 
-  public addToCart(text: string): Observable<unknown> {
+  public addToCart(text: string): Observable<Response> {
     return this.http.post(
         `${baseUrl}${ServerApiRoutes.cart}`,
         { id: text }
-    ) as Observable<unknown>;
+    ) as Observable<Response>;
 }
 
-public deleteFromCart(id: string): Observable<unknown> {
+public deleteFromCart(id: string): Observable<Response> {
   return this.http.delete(
       `${baseUrl}${ServerApiRoutes.cart}?id=${id}`
-  ) as Observable<unknown>;
+  ) as Observable<Response>;
 }
 }

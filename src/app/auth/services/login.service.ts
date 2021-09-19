@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IUser } from 'src/app/core/models/user.model';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
@@ -17,7 +17,8 @@ export class LoginService {
     constructor(
         private store: Store<AppState>,
         private httpService: HttpRequestsService,
-        private router: Router
+        private router: Router,
+        private route: ActivatedRoute
     ) {}
 
     public setToLocalStorage(user: IUser): void {
@@ -50,7 +51,9 @@ export class LoginService {
     public logOut(): void {
         localStorage.removeItem(CURRENT_USER);
         this.store.dispatch(userLogout());
+        if (this.route.toString().includes('users')) {
+            this.router.navigate([Paths.Root]);
+        }
         window.location.reload();
-        this.router.navigate([Paths.Root]);
     }
 }

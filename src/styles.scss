@@ -103,7 +103,8 @@ ul {
     }
 }
 
-.login-btn {
+.login-btn,
+.order-confirm-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -162,6 +163,22 @@ ul {
 
 .cart-item .add-to-cart-btn {
     display: none !important;
+}
+
+.cart-item .item-name {
+    width: 20%;
+}
+
+.cart-item .img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: pxToRem(100px);
+    img {
+        max-height: 100% !important;
+        height: auto !important;
+        width: auto  !important;
+    }
 }
 
 @media (max-width: 960px) {

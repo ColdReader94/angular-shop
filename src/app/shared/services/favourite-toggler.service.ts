@@ -10,16 +10,16 @@ export class FavouriteTogglerService {
 
   constructor(private http: HttpClient) {}
 
-  public addToFavourite(text: string): Observable<unknown> {
+  public addToFavourite(text: string): Observable<Response> {
     return this.http.post(
         `${baseUrl}${ServerApiRoutes.favourite}`,
         { id: text }
-    ) as Observable<unknown>;
+    ) as Observable<Response>;
 }
 
-public deleteFavourite(id: string): Observable<unknown> {
+public deleteFavourite(id: string): Observable<Response> {
   return this.http.delete(
       `${baseUrl}${ServerApiRoutes.favourite}?id=${id}`
-  ) as Observable<unknown>;
+  ) as Observable<Response>;
 }
 }

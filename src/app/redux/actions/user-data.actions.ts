@@ -92,6 +92,15 @@ export const addToCartFailed = createAction(
     props<{ errorMessage: string }>()
 );
 
+export const oderHasBeenMade = createAction(
+    '[CART] ORDER HAS BEEN MADE'
+);
+
+export const orderMakeFailed = createAction(
+    '[CART] ORDER MAKE FAILED',
+    props<{ errorMessage: string }>()
+);
+
 export const addToFavouriteFailed = createAction(
     '[ITEM] ITEM HAVE NOT BEEN ADDED TO FAVOURITE',
     props<{ errorMessage: string }>()

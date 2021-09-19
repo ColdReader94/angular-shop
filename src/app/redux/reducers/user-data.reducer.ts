@@ -54,6 +54,12 @@ const reducer = createReducer(
     on(UserData.addToCartFailed,  (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
     }),
+    on(UserData.oderHasBeenMade,  (state) => {
+        return { ...state, currentUser: { ...state.currentUser, ...state.currentUser.cart = [] } };
+    }),
+    on(UserData.orderMakeFailed,  (state, { errorMessage }) => {
+        return { ...state, settingsError: errorMessage };
+    }),
     on(UserData.clearErrorMessage, (state) => {
         return { ...state, settingsError: '' };
     })
