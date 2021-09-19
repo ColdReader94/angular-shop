@@ -14,7 +14,7 @@
                     >Укажите кол-во:</label
                 >
                 <input
-                    (input)="
+                    (change)="
                         checkAmount(cart.items[i].amount, item.availableAmount, i);
                         totalPriceCount()
                     "

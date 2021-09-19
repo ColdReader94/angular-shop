@@ -86,7 +86,7 @@ const reducer = createReducer(
             ...state,
             currentUser: {
                 ...state.currentUser,
-                cart: state.currentUser.favorites.filter(itemInFavorites => itemInFavorites !== item),
+                favorites: state.currentUser.favorites.filter(itemInFavorites => itemInFavorites !== item),
             },
         };
     }),
