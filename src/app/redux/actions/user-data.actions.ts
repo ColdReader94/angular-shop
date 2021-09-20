@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { IOrder } from 'src/app/core/models/order.model';
 import { IUser } from 'src/app/core/models/user.model';
 
 export const changeCity = createAction('[HEADER] CITY CHANGE');
@@ -20,7 +21,7 @@ export const userRegister = createAction(
 
 export const userRegisterSuccessful = createAction(
     '[LOGIN POPUP] NEW USER REGISTERED',
-    props<{ user: IUser }>()
+    props<{ user: IUser; authToken: string }>()
 );
 
 export const userRegisterFailed = createAction(
@@ -50,7 +51,7 @@ export const userLoadFailed = createAction(
 
 export const userLoadSuccessful = createAction(
     '[LOGIN POPUP] USER DATA LOAD',
-    props<{ user: IUser }>()
+    props<{ user: IUser; authToken: string }>()
 );
 
 export const userLogout = createAction('[LOGIN DROP DOWN LIST] USER HAS LOGGED OUT');
@@ -92,8 +93,6 @@ export const addToCartFailed = createAction(
     props<{ errorMessage: string }>()
 );
 
-export const oderHasBeenMade = createAction('[CART] ORDER HAS BEEN MADE');
-
 export const orderMakeFailed = createAction(
     '[CART] ORDER MAKE FAILED',
     props<{ errorMessage: string }>()
@@ -102,4 +101,24 @@ export const orderMakeFailed = createAction(
 export const addToFavouriteFailed = createAction(
     '[ITEM] ITEM HAVE NOT BEEN ADDED TO FAVOURITE',
     props<{ errorMessage: string }>()
+);
+
+export const tryAddOrder = createAction(
+    '[CART] TRYING TO CREATE ORDER',
+    props<{ order: IOrder }>()
+);
+
+export const orderConfirmed = createAction(
+    '[CART] ORDER HAS BEEN MAKED',
+    props<{ order: IOrder }>()
+);
+
+export const removeOrder = createAction(
+    '[CART] ORDER HAS BEEN REMOVED',
+    props<{ id: string; order: IOrder }>()
+);
+
+export const updateOrder = createAction(
+    '[CART] ORDER HAS BEEN CHANGED',
+    props<{ order: IOrder }>()
 );

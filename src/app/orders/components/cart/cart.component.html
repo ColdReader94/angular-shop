@@ -3,7 +3,7 @@
     <div class="items-container">
         <app-item
             class="cart-item"
-            *ngFor="let item of favoritesItems$ | async; let i = index"
+            *ngFor="let item of itemsInCart$ | async; let i = index"
             [value]="item"
         >
             <button class="remove-btn" (click)="removeFromCart(item.id)">

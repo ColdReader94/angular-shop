@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { LoginService } from 'src/app/auth/services/login.service';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
+import { OrderHandlingService } from 'src/app/orders/services/order-handling.service';
 import { FavouriteTogglerService } from 'src/app/shared/services/favourite-toggler.service';
 import { workWithCartService } from 'src/app/shared/services/work-with-cart.service';
 import * as UserActions from '../actions/user-data.actions';
@@ -61,12 +62,12 @@ export class userDataEffects {
             switchMap((data) =>
                 this.httpRequest.getUserInfo(data.tokenValue).pipe(
                     tap((value) => {
-                        this.loginService.setToLocalStorage({
-                            ...value,
-                            token: data.tokenValue,
-                        });
+                        this.loginService.setToLocalStorage(
+                            { ...value },
+                           data.tokenValue
+                        );
                     }),
-                    map((value) => UserActions.userLoadSuccessful({ user: value })),
+                    map((value) => UserActions.userLoadSuccessful({ user: value, authToken: data.tokenValue })),
                     catchError((error: HttpErrorResponse) =>
                         of(
                             UserActions.userLoadFailed({
@@ -85,12 +86,13 @@ export class userDataEffects {
             switchMap((data) =>
                 this.httpRequest.registerUser(data.user).pipe(
                     map((value) => {
-                        this.loginService.setToLocalStorage({
-                            ...data.user,
-                            token: value.token,
-                        });
+                        this.loginService.setToLocalStorage(
+                            { ...data.user },
+                           value.token
+                        );
                         return UserActions.userRegisterSuccessful({
-                            user: { ...data.user, token: value.token },
+                            user: { ...data.user },
+                            authToken: value.token,
                         });
                     }),
                     catchError((error: HttpErrorResponse) =>
@@ -186,11 +188,66 @@ export class userDataEffects {
         )
     );
 
+    public addOrder: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+        ofType(UserActions.tryAddOrder),
+        switchMap((data) =>
+            this.orderService.makeOrder(data.order).pipe(
+                map(() =>  UserActions.orderConfirmed({ order: data.order })),
+                catchError((error: HttpErrorResponse) =>
+                    of(
+                        UserActions.userLoadFailed({
+                            errorMessage: `${error.status} ${error.statusText}: Failed to make order`,
+                        })
+                    )
+                )
+            )
+        )
+    )
+);
+
+public changeOrder: Observable<Action> = createEffect(() =>
+this.actions$.pipe(
+    ofType(UserActions.updateOrder),
+    switchMap((data) =>
+        this.orderService.changeOrder(data.order).pipe(
+            map(() =>  UserActions.orderConfirmed({ order: data.order })),
+            catchError((error: HttpErrorResponse) =>
+                of(
+                    UserActions.userLoadFailed({
+                        errorMessage: `${error.status} ${error.statusText}: Failed to change order`,
+                    })
+                )
+            )
+        )
+    )
+)
+);
+
+public deleteOrder: Observable<Action> = createEffect(() =>
+this.actions$.pipe(
+    ofType(UserActions.removeOrder),
+    switchMap((data) =>
+        this.orderService.deleteOrder(data.order.id as string).pipe(
+            map(() =>  UserActions.removeOrder({ id: data.id, order: data.order })),
+            catchError((error: HttpErrorResponse) =>
+                of(
+                    UserActions.userLoadFailed({
+                        errorMessage: `${error.status} ${error.statusText}: Failed to remove order`,
+                    })
+                )
+            )
+        )
+    )
+)
+);
+
     constructor(
         private actions$: Actions,
         private httpRequest: HttpRequestsService,
         private loginService: LoginService,
         private favouriteService: FavouriteTogglerService,
-        private cartService: workWithCartService
+        private cartService: workWithCartService,
+        private orderService: OrderHandlingService
     ) {}
 }

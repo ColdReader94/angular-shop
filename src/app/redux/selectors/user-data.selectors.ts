@@ -34,8 +34,12 @@ export class UserDataSelectors {
         this.selectUserDataState,
         (userDataState) => userDataState.currentUser.favorites
     );
+    public selectOrders = createSelector(
+        this.selectUserDataState,
+        (userDataState) => userDataState.currentUser.orders
+    );
     public selectToken = createSelector(
         this.selectUserDataState,
-        (userDataState) => userDataState.currentUser.token
+        (userDataState) => userDataState.token
     );
 }

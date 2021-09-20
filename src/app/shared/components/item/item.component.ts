@@ -33,6 +33,8 @@ export class ItemComponent implements OnInit, OnDestroy {
             .select(this.isloggedSelector.selectLoggedState)
             .subscribe((value) => {
                 this.isLogged = value;
+                this.isFavorite = this.value.isFavorite;
+                this.isInCart = this.value.isInCart;
             });
         this.isFavorite = this.value.isFavorite;
         this.isInCart = this.value.isInCart;

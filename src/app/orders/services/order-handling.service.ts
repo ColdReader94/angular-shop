@@ -14,7 +14,7 @@ export class OrderHandlingService {
         return this.http.post(
             `${baseUrl}${ServerApiRoutes.order}`,
             order
-        ) as unknown as Observable<string>;
+        ) as Observable<string>;
     }
 
     public changeOrder(order: IOrder): Observable<Response> {

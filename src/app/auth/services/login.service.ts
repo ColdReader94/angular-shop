@@ -20,11 +20,11 @@ export class LoginService {
         private route: ActivatedRoute
     ) {}
 
-    public setToLocalStorage(user: IUser): void {
+    public setToLocalStorage(user: IUser, authToken: string): void {
         const userRegistrationInfo = {
             firstName: user.firstName,
             lastName: user.lastName,
-            token: user.token,
+            token: authToken,
         };
         localStorage.setItem(CURRENT_USER, JSON.stringify(userRegistrationInfo));
     }
@@ -42,15 +42,18 @@ export class LoginService {
     }
 
     public userExistsCheck(currentUser: IUser): void {
-        this.httpService.getUserInfo(currentUser.token).subscribe((value) => {
-            if (value) {
-                this.store.dispatch(
-                    userFoundSuccessful({ tokenValue: currentUser.token })
-                );
-            } else {
-                localStorage.clear();
-            }
-        });
+        if (currentUser.token) {
+            this.httpService.getUserInfo(currentUser.token).subscribe((value) => {
+                if (value) {
+                    this.store.dispatch(
+                        userFoundSuccessful({ tokenValue: currentUser.token as string })
+                    );
+                } else {
+                    localStorage.clear();
+                }
+            });
+        }
+      
     }
 
     public logOut(): void {
@@ -59,6 +62,5 @@ export class LoginService {
         if (this.route.toString().includes(Paths.Users)) {
             this.router.navigate([Paths.Root]);
         }
-        window.location.reload();
     }
 }

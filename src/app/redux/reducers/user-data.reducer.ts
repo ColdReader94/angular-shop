@@ -19,7 +19,7 @@ const reducer = createReducer(
         return {
             ...state,
             isLoggin: true,
-            currentUser: { ...user, token: state.currentUser.token },
+            currentUser: { ...user },
         };
     }),
     on(UserData.userLogin, (state) => {
@@ -31,11 +31,12 @@ const reducer = createReducer(
     on(UserData.userNotFound, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
     }),
-    on(UserData.userLoadSuccessful, (state, { user }) => {
+    on(UserData.userLoadSuccessful, (state, { user, authToken }) => {
         return {
             ...state,
             isLoggin: true,
-            currentUser: { ...user, token: state.currentUser.token },
+            token: authToken,
+            currentUser: { ...user },
         };
     }),
     on(UserData.userLogout, (state) => {
@@ -93,7 +94,7 @@ const reducer = createReducer(
     on(UserData.addToCartFailed, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
     }),
-    on(UserData.oderHasBeenMade, (state) => {
+    on(UserData.orderConfirmed, (state) => {
         return {
             ...state,
             currentUser: { ...state.currentUser, cart: [] },

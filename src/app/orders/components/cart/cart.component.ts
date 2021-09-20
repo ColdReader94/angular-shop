@@ -7,7 +7,7 @@ import { IGoodsBaseItem } from 'src/app/core/models/goods.model';
 import { IOrder, IOrderItem } from 'src/app/core/models/order.model';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import {
-    oderHasBeenMade,
+    orderConfirmed,
     orderMakeFailed,
     tryToAddToCart,
 } from 'src/app/redux/actions/user-data.actions';
@@ -23,7 +23,7 @@ import { OrderHandlingService } from '../../services/order-handling.service';
 export class CartComponent implements OnInit {
     public formHasErrors = false;
     public showPopup = false;
-    public favoritesItems$!: Observable<IGoodsBaseItem[]>;
+    public itemsInCart$!: Observable<IGoodsBaseItem[]>;
     public cart: IOrder = {
         items: [],
         details: {
@@ -64,7 +64,7 @@ export class CartComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.favoritesItems$ = this.store
+        this.itemsInCart$ = this.store
             .select(this.cartItemsSelector.selectItemsInCart)
             .pipe(
                 map((itemsIdArray) => {
@@ -72,7 +72,7 @@ export class CartComponent implements OnInit {
                     const cartItems: IOrderItem[] = [];
                     itemsIdArray.map((itemId) =>
                         this.httpService.getGoods(itemId).subscribe((item) => {
-                            cartItems.push({ id: item.id, price: item.price, amount: 1 });
+                            cartItems.push({ id: item.id, price: item.price, amount: 1, name: item.name, imageUrls: item.imageUrls });
                             arr.push(item);
                         })
                     );
@@ -111,7 +111,7 @@ export class CartComponent implements OnInit {
             this.orderService.makeOrder(this.cart).subscribe((value) => {
                 if (value === 'OK') {
                     this.showPopup = true;
-                    this.store.dispatch(oderHasBeenMade());
+                    this.store.dispatch(orderConfirmed({ order: this.cart }));
                 } else {
                     this.store.dispatch(
                         orderMakeFailed({ errorMessage: 'Заказ не был оформлен' })

@@ -1,1 +1,45 @@
-<p>waitlist works!</p>
+<!-- <div class="wrapper">
+    <h2 class="category-title">Список ожидаемых заказов</h2>
+    <div class="orders-container">
+        <div class="order" *ngFor="let order of orders$ | async; let j = index">
+            <app-item
+                class="cart-item"
+                *ngFor="let item of order.items; let i = index"
+                [value]="item"
+            >
+                <button class="remove-btn" (click)="removeGood(item.id)">
+                    Удалить товар из заказа
+                </button>
+                <form class="cart-item-form" action="">
+                    <label class="cart-item-form-label" for="item-count-input"
+                        >Укажите кол-во:</label
+                    >
+                    <input
+                        (change)="
+                            checkAmount(odersData[j].items[i].amount, item.availableAmount, i);
+                            totalPriceCount()
+                        "
+                        #itemCountField="ngModel"
+                        [(ngModel)]="odersData[j].items[i].amount"
+                        class="item-count-input"
+                        name="itemCountField"
+                        id="item-count-input"
+                        type="number"
+                        [min]="item.availableAmount ? 1 : 0"
+                        [value]="odersData[j].items[i].amount"
+                        [max]="item.availableAmount"
+                    />
+                    <p class="price">
+                        Цена:
+                        {{
+                            odersData[j].items[i].price * itemCountField.value
+                                | currency: "BYN":"symbol":".2-2"
+                        }}
+                    </p>
+                </form>
+            </app-item>
+            <button class="order-change-btn" (click)="changeOrder(order)"></button>
+            <button class="order-remove-btn" (click)="removeOrder(order)"></button>
+        </div>
+    </div>
+</div> -->

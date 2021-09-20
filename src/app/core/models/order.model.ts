@@ -2,6 +2,8 @@ export interface IOrderItem {
     id: string;
     price: number;
     amount: number;
+    name: string;
+    imageUrls: string[];
 }
 
 export interface IOrder {

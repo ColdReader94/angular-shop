@@ -12,6 +12,7 @@ import {
 import { ICategories } from 'src/app/core/models/categories.model';
 import { IGoodsBaseItem } from '../models/goods.model';
 import { locationByIp } from 'src/app/shared/constants';
+import { IUserDataState } from 'src/app/redux/models/user-data-state.model';
 @Injectable({
     providedIn: 'root',
 })
@@ -24,11 +25,11 @@ export class HttpRequestsService {
             .pipe(map((value) => value as IIpLocationInterfaceResponse));
     }
 
-    public findUser(login: string, password: string): Observable<Pick<IUser, 'token'>> {
+    public findUser(login: string, password: string): Observable<Pick<IUserDataState, 'token'>> {
         return this.http.post(`${baseUrl}${ServerApiRoutes.userFind}`, {
             login,
             password,
-        }) as Observable<Pick<IUser, 'token'>>;
+        }) as Observable<Pick<IUserDataState, 'token'>>;
     }
 
     public getUserInfo(token: string): Observable<IUser> {
@@ -41,11 +42,11 @@ export class HttpRequestsService {
         }) as Observable<IUser>;
     }
 
-    public registerUser(newUser: IUser): Observable<Pick<IUser, 'token'>> {
+    public registerUser(newUser: IUser): Observable<Pick<IUserDataState, 'token'>> {
         return this.http.post(
             `${baseUrl}${ServerApiRoutes.userRegister}`,
             newUser
-        ) as Observable<Pick<IUser, 'token'>>;
+        ) as Observable<Pick<IUserDataState, 'token'>>;
     }
 
     public getCategories(): Observable<ICategories[]> {

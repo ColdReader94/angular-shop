@@ -51,6 +51,15 @@ export class GoodsComponent implements OnInit, OnDestroy {
                     this.id = id;
                     return this.httpService.getGoods(this.id).pipe(
                         switchMap((value) => {
+                            //TODO REMOVE IF STATEMENT AFTER CROSSCHECK (this image was removed from shopserver)
+                            if (value.imageUrls.length && 
+                                value.imageUrls[0].includes(
+                                    'cdn21vek.by/img/galleries/6013/346/preview_b/500_mebelico_05_5fdc54de5510e.jpeg'
+                                )
+                            ) {
+                                value.imageUrls[1] = 'assets/images/default-img.jpg';
+                                value.imageUrls[0] = 'assets/images/default-img.jpg';
+                            }
                             this.good = value;
                             return this.store.select(
                                 this.categoriesSelectors.selectCategories

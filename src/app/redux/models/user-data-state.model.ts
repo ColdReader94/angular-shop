@@ -4,19 +4,20 @@ export interface IUserDataState {
     currentCity: string;
     isLoggin: boolean;
     settingsError: string;
-    currentUser: IUser;
+    currentUser: IUser;    
+    token: string;
 }
 
 export const initialUserData: IUserDataState = {
     currentCity: '',
     isLoggin: false,
     settingsError: '',
+    token: '',
     currentUser: {
         login: '',
         password: '',
         firstName: '',
         lastName: '',
-        token: '',
         cart: [],
         favorites: [],
         orders: [],
