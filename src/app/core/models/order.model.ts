@@ -6,15 +6,29 @@ export interface IOrderItem {
     imageUrls: string[];
 }
 
+export interface IDetailsOrder {
+    totalPrice: number;
+    name: string;
+    address: string;
+    phone: string;
+    timeToDeliver: string;
+    dateToDeliver: string;
+    comment: string;
+}
+
+export interface ICart {
+    items: IOrderItem[];
+    details: IDetailsOrder;
+    id?: string;
+}
+
 export interface IOrder {
     items: IOrderItem[];
     details: {
-        totalPrice: number;
         name: string;
         address: string;
         phone: string;
         timeToDeliver: string;
-        dateToDeliver: string;
         comment: string;
     };
     id?: string;

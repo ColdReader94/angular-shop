@@ -4,7 +4,7 @@ export interface IUserDataState {
     currentCity: string;
     isLoggin: boolean;
     settingsError: string;
-    currentUser: IUser;    
+    currentUser: IUser;
     token: string;
 }
 

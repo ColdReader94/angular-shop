@@ -103,13 +103,17 @@ export class SubcategoryComponent implements OnInit, OnDestroy {
                         this.sortType as sortTypes,
                         this.sortDirection
                     );
-                     //TODO REMOVE FOREACH STATEMENT AFTER CROSSCHECK (this image was removed from shopserver)
-                this.items.forEach(item => {
-                    if (item.imageUrls.length && 
-                        item.imageUrls[0].includes('cdn21vek.by/img/galleries/6013/346/preview_b/500_mebelico_05_5fdc54de5510e.jpeg')) {
-                        item.imageUrls[0] = '';
-                    }
-                });
+                    //TODO REMOVE FOREACH STATEMENT AFTER CROSSCHECK (this image was removed from shopserver)
+                    this.items.forEach((item) => {
+                        if (
+                            item.imageUrls.length &&
+                            item.imageUrls[0].includes(
+                                'cdn21vek.by/img/galleries/6013/346/preview_b/500_mebelico_05_5fdc54de5510e.jpeg'
+                            )
+                        ) {
+                            item.imageUrls[0] = '';
+                        }
+                    });
                 } else {
                     this.router.navigate([Paths.NotFound]);
                 }

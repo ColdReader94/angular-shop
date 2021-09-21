@@ -19,9 +19,8 @@ export const userRegister = createAction(
     props<{ user: IUser }>()
 );
 
-export const userRegisterSuccessful = createAction(
-    '[LOGIN POPUP] NEW USER REGISTERED',
-    props<{ user: IUser; authToken: string }>()
+export const userCompleteRegister = createAction(
+    '[LOGIN POPUP] REGISTRATION COMPLETE'
 );
 
 export const userRegisterFailed = createAction(
@@ -109,7 +108,7 @@ export const tryAddOrder = createAction(
 );
 
 export const orderConfirmed = createAction(
-    '[CART] ORDER HAS BEEN MAKED',
+    '[CART] ORDER HAS BEEN MADE',
     props<{ order: IOrder }>()
 );
 
@@ -119,6 +118,18 @@ export const removeOrder = createAction(
 );
 
 export const updateOrder = createAction(
+    '[CART] ORDER TRY TO UPDATE',
+    props<{ order: IOrder }>()
+);
+
+export const orderUpdated = createAction(
     '[CART] ORDER HAS BEEN CHANGED',
     props<{ order: IOrder }>()
+);
+
+export const userDataLoad = createAction('[WISHLIST] LOAD USER DATA');
+
+export const userInfoGetSuccessful = createAction(
+    '[WISHLIST] USER INFO WAS GET',
+    props<{ user: IUser }>()
 );

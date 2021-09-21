@@ -1,45 +1,145 @@
-<!-- <div class="wrapper">
+<div class="wrapper">
     <h2 class="category-title">Список ожидаемых заказов</h2>
     <div class="orders-container">
-        <div class="order" *ngFor="let order of orders$ | async; let j = index">
-            <app-item
-                class="cart-item"
-                *ngFor="let item of order.items; let i = index"
-                [value]="item"
-            >
-                <button class="remove-btn" (click)="removeGood(item.id)">
-                    Удалить товар из заказа
-                </button>
-                <form class="cart-item-form" action="">
-                    <label class="cart-item-form-label" for="item-count-input"
-                        >Укажите кол-во:</label
-                    >
-                    <input
-                        (change)="
-                            checkAmount(odersData[j].items[i].amount, item.availableAmount, i);
-                            totalPriceCount()
-                        "
-                        #itemCountField="ngModel"
-                        [(ngModel)]="odersData[j].items[i].amount"
-                        class="item-count-input"
-                        name="itemCountField"
-                        id="item-count-input"
-                        type="number"
-                        [min]="item.availableAmount ? 1 : 0"
-                        [value]="odersData[j].items[i].amount"
-                        [max]="item.availableAmount"
-                    />
-                    <p class="price">
-                        Цена:
-                        {{
-                            odersData[j].items[i].price * itemCountField.value
-                                | currency: "BYN":"symbol":".2-2"
-                        }}
+        <div
+            class="order"
+            *ngFor="let order of orders$ | async; let j = index"
+            (click)="displayToggle($event)"
+        >
+            Номер заказа: {{ order.id }}
+            <div class="order-item">
+                <div class="cart-item" *ngFor="let item of order.items; let i = index">
+                    <h2>
+                        Заказ успешно оформлен. Ожидайте доставки в указанное время. Вы
+                        также можете отменить или изменить заказ
+                    </h2>
+                    <img [src]="item.imageUrls[0]" alt="" />
+                    <p>Наименование товара: {{ item.name }}</p>
+                    <p class="item-price">
+                        Цена: {{ item.price | currency: "BYN":"symbol":".2-2" }}
                     </p>
-                </form>
-            </app-item>
-            <button class="order-change-btn" (click)="changeOrder(order)"></button>
-            <button class="order-remove-btn" (click)="removeOrder(order)"></button>
+                    <p class="item-amount">Количество (шт): {{ item.amount }}</p>
+                </div>
+                <div class="order-info">
+                    <h3>Данные о текущем заказе</h3>
+                    <p>ФИО: {{ order.details.name }}</p>
+                    <p>Адрес: {{ order.details.timeToDeliver }}</p>
+                    <p>Общая стоимость заказа: {{ countTotalPrice(order) }}</p>
+                    <p>Ожидаемое время доставки: {{ order.details.timeToDeliver }}</p>
+                    <p>Комментарий: {{ order.details.comment }}</p>
+
+                    <h3>Изменить данные заказа:</h3>
+                    <form action="" [formGroup]="orderForm" class="cart-order-form">
+                        <label class="cart-item-form-label" for="name-input">ФИО:</label>
+                        <input
+                            formControlName="name"
+                            class="name-input"
+                            name="name"
+                            id="name-input"
+                            type="text"
+                            minlength="3"
+                            maxlength="50"
+                        />
+                        <div
+                            class="error-message"
+                            *ngIf="formHasErrors && orderForm.controls.name.errors"
+                        >
+                            Обязательное поле (от 3 до 50 символов)
+                        </div>
+                        <label class="cart-item-form-label" for="address-input"
+                            >Адрес доставки:</label
+                        >
+                        <input
+                            formControlName="address"
+                            class="address-input"
+                            name="address"
+                            id="address-input"
+                            type="text"
+                            minlength="3"
+                            maxlength="250"
+                        />
+                        <div
+                            class="error-message"
+                            *ngIf="formHasErrors && orderForm.controls.address.errors"
+                        >
+                            Обязательное поле (от 3 до 250 символов)
+                        </div>
+                        <label class="cart-item-form-label" for="phone-input"
+                            >Телефон:</label
+                        >
+                        <input
+                            formControlName="phone"
+                            class="phone-input"
+                            name="phone"
+                            id="phone-input"
+                            type="tel"
+                        />
+                        <div
+                            class="error-message"
+                            *ngIf="formHasErrors && orderForm.controls.phone.errors"
+                        >
+                            Введите номер телефона в формате (+999999)
+                        </div>
+                        <label class="cart-item-form-label" for="date-input"
+                            >Вы можете выбрать другое время:</label
+                        >
+                        <input
+                            formControlName="dateToDeliver"
+                            class="date-input"
+                            name="date"
+                            id="date-input"
+                            type="date"
+                        />
+                        <div
+                            class="error-message"
+                            *ngIf="
+                                formHasErrors && orderForm.controls.timeToDeliver.errors
+                            "
+                        >
+                            Обязательное поле
+                        </div>
+                        <input
+                            formControlName="timeToDeliver"
+                            class="time-input"
+                            name="time"
+                            id="time-input"
+                            type="time"
+                        />
+                        <div
+                            class="error-message"
+                            *ngIf="
+                                formHasErrors && orderForm.controls.timeToDeliver.errors
+                            "
+                        >
+                            Обязательное поле
+                        </div>
+                        <label class="cart-item-form-label" for="comment-input"
+                            >Комментарий (опционально):</label
+                        >
+                        <input
+                            formControlName="comment"
+                            class="comment-input"
+                            name="comment"
+                            id="comment-input"
+                            type="text"
+                            maxlength="250"
+                        />
+                    </form>
+                </div>
+                <div class="order-buttons">
+                    <button
+                        type="submit"
+                        class="order-confirm-btn"
+                        [disabled]="!order.items.length"
+                        (click)="changeOrder(order)"
+                    >
+                        Изменить заказ
+                    </button>
+                    <button class="order-remove-btn" (click)="removeOrder(order)">
+                        Отменить заказ
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-</div> -->
+</div>

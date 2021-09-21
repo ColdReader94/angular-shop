@@ -1,4 +1,4 @@
-import { IOrder } from "./order.model";
+import { IOrder } from './order.model';
 
 export interface IUser {
     login: string;

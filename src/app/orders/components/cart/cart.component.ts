@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IGoodsBaseItem } from 'src/app/core/models/goods.model';
-import { IOrder, IOrderItem } from 'src/app/core/models/order.model';
+import { ICart, IOrder, IOrderItem } from 'src/app/core/models/order.model';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import {
     orderConfirmed,
@@ -24,7 +24,7 @@ export class CartComponent implements OnInit {
     public formHasErrors = false;
     public showPopup = false;
     public itemsInCart$!: Observable<IGoodsBaseItem[]>;
-    public cart: IOrder = {
+    public cart: ICart = {
         items: [],
         details: {
             totalPrice: 0,
@@ -36,6 +36,7 @@ export class CartComponent implements OnInit {
             comment: '',
         },
     };
+    public totalPriceShow$: Observable<number>;
     public orderForm: FormGroup = new FormGroup({
         name: new FormControl('', [
             Validators.required,
@@ -55,13 +56,16 @@ export class CartComponent implements OnInit {
         dateToDeliver: new FormControl('', Validators.required),
         comment: new FormControl('', Validators.maxLength(250)),
     });
+    private totalPrice$ = new BehaviorSubject(0);
 
     constructor(
         private store: Store<AppState>,
         private cartItemsSelector: UserDataSelectors,
         private httpService: HttpRequestsService,
         private orderService: OrderHandlingService
-    ) {}
+    ) {
+        this.totalPriceShow$ = this.totalPrice$.asObservable();
+    }
 
     ngOnInit(): void {
         this.itemsInCart$ = this.store
@@ -72,7 +76,13 @@ export class CartComponent implements OnInit {
                     const cartItems: IOrderItem[] = [];
                     itemsIdArray.map((itemId) =>
                         this.httpService.getGoods(itemId).subscribe((item) => {
-                            cartItems.push({ id: item.id, price: item.price, amount: 1, name: item.name, imageUrls: item.imageUrls });
+                            cartItems.push({
+                                id: item.id,
+                                price: item.price,
+                                amount: 1,
+                                name: item.name,
+                                imageUrls: item.imageUrls,
+                            });
                             arr.push(item);
                         })
                     );
@@ -108,10 +118,21 @@ export class CartComponent implements OnInit {
                 ...this.cart.details,
                 ...(this.orderForm.value as IOrder),
             };
-            this.orderService.makeOrder(this.cart).subscribe((value) => {
+            const newOrder = {
+                items: this.cart.items,
+                details: {
+                    name: this.cart.details.name,
+                    phone: this.cart.details.phone,
+                    address: this.cart.details.address,
+                    comment: this.cart.details.comment,
+                    timeToDeliver: `${this.cart.details.dateToDeliver} ${this.cart.details.timeToDeliver}`,
+                },
+            };
+            this.totalPrice$.next(this.cart.details.totalPrice);
+            this.orderService.makeOrder(newOrder).subscribe((value) => {
                 if (value === 'OK') {
                     this.showPopup = true;
-                    this.store.dispatch(orderConfirmed({ order: this.cart }));
+                    this.store.dispatch(orderConfirmed({ order: newOrder }));
                 } else {
                     this.store.dispatch(
                         orderMakeFailed({ errorMessage: 'Заказ не был оформлен' })

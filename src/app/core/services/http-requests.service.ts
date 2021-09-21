@@ -25,7 +25,10 @@ export class HttpRequestsService {
             .pipe(map((value) => value as IIpLocationInterfaceResponse));
     }
 
-    public findUser(login: string, password: string): Observable<Pick<IUserDataState, 'token'>> {
+    public findUser(
+        login: string,
+        password: string
+    ): Observable<Pick<IUserDataState, 'token'>> {
         return this.http.post(`${baseUrl}${ServerApiRoutes.userFind}`, {
             login,
             password,

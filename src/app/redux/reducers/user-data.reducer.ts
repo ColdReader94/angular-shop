@@ -12,16 +12,6 @@ const reducer = createReducer(
     on(UserData.changeCityFailed, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
     }),
-    on(UserData.userRegister, (state) => {
-        return { ...state };
-    }),
-    on(UserData.userRegisterSuccessful, (state, { user }) => {
-        return {
-            ...state,
-            isLoggin: true,
-            currentUser: { ...user },
-        };
-    }),
     on(UserData.userLogin, (state) => {
         return { ...state };
     }),
@@ -40,8 +30,11 @@ const reducer = createReducer(
         };
     }),
     on(UserData.userLogout, (state) => {
-        return { ...state, currentUser: { ...state.currentUser,
-             token: '', favorites: [], cart: []  }, isLoggin: false };
+        return {
+            ...state,
+            currentUser: { ...state.currentUser, token: '', favorites: [], cart: [] },
+            isLoggin: false,
+        };
     }),
     on(UserData.userLoadFailed, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
@@ -78,7 +71,7 @@ const reducer = createReducer(
             ...state,
             currentUser: {
                 ...state.currentUser,
-                cart: state.currentUser.cart.filter(itemInCart => itemInCart !== item),
+                cart: state.currentUser.cart.filter((itemInCart) => itemInCart !== item),
             },
         };
     }),
@@ -87,24 +80,60 @@ const reducer = createReducer(
             ...state,
             currentUser: {
                 ...state.currentUser,
-                favorites: state.currentUser.favorites.filter(itemInFavorites => itemInFavorites !== item),
+                favorites: state.currentUser.favorites.filter(
+                    (itemInFavorites) => itemInFavorites !== item
+                ),
             },
         };
     }),
     on(UserData.addToCartFailed, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
     }),
-    on(UserData.orderConfirmed, (state) => {
+    on(UserData.orderConfirmed, (state, { order }) => {
         return {
             ...state,
-            currentUser: { ...state.currentUser, cart: [] },
+            currentUser: {
+                ...state.currentUser,
+                cart: [],
+                orders: [...state.currentUser.orders, order],
+            },
+        };
+    }),
+    on(UserData.orderUpdated, (state, { order }) => {
+        return {
+            ...state,
+            currentUser: {
+                ...state.currentUser,
+                orders: [
+                    ...state.currentUser.orders.map((item) => {
+                        if (item.id === order.id) {
+                            return order;
+                        }
+                        return item;
+                    }),
+                ],
+            },
         };
     }),
     on(UserData.orderMakeFailed, (state, { errorMessage }) => {
         return { ...state, settingsError: errorMessage };
     }),
+    on(UserData.userInfoGetSuccessful, (state, { user }) => {
+        return { ...state, currentUser: user };
+    }),
     on(UserData.clearErrorMessage, (state) => {
         return { ...state, settingsError: '' };
+    }),
+    on(UserData.removeOrder, (state, { order }) => {
+        return {
+            ...state,
+            currentUser: {
+                ...state.currentUser,
+                orders: state.currentUser.orders.filter(
+                    (itemInOrders) => itemInOrders.id !== order.id
+                ),
+            },
+        };
     })
 );
 

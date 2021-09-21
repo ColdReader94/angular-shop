@@ -64,10 +64,15 @@ export class userDataEffects {
                     tap((value) => {
                         this.loginService.setToLocalStorage(
                             { ...value },
-                           data.tokenValue
+                            data.tokenValue
                         );
                     }),
-                    map((value) => UserActions.userLoadSuccessful({ user: value, authToken: data.tokenValue })),
+                    map((value) =>
+                        UserActions.userLoadSuccessful({
+                            user: value,
+                            authToken: data.tokenValue,
+                        })
+                    ),
                     catchError((error: HttpErrorResponse) =>
                         of(
                             UserActions.userLoadFailed({
@@ -88,12 +93,9 @@ export class userDataEffects {
                     map((value) => {
                         this.loginService.setToLocalStorage(
                             { ...data.user },
-                           value.token
+                            value.token
                         );
-                        return UserActions.userRegisterSuccessful({
-                            user: { ...data.user },
-                            authToken: value.token,
-                        });
+                        return UserActions.userCompleteRegister();
                     }),
                     catchError((error: HttpErrorResponse) =>
                         of(
@@ -189,58 +191,78 @@ export class userDataEffects {
     );
 
     public addOrder: Observable<Action> = createEffect(() =>
-    this.actions$.pipe(
-        ofType(UserActions.tryAddOrder),
-        switchMap((data) =>
-            this.orderService.makeOrder(data.order).pipe(
-                map(() =>  UserActions.orderConfirmed({ order: data.order })),
-                catchError((error: HttpErrorResponse) =>
-                    of(
-                        UserActions.userLoadFailed({
-                            errorMessage: `${error.status} ${error.statusText}: Failed to make order`,
-                        })
+        this.actions$.pipe(
+            ofType(UserActions.tryAddOrder),
+            switchMap((data) =>
+                this.orderService.makeOrder(data.order).pipe(
+                    map(() => UserActions.orderConfirmed({ order: data.order })),
+                    catchError((error: HttpErrorResponse) =>
+                        of(
+                            UserActions.userLoadFailed({
+                                errorMessage: `${error.status} ${error.statusText}: Failed to make order`,
+                            })
+                        )
                     )
                 )
             )
         )
-    )
-);
+    );
 
-public changeOrder: Observable<Action> = createEffect(() =>
-this.actions$.pipe(
-    ofType(UserActions.updateOrder),
-    switchMap((data) =>
-        this.orderService.changeOrder(data.order).pipe(
-            map(() =>  UserActions.orderConfirmed({ order: data.order })),
-            catchError((error: HttpErrorResponse) =>
-                of(
-                    UserActions.userLoadFailed({
-                        errorMessage: `${error.status} ${error.statusText}: Failed to change order`,
-                    })
+    public changeOrder: Observable<Action> = createEffect(() =>
+        this.actions$.pipe(
+            ofType(UserActions.updateOrder),
+            switchMap((data) =>
+                this.orderService.changeOrder(data.order).pipe(
+                    map(() => UserActions.orderUpdated({ order: data.order })),
+                    catchError((error: HttpErrorResponse) =>
+                        of(
+                            UserActions.userLoadFailed({
+                                errorMessage: `${error.status} ${error.statusText}: Failed to change order`,
+                            })
+                        )
+                    )
                 )
             )
         )
-    )
-)
-);
+    );
 
-public deleteOrder: Observable<Action> = createEffect(() =>
-this.actions$.pipe(
-    ofType(UserActions.removeOrder),
-    switchMap((data) =>
-        this.orderService.deleteOrder(data.order.id as string).pipe(
-            map(() =>  UserActions.removeOrder({ id: data.id, order: data.order })),
-            catchError((error: HttpErrorResponse) =>
-                of(
-                    UserActions.userLoadFailed({
-                        errorMessage: `${error.status} ${error.statusText}: Failed to remove order`,
-                    })
+    public deleteOrder: Observable<Action> = createEffect(() =>
+        this.actions$.pipe(
+            ofType(UserActions.removeOrder),
+            switchMap((data) =>
+                this.orderService.deleteOrder(data.order.id as string).pipe(
+                    map(() =>
+                        UserActions.removeOrder({ id: data.id, order: data.order })
+                    ),
+                    catchError((error: HttpErrorResponse) =>
+                        of(
+                            UserActions.userLoadFailed({
+                                errorMessage: `${error.status} ${error.statusText}: Failed to remove order`,
+                            })
+                        )
+                    )
                 )
             )
         )
-    )
-)
-);
+    );
+
+    public loadUserData: Observable<Action> = createEffect(() =>
+        this.actions$.pipe(
+            ofType(UserActions.userDataLoad),
+            switchMap(() =>
+                this.httpRequest.getUserInfo('').pipe(
+                    map((value) => UserActions.userInfoGetSuccessful({ user: value })),
+                    catchError((error: HttpErrorResponse) =>
+                        of(
+                            UserActions.userLoadFailed({
+                                errorMessage: `${error.status} ${error.statusText}: Failed to remove order`,
+                            })
+                        )
+                    )
+                )
+            )
+        )
+    );
 
     constructor(
         private actions$: Actions,

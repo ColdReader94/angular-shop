@@ -151,7 +151,7 @@
         <p>ФИО: {{ cart.details.name }}</p>
         <p>Адрес доставки: {{ cart.details.address }}</p>
         <p>
-            Сумма заказа: {{ cart.details.totalPrice | currency: "BYN":"symbol":".2-2" }}
+            Сумма заказа: {{ totalPriceShow$ | async | currency: "BYN":"symbol":".2-2" }}
         </p>
         <p>
             Дата и время доставки: {{ cart.details.dateToDeliver }}
