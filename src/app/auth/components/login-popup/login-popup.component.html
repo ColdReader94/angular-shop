@@ -1,0 +1,111 @@
+<app-popup class="login-popup" (closePopup)="closePopup.emit()">
+    <form
+        (ngSubmit)="logIn()"
+        *ngIf="loginMode; else registrationForm"
+        class="login-form"
+        action=""
+    >
+        <h2 class="popup-title">Вход</h2>
+        <label class="login-form-label" for="login-input">Логин</label>
+        <input
+            #loginField="ngModel"
+            [(ngModel)]="newUser.login"
+            class="login-input"
+            name="loginField"
+            id="login-input"
+            type="text"
+            placeholder="type login here.."
+            required=""
+        />
+        <label class="login-form-label" for="password-input">Пароль</label>
+        <input
+            #password="ngModel"
+            [(ngModel)]="newUser.password"
+            class="password-input"
+            name="password"
+            id="password-input"
+            type="password"
+            placeholder="type password here.."
+            autocomplete="on"
+            required=""
+        />
+        <button
+            type="submit"
+            [disabled]="loginField.invalid || password.invalid"
+            class="login-btn"
+        >
+            Войти
+        </button>
+    </form>
+    <a (click)="toRegistration()" class="to-registration" [class.show]="loginMode"
+        >Регистрация</a
+    >
+    <ng-template #registrationForm>
+        <form (ngSubmit)="registration()" class="login-form">
+            <h2 class="popup-title">Регистрация</h2>
+            <img
+                #avatarPreview
+                class="avatar-preview"
+                src="assets/images/profile-default-icon.png"
+                alt=""
+            />
+            <label class="login-form-label" for="login-input">Логин</label>
+            <input
+                #loginField="ngModel"
+                [(ngModel)]="newUser.login"
+                class="login-input"
+                name="loginField"
+                id="login-input"
+                type="text"
+                placeholder="type login here.."
+                required=""
+            />
+            <label class="login-form-label" for="password-input">Пароль</label>
+            <input
+                #password="ngModel"
+                [(ngModel)]="newUser.password"
+                class="password-input"
+                name="password"
+                id="password-input"
+                type="password"
+                placeholder="type password here.."
+                autocomplete="on"
+                required=""
+            />
+            <label class="name-form-label" for="name-input">Имя</label>
+            <input
+                #name="ngModel"
+                [(ngModel)]="newUser.firstName"
+                class="name-input"
+                name="name"
+                id="name"
+                type="text"
+                placeholder="type name here.."
+                required=""
+            />
+            <label class="surname-form-label" for="surname-input">Фамилия</label>
+            <input
+                #surname="ngModel"
+                [(ngModel)]="newUser.lastName"
+                class="surname-input"
+                name="surname"
+                id="surname"
+                type="text"
+                placeholder="type surname here.."
+                required=""
+            />
+            <button
+                type="submit"
+                [disabled]="
+                    loginField.invalid ||
+                    password.invalid ||
+                    name.invalid ||
+                    surname.invalid
+                "
+                class="login-btn"
+            >
+                Регистрация
+            </button>
+        </form>
+    </ng-template>
+</app-popup>

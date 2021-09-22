@@ -1,0 +1,23 @@
+@import "variables.scss";
+
+.location-block {
+    display: flex;
+}
+
+.location-icon {
+    width: pxToRem(20px);
+    height: pxToRem(20px);
+    margin-right: pxToRem(10px);
+}
+
+@media (max-width: 960px) {
+    .location-icon {
+        filter: invert(100%);
+    }
+}
+
+@media (max-width: 640px) {
+    * {
+        font-size: 0.6rem;
+    }
+}

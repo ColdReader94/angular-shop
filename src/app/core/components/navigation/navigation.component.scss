@@ -1,0 +1,241 @@
+@import "variables.scss";
+
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: pxToRem(10px);
+    -webkit-column-gap: pxToRem(10px);
+    padding: pxToRem(16px) 0;
+}
+
+.logo {
+    max-width: pxToRem(50px);
+    cursor: pointer;
+}
+
+.nav-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: pxToRem(120px);
+    height: pxToRem(42px);
+    margin-right: pxToRem(8px);
+    padding-right: pxToRem(18px);
+    border: none;
+    border-radius: pxToRem(6px);
+    background-color: $background-light;
+    background-repeat: no-repeat;
+    background-position: 5px;
+    background-size: pxToRem(20px);
+    cursor: pointer;
+
+    &:hover {
+        background-color: $background-header-secondary-hover;
+    }
+}
+
+.basket-btn {
+    background-image: url("../../../../assets/images/basket-icon.svg");
+}
+
+.catalog-btn {
+    min-width: pxToRem(160px);
+}
+
+.account-btn {
+    position: relative;
+    background-image: url("../../../../assets/images/cabinet-icon.svg");
+}
+
+.circle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: pxToRem(2px);
+    -webkit-column-gap: pxToRem(2px);
+    padding: pxToRem(4px);
+    width: pxToRem(24px);
+    height: pxToRem(24px);
+    margin-right: pxToRem(10px);
+    border-radius: 50%;
+    background: transparent;
+
+    .square {
+        background: $text-color-primary;
+        width: pxToRem(6px);
+        height: pxToRem(6px);
+    }
+}
+
+.search-form {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-color: $white;
+    width: 50%;
+    height: pxToRem(42px);
+    border-radius: pxToRem(6px);
+    box-shadow: 0 2px 4px rgb(23 35 38 / 5%);
+background: #f2f2f2f1;
+    .icon {
+        margin: 0 pxToRem(10px);
+        opacity: 0.5;
+    }
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background: $white;
+    box-shadow: 10px 12px 54px rgb(23 35 38 / 25%);
+
+    li {
+        display: flex;
+        align-items: center;
+        padding: pxToRem(10px);
+        color: $login-button-background;
+        text-decoration: underline;
+        border-bottom: 1px solid $header-border-color;
+        cursor: pointer;
+    }
+
+    img {
+        width: pxToRem(40px);
+        max-height: pxToRem(40px);
+        margin-right: pxToRem(10px);
+    }
+}
+
+.search-input {
+    border-radius: pxToRem(50px);
+    outline: none;
+    border: none;
+    height: 100%;
+    width: calc(100% - 30px);
+    background: #f2f2f2f1;
+}
+
+a:hover {
+    color: $background-header-text-hover;
+}
+
+.profile-icon {
+    margin: 0 auto;
+    width: pxToRem(60px);
+    height: auto;
+}
+
+.login-popup {
+    position: fixed;
+}
+
+.catalog-btn__active {
+    background: #ebedf0;
+    color: #909399;
+}
+
+.catalog-btn__active .circle {
+    background: transparent;
+
+    .square {
+        width: 100%;
+        height: pxToRem(2px);
+        background: #909399;
+    }
+
+    .square:nth-child(2) {
+        -webkit-transform: rotate(-45deg) translate(pxToRem(-3px), pxToRem(2px));
+        transform: rotate(-45deg) translate(pxToRem(-3px), pxToRem(2px));
+    }
+
+    .square:nth-child(3) {
+        -webkit-transform: rotate(45deg) translate(pxToRem(-3px), pxToRem(-3px));
+        transform: rotate(45deg) translate(pxToRem(-3px), pxToRem(-3px));
+    }
+
+    .square:first-child,
+    .square:last-child {
+        display: none;
+    }
+}
+
+.login-popup,
+.search-results {
+    z-index: 2;
+}
+
+@media (max-width: 960px) {
+    :host {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .nav-btn {
+        min-width: pxToRem(40px);
+        max-width: pxToRem(40px);
+        background-color: transparent;
+        margin-right: 0;
+        padding-right: 0;
+        border: none;
+        border-radius: 0;
+
+        &:hover {
+            background-color: transparent;
+            outline: none;
+        }
+
+        .circle {
+            background: transparent;
+        }
+    }
+
+
+.circle .square {
+    background: $white;
+}
+
+    .catalog-btn__active .circle {
+        background: transparent;
+    }
+
+    .account-btn,
+    .basket-btn {
+        order: 3;
+    }
+
+    .basket-btn {
+        filter: invert(100%);
+    }
+
+    .account-btn {
+        background-image: url("../../../../assets/images/cabinet-icon-lite.svg");
+    }
+
+    .logo {
+        order: 2;
+        max-width: pxToRem(30px);
+        margin: 0 auto;
+    }
+
+    .search-form {
+        flex-basis: 75%;
+        margin: 0 auto;
+        order: 4;
+    }
+
+    .account-btn > button span {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    * {
+        font-size: 0.6rem;
+    }
+}

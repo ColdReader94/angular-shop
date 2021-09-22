@@ -1,0 +1,85 @@
+@import "variables.scss";
+
+:host {
+    display: flex;
+    background: $white;
+    color: black;
+    box-shadow: 10px 12px 54px rgb(23 35 38 / 25%);
+}
+
+li {
+    width: 100%;
+    cursor: pointer;
+}
+
+.subcategory-list li {
+    padding: pxToRem(5px);
+}
+
+h2 {
+    position: absolute;
+    top: pxToRem(-30px);
+}
+
+.subcategory-list {
+    display: none;
+    flex-wrap: wrap;
+    position: absolute;
+    top: pxToRem(30px);
+    left: 28%;
+    height: 100%;
+}
+
+.subcategory-list li {
+    display: flex;
+    flex-basis: 50%;
+}
+
+.category-name {
+    display: flex;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    column-gap: pxToRem(5px);
+    width: 25%;
+    height: pxToRem(58px);
+    padding: pxToRem(8px);
+}
+
+.category-list {
+    position: relative;
+    width: 100%;
+}
+
+.category-name:hover .list-item {
+    background: $background-header-secondary-hover;
+    color: $background-header-text-hover;
+}
+
+.subcategory-name:hover {
+    color: $background-header-text-hover;
+}
+
+.category-name:hover .subcategory-list {
+    display: flex;
+}
+
+@media (max-width: 960px) {
+    .subcategory-list {
+        left: 40%;
+        max-height: 80%;
+        width: 60%;
+    }
+
+    .list-item {
+        width: 34%;
+    }
+}
+
+@media (max-width: 640px) {
+    * {
+        font-size: 0.6rem;
+    }
+}

@@ -1,0 +1,85 @@
+<div class="header-info">
+    <div class="wrapper">
+        <div class="info">
+            <app-location></app-location>
+            <div class="info">
+                <div class="contacts-header">
+                    <div class="contacts-header-item">
+                        <a
+                            href="https://www.viber.com/21vek.by"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img src="assets/images/viber-icon.png" class="icon" alt="" />
+                            Viber</a
+                        >
+                    </div>
+                    <div class="contacts-header-item">
+                        <a href="tel:+375 29 302 00 00">
+                            <img
+                                src="assets/images/a1-icon.png"
+                                class="icon"
+                                alt=""
+                            />+375 29 302 00 00</a
+                        >
+                    </div>
+                </div>
+                <app-dropdown class="drop-down" [buttonText]="'Ещё'">
+                    <ul class="drop-down-list">
+                        <li>
+                            <a href="tel:+375 25 302 00 00"
+                                ><img
+                                    src="assets/images/life-icon.png"
+                                    class="icon"
+                                    alt=""
+                                />+375 25 302 00 00</a
+                            >
+                        </li>
+                        <li>
+                            <a href="tel:+375 17 302 00 00"
+                                ><img
+                                    src="assets/images/phone-icon.png"
+                                    class="icon"
+                                    alt=""
+                                />+375 17 302 00 00</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="http://t.me/e21vekbot"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                ><img
+                                    src="assets/images/telegram-icon.png"
+                                    class="icon"
+                                    alt=""
+                                />Telegram</a
+                            >
+                        </li>
+                        <li>
+                            <a href="mailto:21@21vek.by" rel="noopener noreferrer"
+                                ><img
+                                    src="assets/images/mail-icon.png"
+                                    class="icon"
+                                    alt=""
+                                />Почта</a
+                            >
+                        </li>
+                    </ul>
+                </app-dropdown>
+                <div class="work-hours">
+                    <img src="assets/images/clock-icon.png" class="icon" alt="" />
+                    <div class="work-hours-text">контакт-центр с 8:00 до 22:00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <app-navigation (catalogOpen)="catalogShowToggle()"></app-navigation>
+</div>
+<app-categories class="categories-navigation"></app-categories>
+<app-catalog *ngIf="catalogIsShowed"></app-catalog>
+<app-popup *ngIf="errorPopup" class="error-popup" (click)="hideErrorPopup()">{{
+    error$ | async
+}}</app-popup>

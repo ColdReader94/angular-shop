@@ -1,0 +1,7 @@
+.eslintrc.js
+test.ts
+main.ts
+*.html
+*.scss
+*.js
+*.spec

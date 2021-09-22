@@ -1,0 +1,87 @@
+<img [routerLink]="['']" src="assets/images/logo.png" class="logo" alt="" />
+<button
+    class="nav-btn catalog-btn"
+    [class.catalog-btn__active]="isCatalogOpen"
+    (click)="catalogToggle()"
+>
+    <div class="circle">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+    </div>
+    <span class="button-text">Каталог товаров</span>
+</button>
+<form class="search-form">
+    <img src="assets/images/search-icon.svg" class="icon" alt="" />
+    <input #searchField type="search" class="search-input" placeholder="Поиск" />
+    <ul class="search-results" *ngIf="searchResultsItems">
+        <li
+            *ngFor="let item of searchResultsItems.goods"
+            [routerLink]="['goods', 'item', item.id]"
+        >
+            <img [src]="item.imageUrls[0]" alt="" />{{ item.name }}
+            {{ item.price | currency: "BYN":"symbol":".2-2" }}
+        </li>
+        <li
+            *ngFor="let category of searchResultsItems.categories"
+            [routerLink]="['goods', 'category', category.id]"
+        >
+            {{ category.name }}
+        </li>
+    </ul>
+</form>
+<app-dropdown class="drop-down nav-btn account-btn" [buttonText]="'Аккаунт'">
+    <ul class="drop-down-list">
+        <li class="no-hover">
+            <img
+                class="profile-icon"
+                [src]="
+                    (currentUser$ | async)?.avatar ||
+                    'assets/images/profile-default-icon.png'
+                "
+                alt="avatar"
+            />
+        </li>
+        <li *ngIf="isLoggedIn$ | async; else loginBtn" class="no-hover">
+            <span class="user-name"
+                >{{ (currentUser$ | async)?.firstName }}
+                {{ (currentUser$ | async)?.lastName }}</span
+            >
+            <button (click)="loginService.logOut()" class="login-btn">Выйти</button>
+        </li>
+        <ng-template #loginBtn>
+            <li class="no-hover">
+                <button (click)="popupShow()" class="login-btn">Войти</button>
+            </li>
+        </ng-template>
+        <li>
+            <a [routerLink]="['/orders', 'cart']"
+                ><img src="assets/images/basket-icon.svg" class="icon" alt="" />Корзина</a
+            >
+        </li>
+        <li>
+            <a [routerLink]="['/orders', 'favourite']"
+                ><img
+                    src="assets/images/favourite-icon.svg"
+                    class="icon"
+                    alt=""
+                />Избранное</a
+            >
+        </li>
+        <li>
+            <a [routerLink]="['/orders', 'waitlist']"
+                ><img src="assets/images/list-icon.png" class="icon" alt="" />Лист
+                ожидания</a
+            >
+        </li>
+    </ul>
+</app-dropdown>
+<button [routerLink]="['/orders', 'cart']" class="nav-btn basket-btn">
+    <span class="button-text">Корзина</span>
+</button>
+<app-login-popup
+    class="login-popup"
+    (closePopup)="popupClose()"
+    *ngIf="isPopupShow"
+></app-login-popup>

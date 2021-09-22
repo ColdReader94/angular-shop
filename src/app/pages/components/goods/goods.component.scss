@@ -1,0 +1,110 @@
+@import "variables.scss";
+
+.wrapper {
+    flex-direction: column;
+}
+
+.breadcrumbs {
+    margin-top: pxToRem(5px);
+    font-size: 0.8rem;
+}
+
+a {
+    color: $link-color;
+}
+
+h2 {
+    margin: pxToRem(20px) auto;
+    color: $secondary-background;
+    font-family: $base-font-family;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    font-family: $base-font-family;
+}
+
+.add-to-cart-btn,
+.add-to-favourite-btn {
+    display: flex;
+    margin: pxToRem(4px) auto;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.add-to-cart-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: pxToRem(30px);
+    padding: pxToRem(4px);
+    border-radius: pxToRem(4px);
+    background: $secondary-background;
+    color: $white;
+}
+
+.add-to-cart-btn:hover {
+    opacity: 0.9;
+}
+
+.add-to-favourite-btn {
+    width: pxToRem(20px);
+    height: pxToRem(20px);
+    background-color: transparent;
+    background-image: url("/assets/images/fav-unactive.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &:hover {
+        filter: drop-shadow(2px 2px 2px #760000);
+    }
+}
+
+.amount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+    text-indent: pxToRem(10px);
+    margin: pxToRem(8px) auto;
+    height: pxToRem(24px);
+    border-radius: pxToRem(5px);
+    font-family: $base-font-family;
+    background-position: 10% 0;
+    background-repeat: no-repeat;
+    background-size: pxToRem(20px);
+}
+
+.description-title {
+    margin-top: pxToRem(20px);
+    align-self: flex-start;
+}
+
+.description {
+    margin-top: pxToRem(20px);
+    margin-bottom: pxToRem(20px);
+}
+
+.gallery-swiper-container {
+    width: 50%;
+}
+
+.add-to-favourite-btn__active {
+    background-image: url("/assets/images/fav-active.png");
+}
+
+.add-to-cart-btn__active {
+    background: $secondary-background-darker;
+}
+
+@media (max-width: 640px) {
+    * {
+        font-size: 0.6rem;
+    }
+}

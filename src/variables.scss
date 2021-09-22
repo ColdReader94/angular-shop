@@ -1,0 +1,27 @@
+$base-font-size: 16px;
+
+@function pxToRem($size) {
+    @return ($size / $base-font-size) + rem;
+}
+
+$background-header-secondary-hover: #FFFCE6;
+$background-light: #eaf5f8;
+$secondary-background: #10226c;
+$secondary-background-darker: rgb(1, 25, 54);
+$background-header-text-hover: #162871;
+$header-border-color: transparent;
+$footer-border-color: transparent;
+$button-disabled-background: #ebedf0;
+$button-disabled-color: #909399;
+$header-background-color: #f7f8fa;
+$shadow-icon-color: rgba(23, 35, 38, 0.05);
+$body-background-color: #f7f8fa;
+$white: #ffffff;
+$gradient: #0e226f;
+$link-color: #506AD4;
+$button-login-hover-background: #0f2479;
+$login-button-background: #506AD4;
+$text-color-primary: #000000;
+$base-font-family: Arial, sans-serif;
+$font-size-header-base: pxToRem(14px);
+$font-size-header-small: pxToRem(12px);

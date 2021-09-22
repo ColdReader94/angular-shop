@@ -1,0 +1,131 @@
+@import "variables.scss";
+
+:host {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    flex-basis: 22%;
+    border-radius: pxToRem(5px);
+    padding: pxToRem(5px);
+    align-items: center;
+    text-align: center;
+    background: $white;
+    box-shadow: 0 4px 12px 0 rgb(41 44 51 / 12%), 0 2px 2px 0 rgb(41 44 51 / 4%);
+    font-family: $base-font-family;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+:host:hover {
+    box-shadow: 10px 12px 54px rgb(23 35 38 / 25%);
+}
+
+.item-container {
+    position: relative;
+}
+
+.img-container {
+    height: pxToRem(120px);
+}
+
+.item-img {
+    height: 100%;
+    max-width: 100%;
+}
+
+.item-name {
+    height: pxToRem(40px);
+    line-height: pxToRem(20px);
+    overflow: hidden;
+}
+
+.add-to-cart-btn,
+.add-to-favourite-btn {
+    display: flex;
+    margin: pxToRem(4px) auto;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.add-to-cart-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: pxToRem(30px);
+    padding: pxToRem(4px);
+    border-radius: pxToRem(4px);
+    background: $secondary-background;
+    color: $white;
+}
+
+.add-to-cart-btn:hover {
+    opacity: 0.9;
+}
+
+.add-to-favourite-btn {
+    width: pxToRem(20px);
+    height: pxToRem(20px);
+    background-color: transparent;
+    background-image: url("/assets/images/fav-unactive.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &:hover {
+        filter: drop-shadow(2px 2px 2px #760000);
+    }
+}
+
+.add-to-favourite-btn__active {
+    background-image: url("/assets/images/fav-active.png");
+}
+
+.add-to-cart-btn__active {
+    background: $secondary-background-darker;
+}
+
+.amount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: pxToRem(8px) auto;
+    width: auto;
+    text-indent: pxToRem(20px);
+    height: pxToRem(24px);
+    border-radius: pxToRem(5px);
+    font-family: $base-font-family;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: pxToRem(20px);
+}
+
+@media (max-width: 1060px) {
+    :host {
+        margin: 0 auto;
+        flex-basis: 30%;
+    }
+}
+
+@media (max-width: 836px) {
+    :host {
+        margin: 0 auto;
+        flex-basis: 33%;
+    }
+}
+
+@media (max-width: 640px) {
+    * {
+        font-size: 0.6rem;
+    }
+
+    h2 {
+        font-size: 00.8rem;
+    }
+
+    :host {
+        margin: 0 auto;
+        flex-basis: 80%;
+    }
+}

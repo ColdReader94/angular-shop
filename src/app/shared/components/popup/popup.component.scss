@@ -1,0 +1,46 @@
+@import "variables.scss";
+
+:host {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 5;
+    width: 50vw;
+    height: auto;
+    top: 10%;
+    left: 25%;
+    padding: pxToRem(10px);
+    border-radius: pxToRem(5px);
+    background: $body-background-color;
+    box-shadow: 2px 2px 2px pxToRem(10000px) rgba(0, 0, 0, 0.2);
+}
+
+.close-icon .line {
+    display: flex;
+    width: pxToRem(20px);
+    height: pxToRem(3px);
+    border-radius: 25%;
+    background: #000000;
+    opacity: 0.7;
+}
+
+.close-icon {
+    position: absolute;
+    margin: pxToRem(20px) pxToRem(14px);
+    align-self: flex-end;
+    cursor: pointer;
+
+    .line:first-child {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    .line:last-child {
+        -webkit-transform: rotate(45deg) translate(pxToRem(-2px), -2px);
+        transform: rotate(45deg) translate(pxToRem(-2px), -2px);
+    }
+}
+
+.close-icon:hover .line {
+    opacity: 1;
+}

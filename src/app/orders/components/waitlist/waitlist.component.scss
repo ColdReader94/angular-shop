@@ -1,0 +1,140 @@
+@import "variables.scss";
+
+.wrapper {
+    flex-direction: column;
+    align-items: center;
+    font-family: $base-font-family;
+}
+
+.orders-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: pxToRem(40px);
+    -webkit-row-gap: pxToRem(40px);
+    column-gap: pxToRem(40px);
+    -webkit-column-gap: pxToRem(40px);
+}
+
+.order {
+    display: flex;
+    flex-direction: column;
+    margin-top: pxToRem(20px);
+    width: 100%;
+    box-shadow: 0 4px 12px 0 rgb(41 44 51 / 12%), 0 2px 2px 0 rgb(41 44 51 / 4%);
+    cursor: pointer;
+    text-align: right;
+    padding: pxToRem(8px);
+    color: $secondary-background;
+    font-family: $base-font-family;
+}
+
+.order-item {
+    display: none;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    border-radius: pxToRem(5px);
+    padding: pxToRem(5px);
+    align-items: center;
+    font-size: 0.8rem;
+    color: black;
+    cursor: pointer;
+
+    img {
+        max-width: pxToRem(100px);
+        max-height: pxToRem(80px);
+    }
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.active {
+    display: flex;
+}
+
+a {
+    color: $link-color;
+}
+
+h2,
+h3 {
+    margin: pxToRem(20px) auto;
+    color: $secondary-background;
+    text-align: center;
+}
+
+p {
+    padding: pxToRem(4px);
+    text-align: left;
+}
+
+.order::before {
+    content: "▼";
+}
+
+.open::before {
+    content: "▲";
+}
+
+.item-price,
+.item-amount {
+    font-weight: 600;
+}
+
+.order-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.cart-order-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: pxToRem(6px) auto;
+    width: 50%;
+
+    input {
+        display: flex;
+        outline: none;
+        border: none;
+        width: 100%;
+        box-shadow: inset 0 4px 12px 0 rgb(41 44 51 / 12%), 0 2px 2px 0 rgb(41 44 51 / 4%);
+        padding: pxToRem(4px);
+        border-radius: pxToRem(5px);
+        text-align: center;
+    }
+}
+
+.error-message {
+    color: red;
+}
+
+.order-buttons {
+    display: flex;
+    margin-top: pxToRem(8px);
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    button {
+        width: 40%;
+    }
+
+    .order-remove-btn {
+        background: red;
+    }
+}
+
+@media (max-width: 640px) {
+    * {
+        font-size: 0.6rem;
+    }
+}

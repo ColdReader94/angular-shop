@@ -1,0 +1,18 @@
+<swiper
+    [slideToClickedSlide]="true"
+    [pagination]="pagination"
+    class="mySwiper"
+    [autoplay]="true"
+>
+    <ng-template swiperSlide *ngFor="let slide of slidesData" class="slide">
+        <div
+            class="item-discount-container"
+            [routerLink]="['', 'goods', 'item', slide.id]"
+        >
+            <div class="on-sale"></div>
+            <div class="sale-title">Акция! Скидка до 50% на все телевизоры!</div>
+            <img [src]="slide.imageUrls[0]" class="sale-item-img" />
+            <div class="sale-item-name">{{ slide.name }}</div>
+        </div>
+    </ng-template>
+</swiper>

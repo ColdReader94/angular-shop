@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <h2 class="category-title">Избранные товары</h2>
+    <div class="items-container">
+        <app-item
+            class="favourite-item"
+            *ngFor="let item of favoritesItems$ | async"
+            [value]="item"
+        >
+            <button class="remove-btn" (click)="removeFromList(item.id, $event)">
+                Удалить из избранного
+            </button>
+        </app-item>
+    </div>
+</div>
