@@ -16,10 +16,31 @@
     margin-top: pxToRem(50px);
 }
 
-h2 {
+h2, h3 {
     margin-top: pxToRem(60px);
     color: $secondary-background;
     font-family: $base-font-family;
+}
+
+h3,
+iframe {
+    text-align: center;
+    align-self: center;
+    margin-bottom: pxToRem(40px);
+    width: 100%;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+.app-description {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+    text-align: justify;
+    padding: pxToRem(12px);
+    border-radius: pxToRem(8px);
+    margin-bottom: pxToRem(20px);
 }
 
 @media (max-width: 640px) {

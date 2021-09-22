@@ -37,11 +37,9 @@
     border-radius: pxToRem(5px);
     padding: pxToRem(5px);
     align-items: center;
-    font-family: $base-font-family;
     font-size: 0.8rem;
     color: black;
     cursor: pointer;
-    font-family: $base-font-family;
 
     img {
         max-width: pxToRem(100px);
@@ -54,7 +52,6 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
-    font-family: $base-font-family;
 }
 
 .active {
@@ -69,7 +66,6 @@ h2,
 h3 {
     margin: pxToRem(20px) auto;
     color: $secondary-background;
-    font-family: $base-font-family;
     text-align: center;
 }
 
@@ -78,11 +74,11 @@ p {
     text-align: left;
 }
 
-.order::after {
+.order::before {
     content: "▼";
 }
 
-.open::after {
+.open::before {
     content: "▲";
 }
 

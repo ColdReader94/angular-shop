@@ -10,6 +10,7 @@
 }
 
 .logo {
+    max-width: pxToRem(50px);
     cursor: pointer;
 }
 
@@ -21,8 +22,8 @@
     height: pxToRem(42px);
     margin-right: pxToRem(8px);
     padding-right: pxToRem(18px);
-    border: 1px solid $header-border-color;
-    border-radius: pxToRem(40px);
+    border: none;
+    border-radius: pxToRem(6px);
     background-color: $background-light;
     background-repeat: no-repeat;
     background-position: 5px;
@@ -30,7 +31,7 @@
     cursor: pointer;
 
     &:hover {
-        background-color: $white;
+        background-color: $background-header-secondary-hover;
     }
 }
 
@@ -59,10 +60,10 @@
     height: pxToRem(24px);
     margin-right: pxToRem(10px);
     border-radius: 50%;
-    background: $secondary-background;
+    background: transparent;
 
     .square {
-        background: $white;
+        background: $text-color-primary;
         width: pxToRem(6px);
         height: pxToRem(6px);
     }
@@ -76,9 +77,9 @@
     background-color: $white;
     width: 50%;
     height: pxToRem(42px);
-    border-radius: pxToRem(50px);
+    border-radius: pxToRem(6px);
     box-shadow: 0 2px 4px rgb(23 35 38 / 5%);
-
+background: #f2f2f2f1;
     .icon {
         margin: 0 pxToRem(10px);
         opacity: 0.5;
@@ -117,6 +118,7 @@
     border: none;
     height: 100%;
     width: calc(100% - 30px);
+    background: #f2f2f2f1;
 }
 
 a:hover {
@@ -134,13 +136,12 @@ a:hover {
 }
 
 .catalog-btn__active {
-    border-color: transparent;
     background: #ebedf0;
     color: #909399;
 }
 
 .catalog-btn__active .circle {
-    background: $white;
+    background: transparent;
 
     .square {
         width: 100%;
@@ -162,40 +163,6 @@ a:hover {
     .square:last-child {
         display: none;
     }
-}
-
-.serch-input-clear-btn {
-    position: relative;
-    width: pxToRem(20px);
-    height: pxToRem(20px);
-    margin-right: pxToRem(10px);
-    border-radius: 50%;
-    border: 0;
-    background: rgba(171, 174, 179, 0.6);
-    cursor: pointer;
-}
-
-.serch-input-clear-btn:hover {
-    background: gray;
-}
-
-.serch-input-clear-btn::before,
-.serch-input-clear-btn::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: pxToRem(-1px);
-    margin-left: pxToRem(-4px);
-    display: block;
-    width: pxToRem(8px);
-    height: pxToRem(2px);
-    transform: rotate(45deg);
-    background: $white;
-}
-
-.serch-input-clear-btn::after {
-    transform: rotate(-45deg);
 }
 
 .login-popup,
@@ -228,12 +195,13 @@ a:hover {
         }
     }
 
-    .catalog-btn__active .circle {
-        background: $white;
 
-        .square {
-            background: black;
-        }
+.circle .square {
+    background: $white;
+}
+
+    .catalog-btn__active .circle {
+        background: transparent;
     }
 
     .account-btn,

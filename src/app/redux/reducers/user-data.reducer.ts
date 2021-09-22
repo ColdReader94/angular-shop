@@ -47,7 +47,7 @@ const reducer = createReducer(
             ...state,
             currentUser: {
                 ...state.currentUser,
-                favourites: [...state.currentUser.favorites, item],
+                favorites: [...state.currentUser.favorites, item],
             },
         };
     }),

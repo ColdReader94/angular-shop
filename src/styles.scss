@@ -110,7 +110,7 @@ ul {
     justify-content: center;
     align-items: center;
     padding: pxToRem(10px) pxToRem(24px);
-    border: 0;
+    border: none;
     border-radius: pxToRem(4px);
     font-family: inherit;
     font-weight: 700;
@@ -155,7 +155,7 @@ ul {
 }
 
 .active-category {
-    box-shadow: 0 4px 12px 0 rgb(41 44 51 / 25%), 0 2px 2px 0 rgb(41 44 51 / 12%);
+    box-shadow: 0 4px 12px 0 rgb(41 44 51 / 55%), 0 2px 2px 0 rgb(41 44 51 / 52%);
 }
 
 .favourite-item .add-to-favourite-btn {

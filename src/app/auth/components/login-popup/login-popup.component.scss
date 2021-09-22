@@ -50,6 +50,13 @@
     }
 }
 
+.avatar-input {
+    border-radius: pxToRem(5px);
+    border: none;
+    background: $secondary-background;
+    color: white;
+}
+
 .logout {
     display: flex;
     flex-direction: column;

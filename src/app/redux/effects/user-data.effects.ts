@@ -230,9 +230,9 @@ export class userDataEffects {
         this.actions$.pipe(
             ofType(UserActions.removeOrder),
             switchMap((data) =>
-                this.orderService.deleteOrder(data.order.id as string).pipe(
-                    map(() =>
-                        UserActions.removeOrder({ id: data.id, order: data.order })
+                this.orderService.deleteOrder(data.id).pipe(
+                   map(() =>
+                        UserActions.orderRemoved()
                     ),
                     catchError((error: HttpErrorResponse) =>
                         of(

@@ -8,7 +8,6 @@ import { ICart, IOrder, IOrderItem } from 'src/app/core/models/order.model';
 import { HttpRequestsService } from 'src/app/core/services/http-requests.service';
 import {
     orderConfirmed,
-    orderMakeFailed,
     tryToAddToCart,
 } from 'src/app/redux/actions/user-data.actions';
 import { UserDataSelectors } from 'src/app/redux/selectors/user-data.selectors';
@@ -129,16 +128,12 @@ export class CartComponent implements OnInit {
                 },
             };
             this.totalPrice$.next(this.cart.details.totalPrice);
-            this.orderService.makeOrder(newOrder).subscribe((value) => {
-                if (value === 'OK') {
+            this.orderService.makeOrder(newOrder).subscribe(() => {
                     this.showPopup = true;
                     this.store.dispatch(orderConfirmed({ order: newOrder }));
-                } else {
-                    this.store.dispatch(
-                        orderMakeFailed({ errorMessage: 'Заказ не был оформлен' })
-                    );
                 }
-            });
+
+            );
         } else {
             this.formHasErrors = true;
         }

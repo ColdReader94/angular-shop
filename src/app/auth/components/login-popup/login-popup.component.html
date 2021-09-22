@@ -49,17 +49,6 @@
                 src="assets/images/profile-default-icon.png"
                 alt=""
             />
-            <label class="login-form-label avatar-label" for="avatar-input"
-                >Загрузите аватар (опционально)</label
-            >
-            <input
-                type="file"
-                (change)="base64code($event)"
-                class="avatar-input"
-                id="avatar-input"
-                name="avatar"
-                placeholder="type login here.."
-            />
             <label class="login-form-label" for="login-input">Логин</label>
             <input
                 #loginField="ngModel"

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { AppState } from 'src/app/redux/state.models';
 import { Store } from '@ngrx/store';
 import { UserDataSelectors } from 'src/app/redux/selectors/user-data.selectors';
-import { baseUrl, ServerApiRoutes } from 'src/app/shared/server-api-routes';
+import { baseUrl } from 'src/app/shared/server-api-routes';
 import { switchMap } from 'rxjs/operators';
 
 @Injectable()
@@ -32,12 +32,6 @@ export class TokenAddInterceptor implements HttpInterceptor {
                               responseType: 'json',
                           })
                         : request;
-                    if (request.url.includes(ServerApiRoutes.order)) {
-                        const requestCloneForOrders = authReq.clone({
-                            responseType: 'text',
-                        });
-                        return next.handle(requestCloneForOrders);
-                    }
                     return next.handle(authReq);
                 })
             );

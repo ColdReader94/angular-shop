@@ -10,6 +10,7 @@ import {
 } from 'src/app/redux/actions/user-data.actions';
 import { UserDataSelectors } from 'src/app/redux/selectors/user-data.selectors';
 import { AppState } from 'src/app/redux/state.models';
+import { OrderHandlingService } from '../../services/order-handling.service';
 
 @Component({
     selector: 'app-waitlist',
@@ -61,7 +62,8 @@ export class WaitlistComponent {
 
     constructor(
         private store: Store<AppState>,
-        private ordersSelector: UserDataSelectors
+        private ordersSelector: UserDataSelectors,
+        private orderService: OrderHandlingService
     ) {}
 
     ngOnInit(): void {
@@ -90,9 +92,7 @@ export class WaitlistComponent {
     }
 
     public removeOrder(deletedOrder: IOrder): void {
-        this.store.dispatch(
-            removeOrder({ id: deletedOrder.id as string, order: deletedOrder })
-        );
+        this.store.dispatch(removeOrder({ id: deletedOrder.id as string, order: deletedOrder }));
     }
 
     public displayToggle(event: Event): void {

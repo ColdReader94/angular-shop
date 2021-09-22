@@ -13,7 +13,6 @@
     display: flex;
     padding: pxToRem(4px) 2.2%;
     padding-bottom: pxToRem(5px);
-    border-bottom: 1px solid $header-border-color;
 }
 
 .info {
@@ -111,6 +110,6 @@ a {
 
 @media (max-width: 640px) {
     * {
-        font-size: 0.6rem;
+        font-size: 0.4rem;
     }
 }

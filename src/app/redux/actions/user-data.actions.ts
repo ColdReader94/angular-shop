@@ -133,3 +133,7 @@ export const userInfoGetSuccessful = createAction(
     '[WISHLIST] USER INFO WAS GET',
     props<{ user: IUser }>()
 );
+
+export const orderRemoved = createAction(
+    '[WISHLIST] ORDER DELETED SUCCSESSUL'
+);

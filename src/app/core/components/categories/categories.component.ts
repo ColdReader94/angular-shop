@@ -5,7 +5,6 @@ import { loadCategories } from 'src/app/redux/actions/categories.actions';
 import { ICategories } from 'src/app/core/models/categories.model';
 import { CategoriesSelectors } from 'src/app/redux/selectors/categories.selector';
 import { AppState } from 'src/app/redux/state.models';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-categories',
@@ -17,8 +16,7 @@ export class CategoriesComponent implements OnInit {
 
     constructor(
         private store: Store<AppState>,
-        private selectors: CategoriesSelectors,
-        private router: Router
+        private selectors: CategoriesSelectors
     ) {}
 
     ngOnInit(): void {

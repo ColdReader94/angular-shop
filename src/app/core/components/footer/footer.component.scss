@@ -6,7 +6,7 @@
     width: 100%;
     font-family: $base-font-family;
     font-size: $font-size-header-base;
-    background: $header-background-color;
+    background: $background-light;
     padding: pxToRem(10px) 0;
 }
 
@@ -16,8 +16,6 @@
     align-items: center;
     width: 100%;
     padding: pxToRem(10px) 0;
-    border-top: 1px solid $footer-border-color;
-    border-bottom: 1px solid $footer-border-color;
 
     a {
         display: flex;

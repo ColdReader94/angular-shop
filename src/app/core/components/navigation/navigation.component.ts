@@ -118,6 +118,7 @@ export class NavigationComponent implements OnInit {
     }
 
     public onClick(): void {
+        this.clearSearchInput();
         this.searchResultsItems = null;
     }
 }
